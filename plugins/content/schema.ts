@@ -3,15 +3,17 @@ import { z } from 'zod'
 // Schemas for the front matter of files in content/. Unknown keys are errors,
 // so typos fail the build instead of being silently ignored.
 
+/* Content metadata: title, date, slug, etc */
 const slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
   error: 'must be a lowercase slug such as "fulton-circle"',
 })
 const title = z.string().trim().min(1)
 const year = z.int().min(1500).max(2100)
-const zoom = z.int().min(0).max(24)
 const httpsUrl = z.url({ protocol: /^https$/, error: 'must be an https URL' })
 const wordpressId = z.int().positive().optional()
 
+/* Map metadata */
+const zoom = z.int().min(0).max(24)
 const longitude = z.number().min(-180).max(180)
 const latitude = z.number().min(-90).max(90)
 const bbox = z
@@ -20,23 +22,24 @@ const bbox = z
     error: 'must be [west, south, east, north] with west < east and south < north',
   })
 
-const source = z.discriminatedUnion('type', [
-  z.strictObject({
+/* Map source types */
+const wmsSource = z.strictObject({
     type: z.literal('wms'),
     url: httpsUrl,
     layers: z.string().min(1),
     minZoom: zoom.optional(),
     maxZoom: zoom.optional(),
+  })
+
+const xyzTileSource =   z.strictObject({
+  type: z.literal('tile'),
+  url: z.string().regex(/^https:\/\/\S*\{z\}\S*\{x\}\S*\{y\}/, {
+    error: 'must be an https URL template containing {z}, {x} and {y}',
   }),
-  z.strictObject({
-    type: z.literal('tile'),
-    url: z.string().regex(/^https:\/\/\S*\{z\}\S*\{x\}\S*\{y\}/, {
-      error: 'must be an https URL template containing {z}, {x} and {y}',
-    }),
-    minZoom: zoom.optional(),
-    maxZoom: zoom.optional(),
-  }),
-  z.strictObject({
+  minZoom: zoom.optional(),
+  maxZoom: zoom.optional(),
+})
+const geoJsonSource = z.strictObject({
     type: z.literal('geojson'),
     url: httpsUrl,
     // Names of the feature properties that hold popup text, comma-separated
@@ -48,9 +51,14 @@ const source = z.discriminatedUnion('type', [
         direction: z.string().min(1).optional(),
       })
       .optional(),
-  }),
+  })
+const source = z.discriminatedUnion('type', [
+  wmsSource,
+  xyzTileSource,
+  geoJsonSource,
 ])
 
+/* Schemas for each type of Markdown file */
 export const mapSchema = z.strictObject({
   title,
   year: year.optional(),
