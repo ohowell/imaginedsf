@@ -3,10 +3,17 @@ import type { Map as MapLibreMap } from 'maplibre-gl'
 const SIZE = 40
 const COLOR = '#c62828'
 
-/** Adds the pin images GeoJSON layers use, drawn at twice their size. */
-export function addPinImages(map: MapLibreMap) {
-  map.addImage('pin', drawPin(false), { pixelRatio: 2 })
-  map.addImage('pin-directional', drawPin(true), { pixelRatio: 2 })
+// Prefixed so they don't clash with icons in a basemap's style.
+export const PIN = 'isf-pin'
+export const DIRECTIONAL_PIN = 'isf-pin-directional'
+
+/**
+ * Adds a pin image when a layer asks for it. Changing the basemap replaces
+ * the style and drops added images, so pins are added whenever they're missing.
+ */
+export function addMissingPin(map: MapLibreMap, id: string) {
+  if (id !== PIN && id !== DIRECTIONAL_PIN) return
+  map.addImage(id, drawPin(id === DIRECTIONAL_PIN), { pixelRatio: 2 })
 }
 
 function drawPin(directional: boolean): ImageData {

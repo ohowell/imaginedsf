@@ -76,11 +76,18 @@ const cogSource = z.strictObject({
     error: 'must be a .tif or .tiff file',
   }),
 })
+// A MapLibre style, like a vector tile basemap from OpenFreeMap. Styles draw
+// a whole map, so they can only be basemaps.
+const styleSource = z.strictObject({
+  type: z.literal('style'),
+  url: httpsUrl,
+})
 const source = z.discriminatedUnion('type', [
   wmsSource,
   xyzTileSource,
   geoJsonSource,
   cogSource,
+  styleSource,
 ])
 
 /* Schemas for each type of Markdown file */

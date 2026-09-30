@@ -88,6 +88,22 @@ export function resolveContent(
         `defaultBasemap "${site.data.defaultBasemap}" isn't one of the basemaps`,
       )
     }
+    // Styles draw a whole map, and basemaps draw under everything else.
+    for (const map of raw.maps) {
+      const isBasemap = site.data.basemaps.includes(map.slug)
+      const { type } = map.data.source
+      if (type === 'style' && !isBasemap) {
+        error(
+          map.file,
+          'source: styles draw a whole map, so only basemaps can use them',
+        )
+      } else if (type === 'geojson' && isBasemap) {
+        error(
+          map.file,
+          'source: basemaps must be styles or raster maps (cog, wms or tile)',
+        )
+      }
+    }
   }
   for (const era of raw.eras) {
     for (const slug of era.data.items) {

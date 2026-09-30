@@ -190,6 +190,22 @@ describe('resolveContent', () => {
       "assets/images/old.jpg: isn't used by any content",
     ])
   })
+
+  it('keeps styles to basemaps, and GeoJSON out of basemaps', () => {
+    const raw = fixture({ assets: ['assets/geojson/base.geojson'] })
+    raw.maps[0].data.source = {
+      type: 'geojson',
+      url: '/assets/geojson/base.geojson',
+    }
+    raw.maps[1].data.source = {
+      type: 'style',
+      url: 'https://tiles.example/styles/light',
+    }
+    expect(messages(resolveContent(raw).errors)).toEqual([
+      'content/maps/base.md: source: basemaps must be styles or raster maps (cog, wms or tile)',
+      'content/maps/plan.md: source: styles draw a whole map, so only basemaps can use them',
+    ])
+  })
 })
 
 describe('mapSchema', () => {

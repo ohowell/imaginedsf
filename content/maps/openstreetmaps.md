@@ -2,9 +2,9 @@
 title: OpenStreetMaps
 year: 2019
 source:
-  type: tile
-  url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
+  type: style
+  url: https://tiles.openfreemap.org/styles/liberty
 wordpressId: 278
 ---
 
-Map data © [OpenStreetMap](https://www.openstreetmap.org/) contributors, [CC-BY-SA](https://creativecommons.org/licenses/by-sa/2.0/)
+Vector tiles from [OpenFreeMap](https://openfreemap.org/), with map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors.

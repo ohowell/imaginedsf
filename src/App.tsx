@@ -95,7 +95,8 @@ export default function App() {
         ))}
       </aside>
       <MapView
-        layers={[basemap, ...overlays]}
+        basemap={basemap}
+        layers={overlays}
         opacity={opacity}
         focus={focus}
       />

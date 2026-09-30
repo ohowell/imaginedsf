@@ -2,26 +2,45 @@ import type {
   AddLayerObject,
   Map as MapLibreMap,
   MapGeoJSONFeature,
+  TransformStyleFunction,
 } from 'maplibre-gl'
 import type { MapLayer, MapSource } from '../../plugins/content/types.ts'
+import { DIRECTIONAL_PIN, PIN } from './pins.ts'
 
-type SourceSpecification = Parameters<MapLibreMap['addSource']>[1]
+export type StyleSpecification = ReturnType<TransformStyleFunction>
+type SourceSpecification = StyleSpecification['sources'][string]
+/** Sources drawn as one layer, which is every kind but a whole style. */
+export type LayerSource = Exclude<MapSource, { type: 'style' }>
 type WmsSource = Extract<MapSource, { type: 'wms' }>
 
-// Credits shown in the attribution control, by host.
+// Credits shown in the attribution control, by host. Styles bring their own.
 const ATTRIBUTION: Record<string, string> = {
   'stacks.stanford.edu':
     '<a href="https://library.stanford.edu/">Stanford Libraries</a>',
-  'api.mapbox.com':
-    '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  'tile.openstreetmap.org':
-    '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   'basemap.nationalmap.gov':
     '<a href="https://www.usgs.gov/programs/national-geospatial-program/national-map">USGS The National Map</a>',
 }
 
 /** The ID of a map layer's MapLibre source, and of its one layer. */
 export const layerId = (slug: string) => `map:${slug}`
+
+/** Whether a source or layer is a map shown on the basemap. */
+export const isLayerId = (id: string) => id.startsWith('map:')
+
+/**
+ * A basemap's style: the style itself for vector basemaps, or a style with
+ * one raster layer for the others.
+ */
+export function basemapStyle(map: MapLayer): StyleSpecification | string {
+  const { source } = map
+  if (source.type === 'style') return source.url
+  const id = `basemap:${map.slug}`
+  return {
+    version: 8,
+    sources: { [id]: sourceSpec(source) },
+    layers: [{ id, type: 'raster', source: id }],
+  }
+}
 
 const attribution = (url: string) =>
   ATTRIBUTION[new URL(url, window.location.href).hostname]
@@ -55,7 +74,7 @@ function wmsTileUrl({ url, layers }: WmsSource): string {
   return `${url}?${params}&bbox={bbox-epsg-3857}`
 }
 
-export function sourceSpec(source: MapSource): SourceSpecification {
+export function sourceSpec(source: LayerSource): SourceSpecification {
   const credit = attribution(source.url)
   switch (source.type) {
     case 'cog':
@@ -99,7 +118,7 @@ export function layerSpec(map: MapLayer): AddLayerObject {
     type: 'symbol',
     source: id,
     layout: {
-      'icon-image': direction ? 'pin-directional' : 'pin',
+      'icon-image': direction ? DIRECTIONAL_PIN : PIN,
       'icon-rotate': direction ? ['to-number', ['get', direction], 0] : 0,
       'icon-rotation-alignment': 'map',
       'icon-allow-overlap': true,
