@@ -29,12 +29,11 @@ function fixture(overrides: Partial<RawContent> = {}): RawContent {
     dir: 'content',
     site: {
       file: 'content/site.yml',
-      data: { basemaps: ['base'], defaultBasemap: 'base', narratives: [] },
+      data: { basemaps: ['base'], defaultBasemap: 'base' },
     },
     maps: [map('base'), map('plan'), map('grouped')],
     groups: [group('proposals', ['grouped'])],
     eras: [era('later', 1950, ['plan']), era('earlier', 1900, ['proposals'])],
-    narratives: [],
     pages: pageNames.map((name) => entry('pages', name, { title: name })),
     ...overrides,
   }
@@ -163,7 +162,7 @@ describe('loadContent', () => {
   it('reports malformed files', async () => {
     dir = await mkdtemp(path.join(tmpdir(), 'content-'))
     await mkdir(path.join(dir, 'maps'))
-    await writeFile(path.join(dir, 'site.yml'), 'basemaps: [base]\ndefaultBasemap: base\nnarratives: []\n')
+    await writeFile(path.join(dir, 'site.yml'), 'basemaps: [base]\ndefaultBasemap: base\n')
     await writeFile(path.join(dir, 'maps', 'no-front-matter.md'), 'Just text')
     await writeFile(path.join(dir, 'maps', 'Bad Name.md'), '---\ntitle: x\n---\n')
     await writeFile(path.join(dir, 'maps', 'bad-yaml.md'), '---\ntitle: [unclosed\n---\n')

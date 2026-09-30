@@ -59,9 +59,8 @@ Site content lives in `content/` as Markdown files with YAML front matter, one f
 - `maps/`: map layers. The front matter sets the title, year, map source and bounding box, and the body is the description.
 - `groups/`: groups of maps, listed under `maps`.
 - `eras/`: proposal eras, listing maps and groups under `items`.
-- `narratives/`: narratives.
 - `pages/`: the introduction, maps and plans intro, bibliography, credits and feedback pages.
-- `site.yml`: the basemaps, the default basemap, and the order of narratives.
+- `site.yml`: basemap configuration.
 
 Items refer to each other by file name, so listing `fulton-circle` in an era means `content/maps/fulton-circle.md`. A map only appears on the site once it's listed in an era, a group or the basemaps. `wordpressId` keeps each item's ID from the old WordPress site, for matching up old links.
 

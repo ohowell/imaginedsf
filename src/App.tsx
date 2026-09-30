@@ -2,14 +2,14 @@ import content from 'virtual:content'
 
 // Placeholder UI showing that content loads.
 export default function App() {
-  const { eras, groups, maps, narratives, pages } = content
+  const { eras, groups, maps, pages } = content
   return (
     <main>
       <h1>Imagined San Francisco</h1>
       <p>Static rebuild in progress.</p>
       <p>
         {Object.keys(maps).length} maps, {Object.keys(groups).length} groups,{' '}
-        {eras.length} proposal eras, {narratives.length} narratives
+        {eras.length} proposal eras
       </p>
       <ol>
         {eras.map((era) => (

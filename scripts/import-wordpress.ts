@@ -58,17 +58,12 @@ interface WpEra extends WpPost {
   children: number[]
 }
 
-interface WpNarrative extends WpPost {
-  post_content: string
-}
-
 interface WpContent {
   contentAreaContent: Record<string, string>
   maps: WpMap[]
   mapGroups: WpGroup[]
   proposalEras: WpEra[]
   basemaps: number[]
-  narratives: WpNarrative[]
 }
 
 // WordPress content area key → page file name and title.
@@ -512,20 +507,6 @@ for (const era of wp.proposalEras) {
   )
 }
 
-for (const narrative of wp.narratives) {
-  const file = `narratives/${narrative.post_name}.md`
-  files.set(
-    file,
-    markdownFile(
-      {
-        title: checkTitle(narrative.post_title, file),
-        wordpressId: narrative.ID,
-      },
-      convert(narrative.post_content, file),
-    ),
-  )
-}
-
 for (const [key, [name, title]] of Object.entries(PAGES)) {
   const file = `pages/${name}.md`
   const html = wp.contentAreaContent[key] ?? ''
@@ -542,7 +523,6 @@ files.set(
   new Document({
     basemaps: wp.basemaps.map((id) => slugs.get(id)),
     defaultBasemap: slugs.get(defaultBasemap),
-    narratives: wp.narratives.map((narrative) => narrative.post_name),
   }).toString({ lineWidth: 0 }),
 )
 
@@ -559,7 +539,6 @@ for (const name of [
   'maps',
   'groups',
   'eras',
-  'narratives',
   'pages',
   'site.yml',
 ]) {

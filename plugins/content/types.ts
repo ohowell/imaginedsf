@@ -2,7 +2,6 @@ import type {
   EraData,
   GroupData,
   MapData,
-  NarrativeData,
   PageData,
   PageName,
 } from './schema.ts'
@@ -14,7 +13,6 @@ export type MapSource = MapData['source']
 export type MapLayer = MapData & { slug: string; description: string }
 export type MapGroup = GroupData & { slug: string; description: string }
 export type Era = EraData & { slug: string; description: string }
-export type Narrative = NarrativeData & { slug: string; body: string }
 export type Page = PageData & { body: string }
 
 export interface Content {
@@ -27,7 +25,6 @@ export interface Content {
   /** Slugs of the maps offered as basemaps. */
   basemaps: string[]
   defaultBasemap: string
-  /** Narratives in table-of-contents order. */
-  narratives: Narrative[]
+  /** Static pages. */
   pages: Record<PageName, Page>
 }

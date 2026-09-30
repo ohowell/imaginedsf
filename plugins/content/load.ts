@@ -7,13 +7,11 @@ import {
   eraSchema,
   groupSchema,
   mapSchema,
-  narrativeSchema,
   pageSchema,
   siteSchema,
   type EraData,
   type GroupData,
   type MapData,
-  type NarrativeData,
   type PageData,
   type SiteData,
 } from './schema.ts'
@@ -37,7 +35,6 @@ export interface RawContent {
   maps: Entry<MapData>[]
   groups: Entry<GroupData>[]
   eras: Entry<EraData>[]
-  narratives: Entry<NarrativeData>[]
   pages: Entry<PageData>[]
 }
 
@@ -130,7 +127,6 @@ export async function loadContent(
     maps: await loadCollection('maps', mapSchema),
     groups: await loadCollection('groups', groupSchema),
     eras: await loadCollection('eras', eraSchema),
-    narratives: await loadCollection('narratives', narrativeSchema),
     pages: await loadCollection('pages', pageSchema),
   }
   return { raw, errors }

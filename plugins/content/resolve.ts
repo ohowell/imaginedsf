@@ -29,7 +29,6 @@ export function resolveContent(raw: RawContent): {
 
   const maps = new Map(raw.maps.map((entry) => [entry.slug, entry]))
   const groups = new Map(raw.groups.map((entry) => [entry.slug, entry]))
-  const narratives = new Map(raw.narratives.map((entry) => [entry.slug, entry]))
   const pages = new Map(raw.pages.map((entry) => [entry.slug, entry]))
 
   // Eras list maps and groups by slug, so the two can't share one.
@@ -42,7 +41,7 @@ export function resolveContent(raw: RawContent): {
 
   // WordPress IDs identify items in links from the old site.
   const wordpressIds = new Map<number, string>()
-  for (const entry of [...raw.maps, ...raw.groups, ...raw.eras, ...raw.narratives]) {
+  for (const entry of [...raw.maps, ...raw.groups, ...raw.eras]) {
     const id = entry.data.wordpressId
     if (id === undefined) continue
     const other = wordpressIds.get(id)
@@ -134,23 +133,6 @@ export function resolveContent(raw: RawContent): {
     }
   }
 
-  if (site) {
-    const seen = new Set<string>()
-    for (const slug of site.data.narratives) {
-      if (!narratives.has(slug)) {
-        error(site.file, `narratives: no narrative named "${slug}"`)
-      } else if (seen.has(slug)) {
-        error(site.file, `narratives: "${slug}" is listed twice`)
-      }
-      seen.add(slug)
-    }
-    for (const narrative of raw.narratives) {
-      if (!seen.has(narrative.slug)) {
-        warn(narrative.file, `isn't listed in ${site.file}, so it isn't shown`)
-      }
-    }
-  }
-
   for (const name of pageNames) {
     if (!pages.has(name)) {
       error(`${raw.dir}/pages/${name}.md`, 'missing; the site uses this page')
@@ -188,12 +170,6 @@ export function resolveContent(raw: RawContent): {
       .sort((a, b) => a.start - b.start || a.title.localeCompare(b.title)),
     basemaps: site.data.basemaps,
     defaultBasemap: site.data.defaultBasemap,
-    narratives: site.data.narratives.flatMap((slug) => {
-      const narrative = narratives.get(slug)
-      return narrative
-        ? [{ ...narrative.data, slug, body: renderMarkdown(narrative.body) }]
-        : []
-    }),
     pages: Object.fromEntries(
       raw.pages.map(({ slug, data, body }) => [
         slug,

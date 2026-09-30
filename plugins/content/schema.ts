@@ -80,14 +80,11 @@ export const eraSchema = z
     error: 'start must not be after end',
   })
 
-export const narrativeSchema = z.strictObject({ title, wordpressId })
-
 export const pageSchema = z.strictObject({ title })
 
 export const siteSchema = z.strictObject({
   basemaps: z.array(slug).min(1),
   defaultBasemap: slug,
-  narratives: z.array(slug),
 })
 
 export const pageNames = [
@@ -101,7 +98,6 @@ export const pageNames = [
 export type MapData = z.output<typeof mapSchema>
 export type GroupData = z.output<typeof groupSchema>
 export type EraData = z.output<typeof eraSchema>
-export type NarrativeData = z.output<typeof narrativeSchema>
 export type PageData = z.output<typeof pageSchema>
 export type SiteData = z.output<typeof siteSchema>
 export type PageName = (typeof pageNames)[number]
