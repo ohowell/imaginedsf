@@ -7,7 +7,7 @@ const VIRTUAL_ID = 'virtual:content'
 const RESOLVED_ID = `\0${VIRTUAL_ID}`
 
 /** Loads, validates and renders everything in a content directory. */
-export async function buildContent(dir: string) {
+async function buildContent(dir: string) {
   const loaded = await loadContent(dir)
   // Cross-references are only checked once every file is valid on its own,
   // so one broken file doesn't also surface as a missing reference.
@@ -17,7 +17,7 @@ export async function buildContent(dir: string) {
   return resolveContent(loaded.raw)
 }
 
-export const formatIssue = ({ file, message }: ContentIssue) =>
+const formatIssue = ({ file, message }: ContentIssue) =>
   `${file}: ${message}`
 
 /** Provides the site content as `virtual:content`. */
