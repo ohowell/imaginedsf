@@ -2,11 +2,8 @@
 title: Chinatown
 year: 1885
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:gp836sx5319
-  minZoom: 1
-  maxZoom: 20
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:gp836sx5319/g6714001_cog.tif
 bbox: [-122.4086324, 37.7918811, -122.404349, 37.7979795]
 wordpressId: 485
 ---

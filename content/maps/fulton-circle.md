@@ -3,10 +3,8 @@ title: Fulton Circle
 year: 1963
 indented: true
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:mw570jd1313
-  minZoom: 13
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:mw570jd1313/FultonCircle_cog.tif
 bbox: [-122.4169201, 37.7772047, -122.4078665, 37.7843127]
 wordpressId: 310
 ---

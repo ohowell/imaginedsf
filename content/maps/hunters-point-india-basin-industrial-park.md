@@ -2,9 +2,8 @@
 title: Hunters Point & India Basin Industrial Park
 year: 1969
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:nq732wy3436
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:nq732wy3436/HP_WGS_cog.tif
 bbox: [-122.3927104, 37.726571, -122.37261, 37.7415459]
 wordpressId: 1018
 ---

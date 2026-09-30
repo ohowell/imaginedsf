@@ -2,9 +2,8 @@
 title: Western Addition Land Claims
 year: 1858
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:cm904zm1870
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:cm904zm1870/12110006_WGS_cog.tif
 bbox: [-122.4547446, 37.7415074, -122.401089, 37.812604]
 wordpressId: 823
 ---

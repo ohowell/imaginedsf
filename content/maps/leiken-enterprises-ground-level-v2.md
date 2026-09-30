@@ -2,9 +2,8 @@
 title: Leiken Enterprises / Lubicz-Nycz Architects
 year: 1960
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:xh797zx2465
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:xh797zx2465/17_018_011_cog.tif
 bbox: [-122.4093967, 37.7899663, -122.3858514, 37.8024156]
 wordpressId: 551
 ---

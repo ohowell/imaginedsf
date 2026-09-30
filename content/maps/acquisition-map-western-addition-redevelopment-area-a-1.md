@@ -2,9 +2,8 @@
 title: "Acquisition Map: Western Addition Redevelopment Area, A-1"
 year: 1956
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:gq720bq5425
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:gq720bq5425/WesternAddition2L_cog.tif
 bbox: [-122.4455899, 37.7743076, -122.4171725, 37.7909318]
 wordpressId: 272
 ---

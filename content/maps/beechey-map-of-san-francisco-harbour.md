@@ -2,9 +2,8 @@
 title: Beechey Map of San Francisco Harbour
 year: 1833
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:pd612sw8059
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:pd612sw8059/Beechey_WGS_cog.tif
 bbox: [-122.7517154, 37.3646171, -121.8098903, 38.2269428]
 wordpressId: 1342
 ---

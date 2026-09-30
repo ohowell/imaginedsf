@@ -2,9 +2,8 @@
 title: Redevelopment Areas
 year: 1981
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:mx431dv9089
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:mx431dv9089/SFRA_Summary_1981_WGS_cog.tif
 bbox: [-122.5185609, 37.6951792, -122.3531657, 37.8253092]
 wordpressId: 1168
 ---

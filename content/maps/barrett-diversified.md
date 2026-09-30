@@ -2,9 +2,8 @@
 title: Barrett Diversified and Lesser-Braemar / DMJM wtih Corlett & Spackman Architects
 year: 1960
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:dm442vj3588
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:dm442vj3588/17_018_024_cog.tif
 bbox: [-122.4024207, 37.7946642, -122.3942623, 37.7995399]
 wordpressId: 529
 ---

@@ -2,9 +2,8 @@
 title: Limited Way Plan
 year: 1937
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:yg013jx3895
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:yg013jx3895/Limited_Way_Plan_WGS_cog.tif
 bbox: [-122.521559, 37.7045969, -122.3537365, 37.8158897]
 wordpressId: 1001
 ---

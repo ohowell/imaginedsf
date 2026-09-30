@@ -2,9 +2,8 @@
 title: Burnham Plan
 year: 1905
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:tf618bz0007
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:tf618bz0007/Burnham_cog.tif
 bbox: [-122.5300085, 37.6855041, -122.3487013, 37.8243963]
 wordpressId: 839
 ---

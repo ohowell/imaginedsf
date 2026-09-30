@@ -2,9 +2,8 @@
 title: Ryker Aerial Photographs (1938)
 year: 1938
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:kq996gp6880
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:kq996gp6880/SF1938_cog.tif
 bbox: [-122.5163748, 37.696477, -122.3572861, 37.8175751]
 wordpressId: 501
 ---

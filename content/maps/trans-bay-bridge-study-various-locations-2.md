@@ -2,9 +2,8 @@
 title: Trans-Bay Bridge Study
 year: 1947
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:nd167tg1191
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:nd167tg1191/BC47_WGS_cog.tif
 bbox: [-122.5210112, 37.6808923, -122.1254482, 37.9098091]
 wordpressId: 1021
 ---

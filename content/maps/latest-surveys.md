@@ -2,9 +2,8 @@
 title: Langley Directory
 year: 1873
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:wp123sm9381
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:wp123sm9381/1873Surv_WGS_cog.tif
 bbox: [-122.5341641, 37.6854371, -122.3420805, 37.8184329]
 wordpressId: 945
 ---

@@ -2,9 +2,8 @@
 title: Perini Associates / Wurster, Bernardi & Emmons with DeMars & Reay Architects
 year: 1960
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:dm470nx3190
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:dm470nx3190/17_018_031_cog.tif
 bbox: [-122.401941, 37.7947216, -122.3952817, 37.7997869]
 wordpressId: 571
 ---

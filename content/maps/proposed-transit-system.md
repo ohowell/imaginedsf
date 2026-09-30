@@ -2,9 +2,8 @@
 title: Proposed Transit System
 year: 1950
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:mh004sr6425
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:mh004sr6425/RapidTransit1950_cog.tif
 bbox: [-122.5175077, 37.7050263, -122.322507, 37.8202307]
 wordpressId: 299
 ---

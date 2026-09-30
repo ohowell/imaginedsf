@@ -3,9 +3,8 @@ title: Tishman Cahill / Warnecke, Dailey, Gruen, Central Plaza
 year: 1960
 indented: true
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:ny174yd7254
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:ny174yd7254/17_018_018_cog.tif
 bbox: [-122.402768, 37.7951663, -122.3941733, 37.7995399]
 wordpressId: 553
 ---

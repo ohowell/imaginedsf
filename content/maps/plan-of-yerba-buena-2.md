@@ -2,9 +2,8 @@
 title: Vioget Plan of Yerba Buena
 year: 1839
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:yv122mn7196
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:yv122mn7196/1839_Plan_of_Yerba_Buena_Jean_Jacques_Vioget_wgs84_cog.tif
 bbox: [-122.4094853, 37.7919902, -122.4021849, 37.7989267]
 wordpressId: 1023
 ---

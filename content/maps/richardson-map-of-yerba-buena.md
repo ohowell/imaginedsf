@@ -2,9 +2,8 @@
 title: Richardson Map of Yerba Buena
 year: 1835
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:sq635jb8695
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:sq635jb8695/RichardsonMED_WGS_cog.tif
 bbox: [-122.4136994, 37.789452, -122.3994236, 37.8050141]
 wordpressId: 1275
 ---

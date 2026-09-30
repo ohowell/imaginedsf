@@ -3,9 +3,8 @@ title: Leiken / Lubicz Shopping Center
 year: 1960
 indented: true
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:zx087sb6046
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:zx087sb6046/17_018_013_cog.tif
 bbox: [-122.4024207, 37.7946642, -122.3942623, 37.7995399]
 wordpressId: 1040
 ---

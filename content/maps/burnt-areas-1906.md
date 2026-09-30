@@ -2,9 +2,8 @@
 title: Burned District
 year: 1906
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:bm594nd9684
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:bm594nd9684/1906BurntAreaMap_cog.tif
 bbox: [-122.5688601, 37.6918093, -122.3083798, 37.8311334]
 wordpressId: 270
 ---

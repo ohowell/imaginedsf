@@ -2,9 +2,8 @@
 title: Chinatown
 year: 1929
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:pt740jp0404
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:pt740jp0404/SFChinatown_wgs84_cog.tif
 bbox: [-122.4103321, 37.7900579, -122.402311, 37.7982285]
 wordpressId: 919
 ---

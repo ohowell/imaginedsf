@@ -2,9 +2,8 @@
 title: Kitchen Realty / Skidmore, Owings & Merrill (SOM) Architects
 year: 1960
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:qc346fc1989
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:qc346fc1989/17_018_050_cog.tif
 bbox: [-122.4038512, 37.7898142, -122.3893754, 37.8031856]
 wordpressId: 577
 ---

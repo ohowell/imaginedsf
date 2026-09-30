@@ -2,9 +2,8 @@
 title: Western Addition A-1 Suggested Site Development
 year: 1952
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:fb764ct5729
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:fb764ct5729/Western_Add_WGS_cog.tif
 bbox: [-122.4412172, 37.7765922, -122.4208706, 37.7878171]
 wordpressId: 567
 ---

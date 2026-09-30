@@ -2,9 +2,8 @@
 title: Southern Crossing
 year: 1955
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:xw740nt7176
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:xw740nt7176/Southern_56_WGS_cog.tif
 bbox: [-122.4342809, 37.6999548, -122.152305, 37.8416384]
 wordpressId: 1234
 ---

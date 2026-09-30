@@ -2,10 +2,9 @@
 title: Olmsted Park System
 year: 1873
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:wt284ks4027
-bbox: [0, 0, 18, 25.6666667]
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:wt284ks4027/IMG_3277_cog.tif
+bbox: [-122.4536133, 37.7446571, -122.3657227, 37.8228024]
 wordpressId: 947
 ---
 

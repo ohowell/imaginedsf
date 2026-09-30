@@ -2,9 +2,8 @@
 title: WPA Scale Model
 year: 1940
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:dv566pd4199
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:dv566pd4199/SFmodel_WGS84_cog.tif
 bbox: [-122.5155439, 37.6885778, -122.3531066, 37.8174206]
 wordpressId: 931
 ---

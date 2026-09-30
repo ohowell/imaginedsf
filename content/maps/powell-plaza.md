@@ -3,9 +3,8 @@ title: Powell Plaza
 year: 1963
 indented: true
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:kk722zn5346
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:kk722zn5346/Powell_Cropped_WGS_cog.tif
 bbox: [-122.4131667, 37.7799707, -122.4045615, 37.7867108]
 wordpressId: 275
 ---

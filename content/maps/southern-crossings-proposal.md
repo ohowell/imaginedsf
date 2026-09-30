@@ -2,9 +2,8 @@
 title: Southern Crossings Proposal
 year: 1956
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:cb071px1299
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:cb071px1299/SC_Color_WGS_cog.tif
 bbox: [-122.5380942, 37.6850293, -122.1050075, 37.9472181]
 wordpressId: 1251
 ---

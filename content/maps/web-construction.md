@@ -2,9 +2,8 @@
 title: Web Construction / Becket Architects
 year: 1960
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:nj452dg3569
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:nj452dg3569/17_018_041_cog.tif
 bbox: [-122.4024207, 37.7946642, -122.3942623, 37.7995399]
 wordpressId: 539
 ---

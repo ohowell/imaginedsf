@@ -3,9 +3,8 @@ title: Web / Becket Plaza Level Plan
 year: 1960
 indented: true
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:rs156nt0154
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:rs156nt0154/17_018_045_cog.tif
 bbox: [-122.4016494, 37.7935954, -122.3950888, 37.7997431]
 wordpressId: 541
 ---

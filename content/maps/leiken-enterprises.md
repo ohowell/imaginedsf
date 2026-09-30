@@ -3,9 +3,8 @@ title: Leiken / Lubicz Open Space
 year: 1960
 indented: true
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:cg675ct4048
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:cg675ct4048/17_018_012_cog.tif
 bbox: [-122.402768, 37.7951663, -122.3941733, 37.7995399]
 wordpressId: 533
 ---

@@ -2,9 +2,8 @@
 title: Home Owners' Loan Corporation Residential Security Map
 year: 1937
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:pc204zy5923
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:pc204zy5923/April_1937_SF_Map_State_cog.tif
 bbox: [-122.5234249, 37.7013481, -122.3192174, 37.8207145]
 wordpressId: 305
 ---

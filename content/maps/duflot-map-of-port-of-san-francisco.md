@@ -2,9 +2,8 @@
 title: Duflot Map of Port of San Francisco
 year: 1844
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:kd514jp1398
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:kd514jp1398/Duflot_WGS_cog.tif
 bbox: [-122.7764674, 37.3629343, -121.7827971, 38.2596066]
 wordpressId: 1343
 ---

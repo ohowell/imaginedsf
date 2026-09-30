@@ -2,9 +2,8 @@
 title: Yerba Buena Center (Preliminary)
 year: 1964
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:rq354zk4421
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:rq354zk4421/YBPlanWGS_cog.tif
 bbox: [-122.4096239, 37.7771077, -122.3926485, 37.7906305]
 wordpressId: 1264
 ---

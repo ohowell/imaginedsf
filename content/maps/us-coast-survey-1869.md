@@ -3,9 +3,8 @@ title: 1869 San Francisco Peninsula
 year: 1869
 indented: true
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:wp866rv4743
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:wp866rv4743/g2648000_cog.tif
 bbox: [-122.5450221, 37.5787553, -122.3357521, 37.8440233]
 wordpressId: 935
 ---

@@ -3,9 +3,8 @@ title: 1853 San Francisco
 year: 1853
 indented: true
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:xz007mk8152
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:xz007mk8152/g3463000_cog.tif
 bbox: [-122.4316088, 37.7577615, -122.3737388, 37.8225795]
 wordpressId: 933
 ---

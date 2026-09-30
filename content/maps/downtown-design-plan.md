@@ -2,9 +2,8 @@
 title: Downtown Design Plan
 year: 1963
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:sc701bn0182
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:sc701bn0182/DTPlanWGS_cog.tif
 bbox: [-122.4444617, 37.7552866, -122.3715582, 37.8124211]
 wordpressId: 303
 ---

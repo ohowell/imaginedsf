@@ -2,9 +2,8 @@
 title: Jefferson Square (Western Addition)
 year: 1947
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:zg150pg1648
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:zg150pg1648/JeffersonSq_WGS_cog.tif
 bbox: [-122.4314318, 37.7777144, -122.4196926, 37.7861082]
 wordpressId: 300
 ---

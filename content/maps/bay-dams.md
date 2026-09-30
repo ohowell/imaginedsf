@@ -2,9 +2,8 @@
 title: Bay Dams
 year: 1946
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:yt225fn3638
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:yt225fn3638/Bay_Dams_WGS_cog.tif
 bbox: [-122.5428817, 37.7164855, -122.2674604, 38.0305133]
 wordpressId: 998
 ---

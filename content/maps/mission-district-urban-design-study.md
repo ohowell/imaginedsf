@@ -2,10 +2,8 @@
 title: Mission District Urban Renewal Plan
 year: 1966
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:wc012wg8711
-  minZoom: 13
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:wc012wg8711/Mission_cog.tif
 bbox: [-122.4281561, 37.7464561, -122.4112051, 37.7698017]
 wordpressId: 302
 ---

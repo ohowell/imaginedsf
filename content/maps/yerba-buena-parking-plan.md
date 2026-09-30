@@ -2,9 +2,8 @@
 title: Yerba Buena Parking Plan
 year: 1970
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:br066nb5118
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:br066nb5118/YBP_WGS_cog.tif
 bbox: [-122.407775, 37.7806591, -122.3972346, 37.7890731]
 wordpressId: 1263
 ---

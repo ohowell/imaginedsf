@@ -3,9 +3,8 @@ title: Eichler / Anshen & Allen Composite Photo
 year: 1960
 indented: true
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:rn433cp3449
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:rn433cp3449/17_018_034_cog.tif
 bbox: [-122.4053941, 37.7876096, -122.3863077, 37.8074789]
 wordpressId: 543
 ---

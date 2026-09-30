@@ -2,9 +2,8 @@
 title: Salt Marsh Lands
 year: 1874
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:wf803xx4789
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:wf803xx4789/Salt_Marshes_WGS_cog.tif
 bbox: [-122.624626, 37.3593394, -122.0051364, 38.1999935]
 wordpressId: 1344
 ---

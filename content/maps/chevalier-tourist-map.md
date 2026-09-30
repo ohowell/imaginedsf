@@ -2,9 +2,8 @@
 title: Chevalier Tourist Map
 year: 1903
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:qw598hh2965
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:qw598hh2965/g0140000_cog.tif
 bbox: [-122.5356391, 37.6603065, -122.3490421, 37.8277875]
 wordpressId: 297
 ---

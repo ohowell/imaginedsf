@@ -2,9 +2,8 @@
 title: Eichler Homes and Dinwiddie Construction / Anshen & Allen Architects
 year: 1960
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:tv959tt1859
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:tv959tt1859/17_018_037_cog.tif
 bbox: [-122.402768, 37.7951663, -122.3941733, 37.7995399]
 wordpressId: 527
 ---

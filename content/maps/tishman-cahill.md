@@ -2,9 +2,8 @@
 title: Tishman Cahill / Warnecke, Dailey, Gruen Architects
 year: 1960
 source:
-  type: wms
-  url: https://geowebservices.stanford.edu/geoserver/wms
-  layers: druid:cb946wf2834
+  type: cog
+  url: https://stacks.stanford.edu/file/druid:cb946wf2834/17_018_020_cog.tif
 bbox: [-122.4024207, 37.7946642, -122.3942623, 37.7995399]
 wordpressId: 537
 ---
