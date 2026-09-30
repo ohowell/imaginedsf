@@ -26,4 +26,26 @@ function spaFallback(): Plugin {
 export default defineConfig({
   base: `${process.env.BASE_PATH?.replace(/\/+$/, '') ?? ''}/`,
   plugins: [react(), content(), spaFallback()],
+  build: {
+    // MapLibre alone is about a megabyte (280 kB compressed).
+    chunkSizeWarningLimit: 1100,
+    rolldownOptions: {
+      output: {
+        // Libraries change less often than the site, so they get files of
+        // their own that stay cached across deploys.
+        codeSplitting: {
+          groups: [
+            {
+              name: 'react',
+              test: /node_modules[\\/](react|react-dom|scheduler)[\\/]/,
+            },
+            {
+              name: 'maplibre',
+              test: /node_modules[\\/](maplibre-gl|@maplibre)[\\/]/,
+            },
+          ],
+        },
+      },
+    },
+  },
 })
