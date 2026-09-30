@@ -1,0 +1,293 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 1,
+        "Caption": "View of Buena Vista Park and City, from Twin Peaks.",
+        "URL": "/assets/images/tp-buena-vista.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.447154,
+          37.755508
+        ],
+        "type": "Point"
+      },
+      "id": "0436067ad6f1d750526cc1825c18a679"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 325,
+        "Caption": "Glen Canyon, Showing the Twin Peaks Group in the Distance. ",
+        "URL": "/assets/images/glen-canyon.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.433719,
+          37.734509
+        ],
+        "type": "Point"
+      },
+      "id": "0a336f8b4d4a6619985a927721b0acbd"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 225,
+        "Caption": "Panorama, Looking from Twin Peaks West to the Sea.",
+        "URL": "/assets/images/tp-west-to-sea.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.447225,
+          37.753296
+        ],
+        "type": "Point"
+      },
+      "id": "0dfdb161e337009ee70a542e924b897e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 315,
+        "Caption": "View of the City Hall from Eighth Street.",
+        "URL": "/assets/images/city-hall-from-8th.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.412477,
+          37.776891
+        ],
+        "type": "Point"
+      },
+      "id": "100a2383341eadb2ef93eeb08063c064"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 330,
+        "Caption": "View of the Golden Gate from Ashbury and Seventeenth Streets. [Given the topography, and the fact that 17th and Ashbury did not intersect even in 1905, it seems likely that this photo was in fact taken from Mount Olympus.]",
+        "URL": "/assets/images/gg-from-haight-17th.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.445645,
+          37.763457
+        ],
+        "type": "Point"
+      },
+      "id": "126d68d758e5be71a170515263676f39"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 265,
+        "Caption": "View of Twin Peaks, from the Proposed Square at Twenty-Third and Howard Streets.",
+        "URL": "/assets/images/twin-peaks-23rd-and-howardjpg.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.416407,
+          37.75397
+        ],
+        "type": "Point"
+      },
+      "id": "344de37595e1d102037ab3d067dcd1e5"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 225,
+        "Caption": "View of Twin Peaks, from Market and Noe Streets.",
+        "URL": "/assets/images/tp-from-noe.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.433092,
+          37.764218
+        ],
+        "type": "Point"
+      },
+      "id": "47508f4ef9a67ae926d6cb44631eaa2c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 0,
+        "Caption": "View from Telegraph Hill, Looking North.",
+        "URL": "/assets/images/telegraph-north.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.405986,
+          37.803014
+        ],
+        "type": "Point"
+      },
+      "id": "5b55b09292ad8aef2e6fd47342fa807f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 90,
+        "Caption": "Bird's Eye View of the City of San Francisco and Surrounding Country.  [George Goddard, 1868.]",
+        "URL": "/assets/images/1625001.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.555797,
+          37.758792
+        ],
+        "type": "Point"
+      },
+      "id": "63b97696b95cb71b464de2fce0c5b026"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 225,
+        "Caption": "View of Twin Peaks, from Market Street, near Larkin Street.",
+        "URL": "/assets/images/tp-from-market.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.416171,
+          37.777677
+        ],
+        "type": "Point"
+      },
+      "id": "86187ad976c3a8883f0469d39fc5b293"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 90,
+        "Caption": "Panorama of the Bay from the Presidio, Looking East.",
+        "URL": "/assets/images/bay-from-presidio-east.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.471143,
+          37.808044
+        ],
+        "type": "Point"
+      },
+      "id": "8716d6c944cbe735a2ff917f5d1770db"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 225,
+        "Caption": "View of the Valley, West from the Proposed Atheneum.",
+        "URL": "/assets/images/valley-from-aetheneun.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.448065,
+          37.756025
+        ],
+        "type": "Point"
+      },
+      "id": "8bf776d267a7f8246a9488bf5f6dbb2e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 225,
+        "Caption": "Mission Plank Road, Southwest from Ninth, 1856",
+        "URL": "/assets/images/mission-plank-road.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.414124,
+          37.776335
+        ],
+        "type": "Point"
+      },
+      "id": "98742550952d25690bbc59dba90d6532"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 270,
+        "Caption": "View from Telegraph Hill, Looking West.",
+        "URL": "/assets/images/telegraph-hill-looking-west.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.406162,
+          37.802849
+        ],
+        "type": "Point"
+      },
+      "id": "9eee0e3ea7d4143c0a0049b1a9b77f12"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 25,
+        "Caption": "Panorama of the City from Twin Peaks.",
+        "URL": "/assets/images/panorama-from-twin-peaks.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.446851,
+          37.754873
+        ],
+        "type": "Point"
+      },
+      "id": "a883ae5e598e019860b904436d254321"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 270,
+        "Caption": "View of the Golden Gate from the Proposed Terrace in the Presidio.",
+        "URL": "/assets/images/gg-from-presidio.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.477707,
+          37.795844
+        ],
+        "type": "Point"
+      },
+      "id": "bf7d5e7a59ae690c4d971b1bc524cbd0"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 345,
+        "Caption": "View of the Golden Gate from Twin Peaks.",
+        "URL": "/assets/images/gg-from-tp.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.447361,
+          37.755027
+        ],
+        "type": "Point"
+      },
+      "id": "d0b4d4f9f4533534103ea68bcb93a82a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 90,
+        "Caption": "View from Telegraph Hill, Looking East.",
+        "URL": "/assets/images/telegraph-east.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.405755,
+          37.802866
+        ],
+        "type": "Point"
+      },
+      "id": "e6fa4fa9edbe91f2209085e66e09227e"
+    }
+  ],
+  "type": "FeatureCollection"
+}

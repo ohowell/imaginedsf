@@ -4,7 +4,7 @@ year: 1967
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2024/03/Marin-Views.geojson
+  url: /assets/geojson/views-of-marin-bridges.geojson
   properties:
     text: Caption
     images: URL

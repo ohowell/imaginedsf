@@ -1,0 +1,35 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "Newscopy: \"MONORAIL--San Francisco's supervisors are looking ahead to a possible new form of mass transportation - suspended monorail cars high above the street traffic. The board recently authorized the Public Utilities Commission to make an engineering study of the Bilger plan. Shown around a model of the proposed plan are Supervisors Mancuso, Sullivan, McMurray, Anson S. Bilger, president of Suspended Transit Systems, Inc., MacPhee, Christopher and Lewis.\"  Source: SAN FRANCISCO HISTORY CENTER, SAN FRANCISCO PUBLIC LIBRARY.",
+        "URL": "/assets/images/aac-8152.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.401071,
+          37.789585
+        ],
+        "type": "Point"
+      },
+      "id": "9b678c3bb498c10c98727496bcf76d42"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "Newscopy: \"CAB MODEL IN SUSPENDED TRANSIT SETUP--Monorail President Murel Goodell exhibits scale model of cab to be used in pilot line of suspended rapid transit system.\"  (Exact location conjectural.)  Source: SAN FRANCISCO HISTORY CENTER, SAN FRANCISCO PUBLIC LIBRARY.",
+        "URL": "/assets/images/aac-8151.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.396704,
+          37.790481
+        ],
+        "type": "Point"
+      },
+      "id": "faaba355b6f6312905b0895b6935af9e"
+    }
+  ],
+  "type": "FeatureCollection"
+}

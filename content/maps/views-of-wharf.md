@@ -4,7 +4,7 @@ year: 1958
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2023/07/Wharf.geojson
+  url: /assets/geojson/views-of-wharf.geojson
   properties:
     text: Caption
     images: URL

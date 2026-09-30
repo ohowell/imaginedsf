@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 45,
+        "Caption": "Hunter's Point model",
+        "URL": "/assets/images/hunters-point-model.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.38767,
+          37.730741
+        ],
+        "type": "Point"
+      },
+      "id": "96c8b3a9b5c479b5ef9049cb55e30e19"
+    }
+  ],
+  "type": "FeatureCollection"
+}

@@ -4,7 +4,7 @@ year: 1964
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2023/07/Mission-District-Renderings.geojson
+  url: /assets/geojson/mission-district-renderings.geojson
   properties:
     text: Caption
     images: URL

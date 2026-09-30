@@ -1,0 +1,53 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 315,
+        "Caption": "View from South of Ferry Building",
+        "Source": "/assets/images/som3.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.392268,
+          37.794815
+        ],
+        "type": "Point"
+      },
+      "id": "1d0dedee7506f4829e37d96d6698ed37"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 19,
+        "Caption": "From proposal: \"The Golden Gateway Center proposes three 22-story apartment buildings placed at the perimeters of the site, each above its garage. The three garages come together to form a circular court which is developed at the shopping circle and the huh for all pedestrian travel. Two-thirds of the public garage have been placed below ground in order to provide a public square at street level on half of the site, and a mall plaza at the third-floor level on the remainder.\"",
+        "Source": "/assets/images/som2.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.400756,
+          37.794068
+        ],
+        "type": "Point"
+      },
+      "id": "b1e1131aa2f0b92aed7326c891ce275a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 260,
+        "Source": "/assets/images/som1.jpg",
+        "Caption": "View from the bay, looking west down Washington Street."
+      },
+      "geometry": {
+        "coordinates": [
+          -122.39205,
+          37.797127
+        ],
+        "type": "Point"
+      },
+      "id": "cf5a3d0ee6da41207d0698374311a407"
+    }
+  ],
+  "type": "FeatureCollection"
+}

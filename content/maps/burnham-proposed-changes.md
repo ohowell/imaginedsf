@@ -4,7 +4,7 @@ year: 1905
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2022/10/BurnhamChanges.geojson
+  url: /assets/geojson/burnham-proposed-changes.geojson
   properties:
     text: Caption
     images: URL

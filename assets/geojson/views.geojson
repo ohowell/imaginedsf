@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 305,
+        "Caption": "View of the Proposed Jefferson Square Neighborhood.",
+        "URL": "/assets/images/view-of-jefferson-square.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.418207,
+          37.778405
+        ],
+        "type": "Point"
+      },
+      "id": "51a12453f2bfe3a7168e56eef3340fe1"
+    }
+  ],
+  "type": "FeatureCollection"
+}

@@ -1,0 +1,37 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 80,
+        "Caption": "Vignette from Eddy survey showing City Hall.",
+        "URL": "/assets/images/city-hall.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.405393,
+          37.79527
+        ],
+        "type": "Point"
+      },
+      "id": "7fd9cf54034ddf57fb268223fce5a580"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 35,
+        "Caption": "Vignette from Eddy survey.  Caption reads \"B. Davidson's Banking House.\"  No number address is provided, but the 1856 San Francisco City Directory lists \"Davidson B. banker, Montg cor Comcl\" (pg 47).  The first Sanborn Fire Insurance map of the area is from 1887 (sheet 7a), and shows a bank on the northeast corner of Montgomery and Commercial.  ",
+        "URL": "/assets/images/davidsons-banking-house.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.403049,
+          37.794218
+        ],
+        "type": "Point"
+      },
+      "id": "c075003f546655a0d30730b0522dc28b"
+    }
+  ],
+  "type": "FeatureCollection"
+}

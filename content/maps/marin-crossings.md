@@ -24,7 +24,7 @@ In general, the report advocated for public transit but made clear that any rail
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2024/03/Helicopter-Carried-Bus-300x239.jpg)
+![](/assets/images/helicopter-carried-bus-300x239.jpg)
 
 <figcaption>
 
@@ -35,7 +35,7 @@ A helicopter-carried bus as a public transportation option. Source: CDPW and CDT
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2024/03/Vacuum-Tube-300x203.jpg)
+![](/assets/images/vacuum-tube-300x203.jpg)
 
 <figcaption>
 
@@ -48,7 +48,7 @@ However, a second deck for the Golden Gate Bridge was the priority. According to
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2024/03/GG-BART-225x300.jpg)
+![](/assets/images/gg-bart-225x300.jpg)
 
 <figcaption>
 
@@ -59,7 +59,7 @@ Early discussions of the BART system considered the possibility of including rai
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2024/03/4118652342_28936a67f5_c-300x194.jpg)
+![](/assets/images/4118652342-28936a67f5-c-300x194.jpg)
 
 <figcaption>
 

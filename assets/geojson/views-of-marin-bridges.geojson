@@ -1,0 +1,85 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 350,
+        "URL": "/assets/images/image070817111214-0001-scaled.jpg",
+        "Caption": "Lower Deck Approach to Golden Gate Bridge "
+      },
+      "geometry": {
+        "coordinates": [
+          -122.474446,
+          37.803116
+        ],
+        "type": "Point"
+      },
+      "id": "142b15fcc2c06ee3101166dd55fd8b6f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 285,
+        "Caption": "Fort Mason Bridge as Viewed from Telegraph Hill.",
+        "URL": "/assets/images/image070817111214-0012-scaled.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.406765,
+          37.804445
+        ],
+        "type": "Point"
+      },
+      "id": "3523fcd3549f024fdc3e38167d4bbca6"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 300,
+        "Caption": "Point Diablo Bridge as Viewed from San Francisco",
+        "URL": "/assets/images/image070817111214-0002-scaled.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.433354,
+          37.794929
+        ],
+        "type": "Point"
+      },
+      "id": "5a72d88f471e9f0cc9f8394a4dfcd093"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 330,
+        "Caption": "Kearney Street Bridge as Viewed from Golden Gateway Development.  Proposed double-decker Embarcadero freeway in the foreground.",
+        "URL": "/assets/images/image070817111214-0011-scaled.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.401608,
+          37.8014
+        ],
+        "type": "Point"
+      },
+      "id": "b4818535817d19a4ab0ad6d60d12c4f2"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 300,
+        "Caption": "Twin Golden Gate Bridge as Viewed from San Francisco",
+        "URL": "/assets/images/image070817111214-0005-scaled.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.432347,
+          37.794847
+        ],
+        "type": "Point"
+      },
+      "id": "bbdf364954867c96c0147581b013d2c4"
+    }
+  ],
+  "type": "FeatureCollection"
+}

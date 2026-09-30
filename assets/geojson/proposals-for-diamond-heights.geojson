@@ -1,0 +1,20 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "URL": "/assets/images/dh6-scaled.jpg, /assets/images/dh8-1-1-scaled.jpg, /assets/images/dh9-3-scaled.jpg, /assets/images/dh4-1-3-scaled.jpg, /assets/images/dh2-4-scaled.jpg, /assets/images/dh10-1-scaled.jpg, /assets/images/dh7-scaled.jpg, /assets/images/dh5-scaled.jpg, /assets/images/dh3-scaled.jpg, /assets/images/dh1-scaled.jpg",
+        "Caption": "10 Proposals for the possible future of Diamond Heights.  (Click for larger images.)"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.439573,
+          37.742291
+        ],
+        "type": "Point"
+      },
+      "id": "d673b31fa79565efb48d6d249e7e119f"
+    }
+  ],
+  "type": "FeatureCollection"
+}

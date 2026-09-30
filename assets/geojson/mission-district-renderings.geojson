@@ -1,0 +1,69 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": "240",
+        "Caption": "From the proposal: \"Development at the 16t Street Station is oriented westward to Mission Dolores.  A new street-level plaza southwest of the intersection steps down to the transit station mezzanine.  Visual contact with the plaza is provided the transit rider by openings direct to the new plaza from the platform.  In such openings, major works of civic art such as sculpture or murals should be provided.  Use of water as well as light and color would further enhance and distinguish the passengers' arrival and help identify the neighborhood above.\"",
+        "URL": "/assets/images/16th-elevation-smaller.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.419737,
+          37.765163
+        ],
+        "type": "Point"
+      },
+      "id": "317a11b5ce6e6e614d55296caced0afb"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": "355",
+        "URL": "/assets/images/24th-elevation-smaller.jpg",
+        "Caption": "From the proposal: \"The emphasis of the 24th Street station development is on the creation of a new City-wide and sub-regional retail shopping facility, and the integration of this facility with the existing strong retail area immediately to the north of the station.  A new sunken plaza located, as at 16th Street, to one side of Mission Street to avoid disruption to the numerous existing utilities, provides an intermediate level between the street and the rapid transit entrance mezzanine.  The design provides for openings from the plaza to the transit platform to permit direct visual contact for the transit rider with the plaza area.  The provision of sculpture or murals, and the careful use of water, light, and color would increase the orientation of the rider as he identifies the station and the area above, and would greatly enhance the arrival experience.  New retail stores, restaurants, outdoor cafes, banks, and entertainment facilities could be located around the plaza, which is arranged to receive the warm afternoon sun.  Fountains, exhibits, careful signing, pavement materials, benches, lamps and other landscape elements would all contribute to the environment of the plaza. . . . Extensive use of air-rights is proposed above 24th and Mission Streets in the construction of office and residential buildings, and in the extension of second level pedestrian walks across these streets. . . . These walkways also continue east-west, providing pedestrian links into residential and commercial areas to the east, and to the schools, library and proposed park to the west.  Moving sidewalks or miniature vehicle service can be provided along the walkway system.\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.417769,
+          37.752171
+        ],
+        "type": "Point"
+      },
+      "id": "44b6d771d14d4a2ec1f0fba20c09b8e1"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": "355",
+        "Caption": "Section of 16th Street Bart station, and surrounding area.  ",
+        "URL": "/assets/images/16th-2-smaller.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.420365,
+          37.764267
+        ],
+        "type": "Point"
+      },
+      "id": "7e88c1d96e3b426f92bb1fef49dfcf2e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": "355",
+        "Caption": "Section view from 24th St., looking north on Mission St.",
+        "URL": "/assets/images/24th-2.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.418518,
+          37.752417
+        ],
+        "type": "Point"
+      },
+      "id": "f31f5c9612e7ce9357d2c62e8a98ffb5"
+    }
+  ],
+  "type": "FeatureCollection"
+}

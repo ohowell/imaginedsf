@@ -4,7 +4,7 @@ year: 1869
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2024/01/1869photos.geojson
+  url: /assets/geojson/1869-photographs.geojson
   properties:
     text: Caption
     images: url

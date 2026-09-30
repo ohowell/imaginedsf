@@ -1,0 +1,37 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 350,
+        "Caption": "View of the \"Standard,\" or \"Chevron,\" plan with Embaradero Freeway ramps in the distance..",
+        "URL": "/assets/images/utah1-scaled.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.398467,
+          37.796656
+        ],
+        "type": "Point"
+      },
+      "id": "1dbd1c7b241919fcf123d5d5d22140a9"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 305,
+        "Caption": "View of the \"Standard,\" or \"Chevron,\" plan, with Coit Tower visible on right.",
+        "URL": "/assets/images/utah2.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.396285,
+          37.796824
+        ],
+        "type": "Point"
+      },
+      "id": "76c14703a415b223df84abb41bd42e91"
+    }
+  ],
+  "type": "FeatureCollection"
+}

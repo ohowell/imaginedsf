@@ -1,0 +1,133 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "1876 photograph of Mission Bay.  Source: San Francisco Public Library, Historic Photograph Collection, Image ID: AAC-8929.",
+        "Bearing": 170,
+        "url": "/assets/images/aac-8929.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.395257,
+          37.78521
+        ],
+        "type": "Point"
+      },
+      "id": "2532865c11150df1735ce87a62f443a6"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "1865 photograph of Market Street with Yerba Buena Island in the distance.  Source: San Francisco Public Library, Historic Photograph Collection, Image ID: AAC-9894.",
+        "Bearing": 45,
+        "url": "/assets/images/aac-9894.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.39694,
+          37.79276
+        ],
+        "type": "Point"
+      },
+      "id": "461ce1189651c0d61b970493a197677d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "1863 photograph of Mission Bay taken from atop a sand dune near the mission.  Market Street is visible in the center left of the frame, and South-of-Market sand dunes are visible in the center of the frame.  Source: San Francisco Public Library, Historic Photograph Collection, Image ID: AAC-2292 ",
+        "Bearing": 50,
+        "url": "/assets/images/aac-2292.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.42194,
+          37.769288
+        ],
+        "type": "Point"
+      },
+      "id": "4d99def17496e5c17f266b559094efda"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "1867 photograph taken from Jones and California Streets showing Mission Bay.  The enclosure of the bay by a rail line is visible in the upper left of the frame.  Source: San Francisco Public Library, Historic Photograph Collection, Image ID: AAC-8916.",
+        "Bearing": 160,
+        "url": "/assets/images/aac-8916.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.4141,
+          37.79143
+        ],
+        "type": "Point"
+      },
+      "id": "51ae2b2bc2742bbeabef08da2addcc2f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "1865 photograph of Montgomery Street.  Source: San Francisco Public Library, Historic Photograph Collection, Image ID: AAB-7335.",
+        "Bearing": 350,
+        "url": "/assets/images/aab-7335.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.401973,
+          37.788873
+        ],
+        "type": "Point"
+      },
+      "id": "70af16e90149b0c7412bdd5f1a010a70"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "Entrance to the Presidio, 1869.  Source: San Francisco Public Library, Historic Photograph Collection, Image ID:  AAC-0973",
+        "Bearing": 290,
+        "url": "/assets/images/aac-0973.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.456202,
+          37.798267
+        ],
+        "type": "Point"
+      },
+      "id": "77e1100caa942797cf72f5695c1e8a61"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "Photograph taken between 1863 and 1894 of the original Cliff House.Source: San Francisco Public Library, Historic Photograph Collection, Image ID: AAB-9893.",
+        "Bearing": 345,
+        "url": "/assets/images/aab-9893.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.513797,
+          37.777689
+        ],
+        "type": "Point"
+      },
+      "id": "7c05aa93c23e73004adff1e07bc04359"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "Photograph taken between 1863 and 1894 of the original Cliff House.Source: San Francisco Public Library, Historic Photograph Collection, Image ID: AAB-9898.",
+        "Bearing": 250,
+        "url": "/assets/images/aab-9898.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.513389,
+          37.778516
+        ],
+        "type": "Point"
+      },
+      "id": "f992a6674c650ac8e12f2313d3127a8e"
+    }
+  ],
+  "type": "FeatureCollection"
+}

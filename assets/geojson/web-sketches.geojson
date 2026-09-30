@@ -1,0 +1,101 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 355,
+        "URL": "/assets/images/web5.jpg",
+        "Caption": "From proposal: looking \"north from the pedestrian bridge over Washington Street to the apartment towers and Gateway Plaza with its flower stands, shops, and stores.  This is the principal entrance to the residential area from the mall.  To the right of the sketch can be seen the lower portion of an apartment tower with entrances planned for the convenience of both motorists and pedestrians.  \"Here the scale of the architecture changes from monumental to informal.  The low apartment buildings are of a size familiar to San Franciscans.  Together with various community buildings they provide an ideal setting for the high rise apartment buildings.  Washington Street will be the project's principal thoroughfare and the link between the public garage and office building on the left, and the more residential sector to the north.  Particular effort has been made to coordinate the diverse architectural elements with their environment and to provide a pleasant and inviting view.  Tall structures will repeat and strengthen the pattern of the adjacent skyline.  The town houses are elevated and set back from the street.  They offset the height of the towers, allowing ample open space between tall buildings.\"  "
+      },
+      "geometry": {
+        "coordinates": [
+          -122.39872,
+          37.795994
+        ],
+        "type": "Point"
+      },
+      "id": "2af60349c8988410ce439ea3a03b8f6b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 290,
+        "URL": "/assets/images/web4.jpg",
+        "Caption": "From proposal: \"Washington Street looking west toward Nob Hill.  At the left is the proposed office building and the parking garage. On the right is one of the high rise apartment towers and a number of the garden apartments.  Washington Street has become the transitional link between the public garage and office building to the south, and the 16.3-acre residential area to the north.\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.396919,
+          37.796164
+        ],
+        "type": "Point"
+      },
+      "id": "67f625ea4d3e845f7fb817c5ad9f99fc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 350,
+        "Caption": "From proposal: \"The office building, with lobbies at two levels, orients both to Battery Street and to the Mall.\"",
+        "URL": "/assets/images/web2.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.399948,
+          37.795176
+        ],
+        "type": "Point"
+      },
+      "id": "72e84bbe9e0a22680927fbcacce37c4c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 220,
+        "URL": "/assets/images/web1.jpg",
+        "Caption": "Birdseye view from the bay."
+      },
+      "geometry": {
+        "coordinates": [
+          -122.391138,
+          37.799833
+        ],
+        "type": "Point"
+      },
+      "id": "73918688198f13a337257b6d5e0d2769"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 97,
+        "Caption": "The office building with the Ferry Building and the Bay Bridge in the background.",
+        "URL": "/assets/images/web3.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.401288,
+          37.795815
+        ],
+        "type": "Point"
+      },
+      "id": "c2f734815904da2b7a58625f7182bfa3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 355,
+        "URL": "/assets/images/web6-scaled.jpg",
+        "Caption": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.397856,
+          37.796584
+        ],
+        "type": "Point"
+      },
+      "id": "c69faa0d5589c5ba212f883be2cdbbea"
+    }
+  ],
+  "type": "FeatureCollection"
+}

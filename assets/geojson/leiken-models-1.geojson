@@ -1,0 +1,73 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "FID": 1,
+        "Bearing": 320,
+        "URL": "/assets/images/leiken-south.jpg",
+        "Caption": "From the Leiken proposal: \"Looking northwest along the Embarcadero Freeway.  The office building isin the center of the foreground with the classic film theater to the right of it.  The apartment building is in the center distance.  Ferry Park extends from the bottom of the picture up through the apartments.  Ferry Building shows on the right side with the Embarcadero Freeway and Promenade running parallel to each other.\"  "
+      },
+      "geometry": {
+        "coordinates": [
+          -122.391445,
+          37.794206
+        ],
+        "type": "Point"
+      },
+      "id": "4db2c275f5beabc7c7387098670192ea"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FID": 4,
+        "Bearing": 190,
+        "URL": "/assets/images/leiken-east-birdseye.jpg",
+        "Caption": "From the Leiken proposal: \"Looking from San Francisco Bay in a southwesterly direction with Market Street on the left, the Ferry Building on the lower left, Embarcadero Freeway across the bottom of the picture, Broadway on the right and Portsmouth Plaza at the top right.\" "
+      },
+      "geometry": {
+        "coordinates": [
+          -122.396096,
+          37.800204
+        ],
+        "type": "Point"
+      },
+      "id": "5f7c6bec306be2d68d4b23ca8a0c04e2"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FID": 2,
+        "Bearing": 250,
+        "URL": "/assets/images/leiken-east.jpg",
+        "Caption": "View of the Leiken proposal from the bay."
+      },
+      "geometry": {
+        "coordinates": [
+          -122.392518,
+          37.797636
+        ],
+        "type": "Point"
+      },
+      "id": "dd96d851cc983f0e3243be463152ef90"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "FID": 3,
+        "Bearing": 87,
+        "URL": "/assets/images/leiken-nw-from-chinatown.jpg",
+        "Caption": "From the Leiken proposal: \"Looking east from Chinatown, along Columbus Park.  Apartments on the left with community buildings in front.  Garage and plaza in center, commercial area on the right, with the office building beyond on the upper right.  The Ferry Building is revealed in the gap.\"  "
+      },
+      "geometry": {
+        "coordinates": [
+          -122.404658,
+          37.7949
+        ],
+        "type": "Point"
+      },
+      "id": "e6bb50a23c87516604750e8ed89b0092"
+    }
+  ],
+  "type": "FeatureCollection"
+}

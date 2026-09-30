@@ -4,7 +4,7 @@ year: 1969
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2022/10/Hunters-Point-model.geojson
+  url: /assets/geojson/proposed-changes-2.geojson
   properties:
     text: Caption
     images: URL

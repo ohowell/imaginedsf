@@ -1,0 +1,69 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 255,
+        "Caption": "",
+        "URL": "/assets/images/eichler3-scaled.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.394998,
+          37.798432
+        ],
+        "type": "Point"
+      },
+      "id": "57f190340e3e9f7318649f4b95013da8"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 325,
+        "Caption": "",
+        "URL": "/assets/images/eichler2-scaled.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.394189,
+          37.795656
+        ],
+        "type": "Point"
+      },
+      "id": "71ed48f41a9b69b36a2ff73828ade1b2"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 50,
+        "Caption": "",
+        "URL": "/assets/images/eichler1-scaled.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.401532,
+          37.7949
+        ],
+        "type": "Point"
+      },
+      "id": "722bdf2e8160b07d2408a8d2cfa38163"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 315,
+        "Caption": "",
+        "URL": "/assets/images/eichler4-scaled.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.396048,
+          37.796004
+        ],
+        "type": "Point"
+      },
+      "id": "a29ba1a06a8b39420abbeb05090c1354"
+    }
+  ],
+  "type": "FeatureCollection"
+}

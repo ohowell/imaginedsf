@@ -1,0 +1,228 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 309,
+        "URL": "/assets/images/market3-scaled.jpg",
+        "Caption": "Powell Plaza towards Northwest.  From the proposal: \"With the arrival of Rapid Transit to Downtown San Francisco the intersections of Powell and Fifth Streets, already one of the busiest areas in the city, will become an even more important focal point of Downtown. The thousands of people expected to arrive into this center of traffic, transit, shopping, and other activity, require special solutions to facilitate their needs. The schematic design for a Powell Plaza, which incorporates the four corners created by Market and Fifth Streets when this latter street is extended north of Market, is presented here as a solution to the many new requirements and problems posed.  \"The Plaza is an interplay of levels of-activity. First, the sub­surface transit stations, then a lower level plaza that connects directly with the rapid transit mezzanine, and finally great open spaces at street level.  \"Two tall buildings on the south side of Market Street frame the historic Old Mint, bringing the latter into prominence as an important architectural element in the plaza scheme.  \"North of Market, a public plaza incorporating Eddy Street leads directly to the cable car turntable and the Powell Street Mall, which provides a site for a visitors' information center.  The northwest corner is suggested for a private development with an imposing office structure occupying this block. Forming a backdrop to this area and adding historical character of their own are the Flood and Bank of America Buildings.  \"In contrast to Fulton Circle, the atmosphere here is towards informality, even gaiety and recreation. Sculpture, fountains, trees and flowers, pavilions, kiosks, exhibits, out­door cafes, all add a much needed touch of color, liveliness and enrichment to this sector of downtown.\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.405819,
+          37.783201
+        ],
+        "type": "Point"
+      },
+      "id": "020968a2a23cad68749bd03a946af472"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 350,
+        "Caption": "View of Powell Mall, in the Market - Powell - Maiden Lane Triangle.",
+        "URL": "/assets/images/market7-scaled.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.407872,
+          37.785573
+        ],
+        "type": "Point"
+      },
+      "id": "05b775c67335d4874fbfc04369238cd7"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 46,
+        "URL": "/assets/images/market1-scaled.jpg",
+        "Caption": "\"Market Hall.\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.402653,
+          37.788266
+        ],
+        "type": "Point"
+      },
+      "id": "09cf7e0cc1fbc843cc87b3d9b5b82441"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 224,
+        "URL": "/assets/images/market17-scaled.jpg",
+        "Caption": "\"The future image of Downtown\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.389122,
+          37.80188
+        ],
+        "type": "Point"
+      },
+      "id": "4cded271901ea430cead4166612b9d18"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "URL": "/assets/images/market9.jpg",
+        "Caption": "Looking down on St. Mary's Square.  From the proposal: \"Grant Avenue, second only to Market Street for pedestrian activity, is proposed here as a continuous walkway from Market Street to Broadway. \"With the elimination of the automobile, except for controlled service access in Chinatown, the pedestrian is permitted to move with freedom through this narrow thoroughfare.  The colorful and lively street vendors of Chinatown--driven away by the congestion of automobiles--will be able to return to this fascinating street.  Sidewalk restaurants, street furniture, trees, Oriental street lighting and paving designs will add to the festive atmosphere of the Grant Mall.   \"The essential character of Chinatown as an historical and cultural area is preserved by the Mall.  Between Pine and Sacramento, and Clay and Washington Streets, the Mall is related directly to St. Mary's and Portsmouth Squares, respectively.\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.405093,
+          37.792098
+        ],
+        "type": "Point"
+      },
+      "id": "59ab86d9d4cad75c393270a541224afa"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 52,
+        "URL": "/assets/images/market2-scaled.jpg",
+        "Caption": "View from Fulton Circle toward Powell Plaza.  From the proposal: \"As part of the overall design of Downtown, Fulton Circle is certainly one of the most important elements. It emphasizes the meeting of Fulton and Market Streets which is the important entrance to the Civic Center from the Downtown area. Thus, the grand design of the City's government center can terminate in an appropriate climax, an urban plaza of impressive scale and drama. The intersection of the two important arteries proposes the elimination of the automobile from Fulton as well as Market Street.  \"The two streets converted to pedestrian malls are com­bined together in a circular sunken plaza, flanking the rapid transit subway station and connecting directly with the transit mezzanine. The mall, which occupies all of Fulton Street from Market to the Civic Center Plaza, provides a prominent site for the Pioneer Monument.  \"A site for a tall structure, directly on the line of the Fulton Mall, facing the City Hall and closing this important vista, is created by realigning Seventh Street and connecting it with Jones Street (rather than with Leavenworth Street as shown in the General Plan recommendation, a first phase or 5-year project). A new terminal for the Greyhound Bus Lines is proposed on the west side of Seventh at Mission Street.  \"The Main Post Office, an important historical building, with its elegant classical facade, is brought into the composition by a realignment of the structures along Market Street.  \"Russ Mall, an avenue of trees and landscaping, begins to the east of the Post Office and connects Civic Center with Columbia Square in the heart of the South of Market Area.\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.414485,
+          37.779879
+        ],
+        "type": "Point"
+      },
+      "id": "7c1792068b44f745b5653a71a8035d3f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 313,
+        "URL": "/assets/images/market8-scaled.jpg",
+        "Caption": "View of the South of Market Redevelopment Area.  The saucer-like structure is a sports arena."
+      },
+      "geometry": {
+        "coordinates": [
+          -122.39652,
+          37.778366
+        ],
+        "type": "Point"
+      },
+      "id": "81fb371d9ffffa4e71307ee31dfbe948"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 314,
+        "URL": "/assets/images/market11.jpg",
+        "Caption": "Columbus Circle.  The plaza is elevated, allowing vehicular traffic to pass below.  Having cleared buildings from the northeast side of Broadway, the Shrine of St. Francis de Assisi is now visible across the circle.  From the proposal: \"Grant Mall terminates with a major plaza at the Columbus, Broadway and Grant intersection--Columbus Circle--and is proposed to provide a much needed urban space for this compact juncture of the Italian Sector, Chinatown and the surrounding entertainment district.  This space, surrounded by cultural activities, creates a sheltered outdoor living room so typical of plazas in Italy.  The construction of this complex will provide for a central parking facility, a future rapid transit station, and underpass for Columbus Avenue traffic and a pedestrian underpass between Grant Mall and the plaza.\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.4059,
+          37.797262
+        ],
+        "type": "Point"
+      },
+      "id": "a3652912911d1c5110795aa42f811914"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 224,
+        "URL": "/assets/images/market5.jpg",
+        "Caption": "\"Market Hall from Powell Plaza.\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.406652,
+          37.784945
+        ],
+        "type": "Point"
+      },
+      "id": "bc7263f86ef79a2481d510293300d9cb"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 224,
+        "URL": "/assets/images/market16.jpg",
+        "Caption": "\"The Ferry Park Tower from the Bay.\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.390636,
+          37.797531
+        ],
+        "type": "Point"
+      },
+      "id": "bfa198fa2839652d7b22e623af192e4b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 50,
+        "URL": "/assets/images/market4.jpg",
+        "Caption": "\"The Lower Plaza.\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.413204,
+          37.779694
+        ],
+        "type": "Point"
+      },
+      "id": "c3a7d7bcb7eb7272a9c385521d15fb28"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 170,
+        "URL": "/assets/images/market12-1-scaled.jpg",
+        "Caption": "\"The Raised Platform -- View toward South.\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.404228,
+          37.797277
+        ],
+        "type": "Point"
+      },
+      "id": "c977f32d3f92e29954a0792fbe98e446"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 350,
+        "Caption": "\"The Pedestrian Loop towards Portsmouth Corridor.\"  The Hallidie Building appears in the foreground, on the right, while Coit Tower appears in the far distance, between the two proposed towers.  From the proposal: \"The design proposal for the redevelopment of Portsmouth Corridor, defined by Clay and Washington Streets and extending from Grant Mall to the Ferry Park, illustrates the concept of the 'plateaus interconnected over streets with bridges, ramps and terraces.'  A pedestrian walkway, linking Chinatown and the Golden Gateway Development, passes over landscaped areas and elevated plazas, which form an environment fee of the automobile.  The corridor is formed by the widening of Clay and Washington Streets from Kearney to the freeway ramps in the Ferry Park. \"Below these plazas are parking centers which would serve the needs of office buildings and commercial construction in the financial center.  The corridor, a feature of the parking belt, forms the northern boundary of the financial district. \"A public open space at the juncture of Columbus Avenue and Montgomery Street terminates the Columbus Avenue vista in the Downtown area.  Provision is made for a sunken plaza which would include access to a regional transit subway from Marin County on its way from Columbus Circle to Market Street.  This plaza and Columbus Circle are designed to complement each other as controlled urban spaces serving similar needs.\"",
+        "URL": "/assets/images/market13.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.403014,
+          37.789445
+        ],
+        "type": "Point"
+      },
+      "id": "cc74a2d681c5cb1298eeb63ee7d0bd20"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 270,
+        "URL": "/assets/images/market14-scaled.jpg",
+        "Caption": "\"Aerial View toward West.\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.389232,
+          37.79601
+        ],
+        "type": "Point"
+      },
+      "id": "dc57e348092f31ad692760141da4f582"
+    }
+  ],
+  "type": "FeatureCollection"
+}

@@ -1,0 +1,117 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 270,
+        "URL": "/assets/images/barrett1-scaled.jpg",
+        "Caption": "Cover of Barrett proposal"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.356001,
+          37.795149
+        ],
+        "type": "Point"
+      },
+      "id": "2c4c0653a7258fd73a79ad16a13ee772"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 80,
+        "URL": "/assets/images/barrett6.jpg",
+        "Captoin": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.399065,
+          37.795976
+        ],
+        "type": "Point"
+      },
+      "id": "34327da7cc5b53cf8602c365a7742f69"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 265,
+        "URL": "/assets/images/barrett4.jpg",
+        "Caption": ""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.394276,
+          37.79828
+        ],
+        "type": "Point"
+      },
+      "id": "8adfdda1e0d795ec973ed0434978e852"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 260,
+        "URL": "/assets/images/barrett2.jpg",
+        "Caption": "From proposal: \"Landscaped Malls and Recreation\" \"A pleasant transition from the busy city to the tower apartments is achieved by spacious landscaped malls atop the garages.  Protected recreational areas are created through large openings in the decks and provide vantage points for spectators.  A continental restaurant and winter skating rink which converts to a reflecting pool in summer are novel features attainable through the unusual open mall design.  The bold plan of elevating the plaza affords an unrestricted view of the bay and bridges which ordinarily would have been lost with normal planning of building entrances and landscaped areas at street level.  The peculiar characteristics of the Golden Gateway site, bordered by freeways and ramps, would have been aggravated by a conventional scheme of landplanning.  The problem has been circumvented through the brilliant use of the raised plaza level.\""
+      },
+      "geometry": {
+        "coordinates": [
+          -122.397386,
+          37.798653
+        ],
+        "type": "Point"
+      },
+      "id": "8e6f654302585e053e2b1ac307b97046"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 65,
+        "Caption": "\"Tower Group\"",
+        "URL": "/assets/images/barrett7.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.398655,
+          37.797863
+        ],
+        "type": "Point"
+      },
+      "id": "8f60ce8f7ee9b92644e6b2b4ffc5911c"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 285,
+        "URL": "/assets/images/barrett3.jpg",
+        "Caption": "From proposal: \"Garages and Traffic\" \"Careful consideration in the design concept was given to the magnitude of the problem of traffic flow and parking of residents' vehicles.  Elevation arm barriers, activated by keys assigned with the rental of a permanent parking space, and spiked exits to prevent infow of traffic through exits are planned for economic unattended parking.  Generous areas to permit easy access to cars and roomy allowance for car door opening has been incorporated int he garage schemes.  High speed elevators descend to both garage levels and provisions have been made for moving vans requiring high clearance to enter the garages structures and approach the vicinity of the freight elevators in each building.  Traffic studies resulted in a design solution which incorporates provision for taxis and guest vehicles entering the garages to lower floor lobbies or approaching building entrances through off street parking areas.\" "
+      },
+      "geometry": {
+        "coordinates": [
+          -122.392125,
+          37.795046
+        ],
+        "type": "Point"
+      },
+      "id": "a770eedee171912d709dd275c65681ed"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 270,
+        "URL": "/assets/images/barrett5.jpg",
+        "Caption": "From proposal: \"The need for housing Senior Citizens has reached critical proportions as evidenced by statistics and the concern of our authorities.  The proposed project site provides an ideal area for the development of a high rise structure to serve our older citizens because of its proximity to the entertainment activity of the metropolis, the unparalleled vies of the city and bay, and the new life that will thrive about the Golden Gateway residential areas.  The twilight years of life need not be years of isolation and waiting but can be healthy and exciting in a modern residence.  The design concept provides for recreational and guest facilities, lobbies, shops, meeting rooms and medical prevention clinics.  Special deluxe areas have been incorporated where attendants can be constantly available.  The cafeterias, restaurants and kitchens will provide hotel type meal service and provisions have been made for limited number of balcony apartments with cooking facilities.\"  "
+      },
+      "geometry": {
+        "coordinates": [
+          -122.397821,
+          37.795419
+        ],
+        "type": "Point"
+      },
+      "id": "c857921829ac5f5fd5df6130b76f63d1"
+    }
+  ],
+  "type": "FeatureCollection"
+}

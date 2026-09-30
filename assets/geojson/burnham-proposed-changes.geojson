@@ -1,0 +1,196 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 45,
+        "Caption": "Bird's Eye Perspective of the City from Twin Peaks Showing the Proposed Changes",
+        "URL": "/assets/images/twin-peaks-proposed-changes.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.447652,
+          37.756145
+        ],
+        "type": "Point"
+      },
+      "id": "191ee86574706a3ed53ffe54899c693d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 260,
+        "Caption": "Section at Fillmore Street, Through C and D.",
+        "URL": "/assets/images/panhandle-fillmore.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.430546,
+          37.774483
+        ],
+        "type": "Point"
+      },
+      "id": "26573996109898d1f949f243ddf22a2b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 35,
+        "Caption": "Telegraph Hill, Looking East, Showing Suggested Architectural Treatment.",
+        "URL": "/assets/images/telegraph-proposal.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.41138,
+          37.799733
+        ],
+        "type": "Point"
+      },
+      "id": "2840d27e1d957de664cc9c678b67415b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 80,
+        "Caption": "View of the Proposed Drill Ground from the Heights, Looking Northeast",
+        "URL": "/assets/images/drill-ground-ne.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.473055,
+          37.802974
+        ],
+        "type": "Point"
+      },
+      "id": "96985fc430dbbbe760fb8b2f9bf72fba"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 130,
+        "Caption": "Typical Section of Islais Creek Park",
+        "URL": "/assets/images/islais-creek-park.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.385403,
+          37.748601
+        ],
+        "type": "Point"
+      },
+      "id": "a1eb822511b662a2c39878177d4604e0"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 315,
+        "Caption": "The Amphitheater.",
+        "URL": "/assets/images/amphitheater.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.448453,
+          37.760888
+        ],
+        "type": "Point"
+      },
+      "id": "a9a6c7f8799daf6f13dfccffcd8e8c6a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 225,
+        "Caption": "The Atheneum Showing Vista to the Sea.",
+        "URL": "/assets/images/aetheneum.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.447666,
+          37.756826
+        ],
+        "type": "Point"
+      },
+      "id": "ad9ac0d573b5be840b8502efdea5d5bb"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "Suggested Treatment for Existing Domestic Street Frontages.",
+        "URL": "/assets/images/generic-street-frontage.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.415221,
+          37.793141
+        ],
+        "type": "Point"
+      },
+      "id": "b9453a86af80eb90512e7bfd0f19cb68"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 260,
+        "Caption": "Section at Steiner Street, Through A and B.  ",
+        "URL": "/assets/images/panhandle-steiner.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.432199,
+          37.774283
+        ],
+        "type": "Point"
+      },
+      "id": "ccea9cc85e58d6d531cd3002c80d1fa7"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 315,
+        "Caption": "View of Civic Center, Looking from the South Side of Market Street.  ",
+        "URL": "/assets/images/civic-center.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.413833,
+          37.772166
+        ],
+        "type": "Point"
+      },
+      "id": "f2475e428e6583211cfe728e0f0ebd6a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 225,
+        "Caption": "Market Street Termination and Approach to Twin Peaks.",
+        "URL": "/assets/images/market-terminus-elevation.jpg, /assets/images/tp-from-market-proposed.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.438173,
+          37.760521
+        ],
+        "type": "Point"
+      },
+      "id": "f447662e757163961950d26d37b9ebd9"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 260,
+        "Caption": "/assets/images/telegraph-proposal.jpg",
+        "URL": "/assets/images/east-birds-eye.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.357796,
+          37.792131
+        ],
+        "type": "Point"
+      },
+      "id": "f6a057c35be470caefcd0c88781fb062"
+    }
+  ],
+  "type": "FeatureCollection"
+}

@@ -4,7 +4,7 @@ year: 1962
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2023/07/Downtown-Views.geojson
+  url: /assets/geojson/views-of-downtown-design-plan.geojson
   properties:
     text: Caption
     images: URL

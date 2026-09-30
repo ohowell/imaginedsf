@@ -4,7 +4,7 @@ year: 1953
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2023/08/Butterfly-Bridge-Images.geojson
+  url: /assets/geojson/frank-lloyd-wrights-butterfly-bridge.geojson
   properties:
     text: Caption
     images: URL

@@ -1,0 +1,101 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "Model builder painting the section containing the Palace of Fine Arts, 1939.  Source: San Francisco Public Library, Historic Photograph Collection, Image ID: AAR-2814.",
+        "URL": "/assets/images/aar-2814-smaller.jpg",
+        "Bearing": 275
+      },
+      "geometry": {
+        "coordinates": [
+          -122.437098,
+          37.802308
+        ],
+        "type": "Point"
+      },
+      "id": "7ab8a2f192ef91d4ae898bbcf6224895"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "WPA model under construction, 1938.  Source: San Francisco Public Library, Historic Photograph Collection, Image ID: AAR-2123.",
+        "URL": "/assets/images/download-1.jpg",
+        "Bearing": 125
+      },
+      "geometry": {
+        "coordinates": [
+          -122.43875,
+          37.81485
+        ],
+        "type": "Point"
+      },
+      "id": "8645e41dd5cab18fff89c7d9dacd5e1d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "WPA model under construction, 1938.  Source: San Francisco Public Library, Historic Photograph Collection, Image ID: AAR-5186.",
+        "URL": "/assets/images/aar-5186-2-scaled.jpg",
+        "Bearing": 350
+      },
+      "geometry": {
+        "coordinates": [
+          -122.451287,
+          37.696127
+        ],
+        "type": "Point"
+      },
+      "id": "be62dc0cb4937b9bdde71dbf95e2d864"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "WPA model under construction, 1938.  Source: San Francisco Public Library, Historic Photograph Collection, Image ID: AAR-2123.",
+        "URL": "/assets/images/aar-2123-2-scaled.jpg",
+        "Bearing": 215
+      },
+      "geometry": {
+        "coordinates": [
+          -122.380917,
+          37.796641
+        ],
+        "type": "Point"
+      },
+      "id": "c2daa35c07283f0992c738ca45a42bce"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "WPA model under construction, 1938.  Most of the Richmond and Sunset Districts have yet to be added to the model.  Source: San Francisco Public Library, Historic Photograph Collection, Image ID: AAR-2480.",
+        "URL": "/assets/images/aar-2480-smaller.jpg",
+        "Bearing": 100
+      },
+      "geometry": {
+        "coordinates": [
+          -122.504672,
+          37.814101
+        ],
+        "type": "Point"
+      },
+      "id": "c8822dbd0eed01dba6bd91b3ecc531fe"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "Dedication of WPA San Francisco Scale Model at City Hall.   April 14, 1940. Source: San Francisco Public Library, Historic Photograph Collection, Image ID: AAR-5235.",
+        "URL": "/assets/images/aar-5235-smaller.jpg",
+        "Bearing": 350
+      },
+      "geometry": {
+        "coordinates": [
+          -122.42248,
+          37.715918
+        ],
+        "type": "Point"
+      },
+      "id": "e5cd47bbd9b658ce53b145843552c7e5"
+    }
+  ],
+  "type": "FeatureCollection"
+}

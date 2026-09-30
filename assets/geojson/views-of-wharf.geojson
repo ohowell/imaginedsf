@@ -1,0 +1,197 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 275,
+        "Caption": "From the proposal: \"Taylor Wharf Looking toward Jefferson Terrace. As things are now, people often stand at the corner of Taylor and Jefferson Streets and ask, 'Where is Fisherman’s Wharf?' In the recommended redesign of the restaurant group . . . restaurants would be on upper floors and the ground level opened up for pedestrian access to wharves and for views through to the lagoon, and as here, to Jefferson Terrace.\"",
+        "URL": "/assets/images/screenshot-2023-07-28-at-1-09-29-pm.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.416113,
+          37.808522
+        ],
+        "type": "Point"
+      },
+      "id": "0431156ffbb7503416db4e7fc78de822"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 315,
+        "Caption": "From the proposal: \"Meigg's Wharf and the Sea Wall about 1885.  Taken from Telegraph Hill, this view shows the remains of Meigg's Wharf and the end of the sea wall, which later was extended to its present terminus at Fisherman's Wharf.  Filling of land on both sides of Meigg's Wharf is well advanced; industrial buildings have been built on the filled ground.  Mt. Tamalpais, Angel Island, and Alcatraz Island appear in the distance.  From a contemporary photograph by Taber, part of the Wells Fargo History Collection.\"  ",
+        "URL": "/assets/images/screenshot-2023-07-28-at-11-42-51-am.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.405924,
+          37.802469
+        ],
+        "type": "Point"
+      },
+      "id": "080198300d1afc13cf235a536914527d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 350,
+        "Caption": "From the proposal: \"Jefferson Terrace and Jefferson Promenade.  Jefferson Terrace is planned as a broad public concourse from which would rise a group of buildings orientated generally north and south and arranged more or less parallel to each other. A split level design puts the Terrace a few feet above Jefferson Promenade and a one level garage under the Terrace for tenants of the buildings.  \"This arrangement gives the stroller along the Promenade a clear view of the Bay between the buildings. Low ramps and short flights of steps weave a pleasing pattern between plantings and flowers, and invite the pedestrians on Jefferson Promenade to the interesting shops and colorful cafes on the Terrace level. Overpasses connect the Terrace directly with the educational and institutional groups in the eastern portion of Columbus Plaza, to Columbus Avenue--and also to the small shops group on the adjacent roof terraces.  \"The scheme, in effect a redevelopment program, would offer attractive space for offices, apartments, smart shops, and businesses that could take advantage of such a matchless and spirited location, and would provide the Port Authority with necessary revenues. Some of the existing restaurants may wish to relocate here, and others will be needed as patronage of the  Wharf grows. This should also be an ideal location for private clubs, with dining rooms served from restaurant kitchens.  \"Buildings ride gracefully, charmingly, easily, over the Terrace peopled with eaters and drinkers, and thinkers too, with paperbacks and peanuts. There are mothers and babies, pipe smoking papas, hand-in-hand lovers, and scampering children. Pink clouds drift by as you recall Melton Mowbray pie, which you can buy, nearby, with Bass. Alas! Sweet memories of London and Paris, Stockholm and Venice; this is Jefferson Terrace that could exist only in San Francisco.\"",
+        "URL": "/assets/images/screenshot-2023-07-28-at-1-21-56-pm.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.419112,
+          37.808101
+        ],
+        "type": "Point"
+      },
+      "id": "1dc3ce3a62a617063e7473aaa71df711"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 170,
+        "Caption": "From the proposal: \"Taylor Mall Looking South.  For most people, the overland journey to Fisherman’s Wharf begins in downtown San Francisco, one of the most self-contained, compact, and smart shopping centers in the country. The Powell-Mason cable car starts its upward, northward course at the turntable at Market and Powell Streets. The crest of the route is at Nob Hill and from there descent is made in a series of irregular tangents. At Taylor Street, where the cable car turns off Columbus Avenue and passes between lines of trees, the alert visitor senses his approach to a climactic arrival at the Wharf. Nor is he disappointed. Taylor Mall graciously conducts the visitor to the Wharf where good restaurants and enticing shops bring Fisherman’s Wharf into orbit with urbane Union Square.  \"The sketch looks southward from the Embarcadero along Taylor Mall and Taylor Street until it meets the sky. In how many cities do streets disappear into the sky? This is Taylor Mall, forbidden to automobiles, for pedestrians only, two blocks long and a prelude to the symphony of relaxation and fun at the Wharf.  \"The Mall widens into a little Plaza in front of the Taylor Wharf restaurants. This is where many festivals are staged and traditions are celebrated with merry and appreciative audiences. Each year, after a perilous landing on the beach at Aquatic Park, Christopher Columbus is greeted here; annually the processional passes on the way to the blessing of the crab fleet; the Art Festival fills the little Plaza and flows down Jefferson Promenade into Aquatic Park.  \"Every day is a festival at the Wharf, so much to see, so much to do. Newcomers are captivated as they discover new pleasures. But it is the local people who really enjoy and use the Wharf continuously and in all its moods, for it is part of the regional color and life.\"",
+        "URL": "/assets/images/screenshot-2023-07-28-at-12-46-56-pm.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.415958,
+          37.808928
+        ],
+        "type": "Point"
+      },
+      "id": "51c24618180164b9d9e0ee85eeee6b54"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 98,
+        "Caption": "From the proposal: \"The berthing basin and the breakwater, proposed for construction in the location of Hyde Street Pier and adjacent lagoon, would provide large fishing boats, sport fishing boats, and if space were available, pleasure craft.  Repair facilities would be at the end of the breakwater.  The existing west berthing basin is shown rearranged for greater efficiency, but until the new breakwater and berthing basin were constructed, it would remain as it is now.  Ways for repair of small craft remain in the east berthing basin.\"",
+        "URL": "/assets/images/wharf2-1.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.43007,
+          37.809436
+        ],
+        "type": "Point"
+      },
+      "id": "a68e35f9769efc36de966b522a58e595"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 5,
+        "Caption": "From the proposal: \"Taylor Wharf and Crab Fleet Basin. As piling deteriorates in the older part of the restaurant group at the Wharf, a system of structures with restaurants on upper floors is recommended. A cafe or two might be located at ground level, along with entrances and service areas for restaurants, but circulation at ground level would be maintained on all sides to permit direct access to wharves and views of the mooring lagoon.\"",
+        "URL": "/assets/images/screenshot-2023-07-28-at-1-18-20-pm.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.416231,
+          37.808668
+        ],
+        "type": "Point"
+      },
+      "id": "a93a137ad355bdaff51c63741b18578b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 80,
+        "Caption": "From the proposal: \"Jefferson Promenade Looking East.  This is a view of Jefferson Promenade on a weekday about noon, a busy scene. But on weekends the Promenade, with the surge of people moving back and forth between Aquatic Park, Jefferson Terrace and Taylor Mall, looks like a day at the Fair.  \"The automobile has been put into its proper place. Instead of traffic jams, anger and confusion, there is plenty of room for everyone and all seem happy. There are lots of benches in tree shaded alcoves where one can sit and talk or 'jest set' and watch the fishing boats. Crab, shrimp and the old favorites may be bought, to take home or to eat on the spot, from colorful stands spaced along the way.  \"On the south side of Jefferson Promenade other attractions add to those of Jefferson Terrace. The railway and streetcar museum swarms with entranced devotees. Ship chandlers display fine hardware and nautical gear, and do a brisk business with landlubbers who fancy ship lights and such things for their patios. The stores and specialty shops extend onto a roof terrace which is interconnected with Jefferson Terrace and Columbus Plaza by overpasses.  \"Here may be found a neighborhood shopping center catering to apartment dwellers, fishermen, and to picnickers; a gourmet delicatessen; studios for a photographer, weaver and silversmith; a pet shop specializing in rare fish; a fabulous hobby shop and a toy store; a branch of a downtown sports shop, a travel agency, and many others. At Jefferson Promenade 'la promenade apres le dejeuner' is a joyful reality, not a jostling anticlimax to a fine meal. The Wharf has been returned to people.\"",
+        "URL": "/assets/images/screenshot-2023-07-28-at-1-02-27-pm.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.417473,
+          37.808004
+        ],
+        "type": "Point"
+      },
+      "id": "b021dd998dc5d778057b62f0a9ad7b23"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 315,
+        "Caption": "From the proposal: \"The new Fish Pier would be not merely an efficient facility for the fishing industry, fishermen, wholesale dealers, fish processors, packers and shippers. Located near the core of Fisherman’s Wharf and approached by a pedestrian overpass over the Embarcadero, the Fish Pier will be one of the principal attractions at the Wharf.  \"Although fish products have industrial value, it is as food that most people think of fish, and it is a food that fish and products of the sea will be, increasingly, in the public mind in the future. As food resources for the growing population gain serious attention at the public level (scientists have long been concerned) the education of the public with respect to fish as a food will be necessary.  \"It is at this point that the new Fish Pier takes on a broader usefulness since it can function as a medium of public education as well as serving the fishing industry.  \"The Fish Pier is a natural place for a fish market where all varieties of local fish would be displayed and sold, including imports from Hawaii and Alaska. Through brilliant and imaginative design, the fish market could be the most spectacular and popular feature at the Wharf--except for the fishing boats--would be truly Il Palazzo del Pesce. To a dazzling display of the finest varieties of food fish in the country and to a beautiful and spacious setting, add the actor personalities of the fishermen-vendors and the eager customers, and you have real theatre.  \"The sketch suggests something of the mood and atmosphere of Il Palazzo del Pesce, a fusion of carrousel and palace. A ramp sweeps upward gracefully and continues on to the spectator gallery, running the length of the Pier, where the public may view from above all phases of the processing and packing of fish without interfering with the workers below. At the right is a small auditorium for lectures and cooking demonstrations . . . Articulate attendants, a display of canned, smoked, and preserved products of the industry, a selection of literature and pamphlets on fish, fishing, and fish cookery, expand the 'fish horizon' of customers and visitors.\"",
+        "URL": "/assets/images/screenshot-2023-07-28-at-11-53-11-am.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.414102,
+          37.809772
+        ],
+        "type": "Point"
+      },
+      "id": "b929dc0d686c01ca907c371cdb28d00f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 300,
+        "Caption": "From the proposal: \"North Beach and Montgomery Avenue about 1885.  This view from Telegraph Hill looks westward across the remains of North Beach cove to Black Point (Fort Mason) and the Golden Gate.  At that time the sea wall had been completed only to Meiggs’ Wharf . . . and the cove was partially filled. Montgomery Avenue, unpaved, extended to its present terminus at Beach Street which was then the beach. Somewhat obscured by the smoke from the stack of the smelting works is the cove now known as Aquatic Park. Photograph is from the Wells Fargo History Collection.\"",
+        "URL": "/assets/images/screenshot-2023-07-28-at-12-38-43-pm.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.404747,
+          37.802678
+        ],
+        "type": "Point"
+      },
+      "id": "c80cb75556e21a9251624e7f71663e93"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 90,
+        "Caption": "From the proposal: \"The Quay Side of Jefferson Street.  This is the water side of Jefferson Terrace, looking eastward.  In the foreground are the fishing boats, and beyond, a freighter is seen tied up at Pier 45. Spectators on the upper concourse look down on the quay, or service wharf for fishing boats. Here will be found a few inquisitive idlers who take pleasure in being as close as possible to the water as they saunter within arm’s length of the moored fishing boats.  \"An architecture that would emerge from the unusual requirements and opportunities of the location would be gay and richly plastic in spite of the predominantly parallel arrangement that permits a view of the Bay from Jefferson Promenade.  Visual access to the water is all important, otherwise Jefferson Promenade would be just another street. The parallel building arrangement permits more places of business to participate in the view and advantages of the waterside location. Court-like indentations advantageously exploit the location and have the effect of diffusing the delight of this remarkable site inland for a considerable distance.  \"The intricate visual pattern of cafe groups, awnings, flags, terrace planting, and a (controlled) system of signing, the freshly painted fishing boats, the play of light and shade on architectural shapes, the colorful drift of people, form a vibrant and striking picture. Sounds too, are part of the scene--the scream of the seagull, the slap of the waves, the moan of the foghorn as evening fogs creep inland.  \"By night there is a new kind of beauty. Black waters are streaked with jagged reflections of channel markers, voices and laughter drift from the Terrace above, strollers are profiled against the blurry quay lights. The deserted fishing boats await the return of the fishermen before dawn.\"",
+        "URL": "/assets/images/screenshot-2023-07-28-at-1-13-31-pm.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.41929,
+          37.808525
+        ],
+        "type": "Point"
+      },
+      "id": "d97ae5093d1762eaf5c2a5fbf7db3073"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 0,
+        "Caption": "From the proposal: \"Taylor Wharf Looking North toward Pier 45. It is recommended that the acute angled sheds of Pier 45 be trimmed back and squared up, to permit a view to the Bay from Taylor Mall, better circulation to and from Pier 45, and provide space for trucks to wait their turn on the Pier.\"",
+        "URL": "/assets/images/screenshot-2023-07-28-at-1-27-10-pm.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.415853,
+          37.808713
+        ],
+        "type": "Point"
+      },
+      "id": "e874ed15193a664bae059d7dd1358d08"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 262,
+        "Caption": "From the proposal: \" The Fish Pier with parking on the roof, proposed for wholesale fish dealers and fish processors, is just east of Pier 45.  Fishermen unload fish from boats directly to wholesale dealers on the west side of the new Pier which is protected from wave action and winds by Pier 45.  Trucks may drive completely around the Fish Pier to unload or to pick up from wholesale dealers or processors. . . . Jefferson Street and Taylor Street are treated as pedestrian malls and planted with trees.  North of Jefferson Street, the two blocks now occupied by wholesale dealers and suppliers to the industry, are shown redeveloped for stores, shops, and apartments.  The existing restaurants on Taylor Street are rearranged to provide views through to the lagoon; the sheds of Pier 45 are trimmed back to provide better circulation to the Pier and waiting space for trucks.\"",
+        "URL": "/assets/images/wharf1.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.407432,
+          37.808989
+        ],
+        "type": "Point"
+      },
+      "id": "f5c701e479fe31f9eb7f7cc473865886"
+    }
+  ],
+  "type": "FeatureCollection"
+}

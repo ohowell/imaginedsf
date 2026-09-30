@@ -31,7 +31,7 @@ From the early twentieth century through the 1950s the blocks just north of Mark
 
 <figure>
 
-![From San Francisco News-Call Bulletin.](https://www.imaginedsanfrancisco.org/wp-content/uploads/2023/08/AAC-0526.jpg)
+![From San Francisco News-Call Bulletin.](/assets/images/aac-0526.jpg)
 
 <figcaption>
 
@@ -44,7 +44,7 @@ At the close of the 1950s, the SFRA announced a design competition. They receive
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2023/09/evaluationreport1196sanf_0008-239x300.jpg)
+![](/assets/images/evaluationreport1196sanf-0008-239x300.jpg)
 
 <figcaption>
 

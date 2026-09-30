@@ -4,7 +4,7 @@ year: 1960
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2022/10/SOM1.geojson
+  url: /assets/geojson/som1.geojson
   properties:
     text: Caption
     images: Source

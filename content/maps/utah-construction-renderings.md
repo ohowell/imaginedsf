@@ -5,7 +5,7 @@ indented: true
 recommendedBasemap: utah-construction-mcsweeney-kirby-loubet-glynn-architects
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2023/09/Utah1.geojson
+  url: /assets/geojson/utah-construction-renderings.geojson
   properties:
     text: Caption
     images: URL

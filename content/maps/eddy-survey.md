@@ -26,7 +26,7 @@ While the 1852 Eddy map is the most complete, one earlier version merits discuss
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2024/09/Eddy-Red-Line-300x214.jpg)
+![](/assets/images/eddy-red-line-300x214.jpg)
 
 <figcaption>
 

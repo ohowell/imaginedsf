@@ -4,7 +4,7 @@ year: 1960
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2023/07/Perini-views.geojson
+  url: /assets/geojson/perini-views.geojson
   properties:
     text: Caption
     images: URL

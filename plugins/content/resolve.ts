@@ -15,8 +15,13 @@ interface Listing {
  * Checks references between content files and assembles the content the
  * site uses. Maps and groups that aren't listed anywhere are left out.
  */
-export function resolveContent(raw: RawContent): {
+export function resolveContent(
+  raw: RawContent,
+  { base = '/' }: { base?: string } = {},
+): {
   content: Content | undefined
+  /** Files in assets/ that the content uses, which the site has to include. */
+  assets: string[]
   errors: ContentIssue[]
   warnings: ContentIssue[]
 } {
@@ -145,6 +150,50 @@ export function resolveContent(raw: RawContent): {
     }
   }
 
+  // Bodies are rendered up front so the files they refer to can be checked.
+  const html = new Map<string, string>()
+  for (const { file, body } of [
+    ...shownMaps,
+    ...shownGroups,
+    ...raw.eras,
+    ...raw.pages,
+  ]) {
+    html.set(file, renderMarkdown(body))
+  }
+
+  // Content refers to files in assets/ by path, like /assets/images/x.jpg.
+  const assetFiles = new Set(raw.assets)
+  const usedAssets = new Set<string>()
+  function checkAsset(file: string, reference: string, field: string) {
+    const asset = safeDecode(reference).slice(1)
+    if (assetFiles.has(asset)) {
+      usedAssets.add(asset)
+    } else {
+      error(file, `${field}: no file at "${reference}"`)
+    }
+  }
+  for (const [file, body] of html) {
+    for (const [, reference] of body.matchAll(ASSET_ATTRIBUTE)) {
+      checkAsset(file, reference, 'body')
+    }
+  }
+  for (const map of shownMaps) {
+    const { source } = map.data
+    if (source.type !== 'geojson' || !isAsset(source.url)) continue
+    checkAsset(map.file, source.url, 'source.url')
+    const key = source.properties?.images
+    const geojson = raw.geojson.get(source.url.slice(1))
+    if (!key || !geojson) continue
+    for (const reference of popupImages(geojson, key)) {
+      if (isAsset(reference)) checkAsset(source.url.slice(1), reference, key)
+    }
+  }
+  for (const asset of raw.assets) {
+    if (!usedAssets.has(asset)) {
+      warn(asset, "isn't used by any content")
+    }
+  }
+
   for (const name of pageNames) {
     if (!pages.has(name)) {
       error(`${raw.dir}/pages/${name}.md`, 'missing; the site uses this page')
@@ -157,37 +206,73 @@ export function resolveContent(raw: RawContent): {
   }
 
   if (errors.length > 0 || !site) {
-    return { content: undefined, errors, warnings }
+    return { content: undefined, assets: [], errors, warnings }
   }
+
+  // Asset paths get the site's base path, like /imaginedsf/assets/...
+  const withBase = (url: string) =>
+    isAsset(url) ? `${base}${url.slice(1)}` : url
+  const rendered = (file: string) =>
+    (html.get(file) ?? '').replaceAll('="/assets/', `="${base}assets/`)
 
   const content: Content = {
     maps: Object.fromEntries(
-      shownMaps.map(({ slug, data, body }) => [
+      shownMaps.map(({ slug, file, data }) => [
         slug,
-        { ...data, slug, description: renderMarkdown(body) },
+        {
+          ...data,
+          source: { ...data.source, url: withBase(data.source.url) },
+          slug,
+          description: rendered(file),
+        },
       ]),
     ),
     groups: Object.fromEntries(
-      shownGroups.map(({ slug, data, body }) => [
+      shownGroups.map(({ slug, file, data }) => [
         slug,
-        { ...data, slug, description: renderMarkdown(body) },
+        { ...data, slug, description: rendered(file) },
       ]),
     ),
     eras: raw.eras
-      .map(({ slug, data, body }) => ({
+      .map(({ slug, file, data }) => ({
         ...data,
         slug,
-        description: renderMarkdown(body),
+        description: rendered(file),
       }))
       .sort((a, b) => a.start - b.start || a.title.localeCompare(b.title)),
     basemaps: site.data.basemaps,
     defaultBasemap: site.data.defaultBasemap,
     pages: Object.fromEntries(
-      raw.pages.map(({ slug, data, body }) => [
+      raw.pages.map(({ slug, file, data }) => [
         slug,
-        { ...data, body: renderMarkdown(body) },
+        { ...data, body: rendered(file) },
       ]),
     ) as Record<PageName, Page>,
   }
-  return { content, errors, warnings }
+  return { content, assets: [...usedAssets].sort(), errors, warnings }
+}
+
+const ASSET_ATTRIBUTE = /(?:src|href)="(\/assets\/[^"]*)"/g
+
+const isAsset = (url: string) => url.startsWith('/assets/')
+
+function safeDecode(url: string) {
+  try {
+    return decodeURI(url)
+  } catch {
+    return url
+  }
+}
+
+// Each feature lists its popup images, separated by commas, in one property.
+function popupImages(geojson: unknown, key: string): string[] {
+  const { features = [] } = geojson as {
+    features?: { properties?: Record<string, unknown> | null }[]
+  }
+  return features.flatMap((feature) =>
+    String(feature.properties?.[key] ?? '')
+      .split(',')
+      .map((url) => url.trim())
+      .filter(Boolean),
+  )
 }

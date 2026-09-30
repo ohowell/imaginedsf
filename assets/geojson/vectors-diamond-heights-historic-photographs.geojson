@@ -1,0 +1,165 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 342,
+        "Caption": "Diamond Heights view North",
+        "Source": "/assets/images/1968-apr-diamond-heights-view-north.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.440088,
+          37.743455
+        ],
+        "type": "Point"
+      },
+      "id": "0ae2ab0c24f6cb9f5b3c1cfb718c09ad"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 30,
+        "Caption": "View from Diamond Heights looking north and east, March or April, 1971",
+        "Source": "/assets/images/1971-marapr-view-from-diamond-heights-looking-north-and-east.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.435728,
+          37.743181
+        ],
+        "type": "Point"
+      },
+      "id": "22c04b65ba51791a90ef75206c67a338"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 27,
+        "Caption": "View N/E from Diamond Hts. shopping center, April, 1968",
+        "Source": "/assets/images/1968-apr-view-ne-from-diamond-heights-shopping-center.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.439954,
+          37.742936
+        ],
+        "type": "Point"
+      },
+      "id": "5c886e07265f58678ba221345b01f17e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 308,
+        "Caption": "Alemany Boulevard at Mission Street viaduct looking NW, 1963",
+        "Source": "/assets/images/1963-alemany-boulevard-at-mission-street-viaduct-looking-nw.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.427278,
+          37.731128
+        ],
+        "type": "Point"
+      },
+      "id": "9f2c5610289fd95ec77dc04900c81b21"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 320,
+        "Caption": "Diamond Heights Elementary School, view North",
+        "Source": "/assets/images/1968-apr-diamond-heights-elementary-school-view-north.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.440738,
+          37.743754
+        ],
+        "type": "Point"
+      },
+      "id": "a2b3d4139c61dd3d9c59c1b886e27369"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 268,
+        "Caption": "View of the Diamond Heights district from the west side of Bernal Heights",
+        "Source": "/assets/images/1950-june5-view-of-the-diamond-heights-district-from-the-west-side-of-bernal-heights.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.416813,
+          37.742091
+        ],
+        "type": "Point"
+      },
+      "id": "a887cdfe9e047617b9405f4850279fb6"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 52,
+        "Caption": "Hill in Diamond Heights before redevelopment project",
+        "Source": "/assets/images/nd-hill-in-diamond-heights-before-redevelopment-project.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.452485,
+          37.738957
+        ],
+        "type": "Point"
+      },
+      "id": "ba288c6f546b369f51a5899280f3e58f"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 128,
+        "Caption": "Diamond Heights Area B-1, March 15, 1960",
+        "Source": "/assets/images/1960-mar15-diamond-heights-area-b-1-the-san-francisco-redevelopment-agency.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.453585,
+          37.750794
+        ],
+        "type": "Point"
+      },
+      "id": "c7072f25c0d84b5f39f36dfa633e7066"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 120,
+        "Caption": "Clipper Street freeway extension, June 20, 1947",
+        "Source": "/assets/images/1947-june20-clipper-street-freeway-extension.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.44595,
+          37.748733
+        ],
+        "type": "Point"
+      },
+      "id": "cafe092893c4f5614d4bb8a9ffe7c151"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 295,
+        "Caption": "Saint Aidan's Episcopal Church in Diamond Heights, surroundings at early stages of building",
+        "Source": "/assets/images/1963-saint-aidans-episcopal-church-in-diamond-heights-surroundings-at-early-stages-of-building.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.436711,
+          37.743158
+        ],
+        "type": "Point"
+      },
+      "id": "e2e5a88033e507c0e8ec6053cefb098a"
+    }
+  ],
+  "type": "FeatureCollection"
+}

@@ -42,7 +42,22 @@ const xyzTileSource = z.strictObject({
 })
 const geoJsonSource = z.strictObject({
   type: z.literal('geojson'),
-  url: httpsUrl,
+  // An https URL, or a file in assets/, like
+  // "/assets/geojson/views-of-marin-bridges.geojson".
+  url: z
+    .string()
+    .refine(
+      (url) =>
+        /^https:\/\//.test(url)
+          ? URL.canParse(url)
+          : /^\/assets\/(?:[\w-][\w.-]*\/)*[\w-][\w.-]*\.(?:geo)?json$/i.test(
+              url,
+            ),
+      {
+        error:
+          'must be an https URL or a .geojson file in assets/, like "/assets/geojson/fulton-circle.geojson"',
+      },
+    ),
   // Names of the feature properties that hold popup text, comma-separated
   // popup image URLs, and pin direction in degrees.
   properties: z

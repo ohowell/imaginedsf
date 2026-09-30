@@ -18,7 +18,7 @@ In January 1847 the *Alcalde* (Mayor) Washington Bartlett officially changed the
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2023/11/Screenshot-2025-02-28-at-4.09.19%E2%80%AFPM-224x300.png)
+![](/assets/images/screenshot-2025-02-28-at-4-09-19-pm-224x300.png)
 
 <figcaption>
 

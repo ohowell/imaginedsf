@@ -18,7 +18,7 @@ The Sun Lithographic map was one of the city’s earliest and it was produced fo
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2023/10/NW_corner_Sacramento_n_Battery-1024x768.jpg)
+![](/assets/images/nw-corner-sacramento-n-battery-1024x768.jpg)
 
 <figcaption>
 
@@ -31,7 +31,7 @@ Contemporaneous illustrations and the earliest photographs suggest that the Sun 
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2023/10/Niantic-1024x730.jpg)
+![](/assets/images/niantic-1024x730.jpg)
 
 <figcaption>
 
@@ -48,7 +48,7 @@ San Francisco’s early topography is also first shown in the Sun Lithographic m
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2023/10/Bluffs-300x300.jpg)
+![](/assets/images/bluffs-300x300.jpg)
 
 <figcaption>
 

@@ -1,0 +1,165 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Caption": "Aerial view of the Embarcadero showing Ferry Post Office Annex",
+        "Source": "/assets/images/1960-mar11-aerial-view-of-the-embarcadero-showing-ferry-post-office-annex.jpg",
+        "Bearing": 265
+      },
+      "geometry": {
+        "coordinates": [
+          -122.360529,
+          37.800886
+        ],
+        "type": "Point"
+      },
+      "id": "284b393e5af4286e60017a22c4109b9e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 220,
+        "Caption": "Construction for the Golden Gateway, June 17, 1964",
+        "Source": "/assets/images/1964-jun17-construction-for-the-golden-gateway.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.395013,
+          37.796498
+        ],
+        "type": "Point"
+      },
+      "id": "3bf9aa1aad2ebe37772d655c5e188285"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 98,
+        "Caption": "Golden Gateway, August 25, 1962",
+        "Source": "/assets/images/1962-aug25-golden-gateway.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.40151,
+          37.79626
+        ],
+        "type": "Point"
+      },
+      "id": "652caf9ea541b8ae2157bfaf01bc9603"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 75,
+        "Caption": "Construction of Golden Gateway Development Project, March 1964",
+        "Source": "/assets/images/1964-mar-construction-of-golden-gateway-development-project.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.398958,
+          37.796075
+        ],
+        "type": "Point"
+      },
+      "id": "9221216611d265fef84367884e42cc74"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 82,
+        "Caption": "Construction for the Golden Gateway, March 4, 1962",
+        "Source": "/assets/images/1963-mar4-construction-for-the-golden-gateway.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.40239,
+          37.800833
+        ],
+        "type": "Point"
+      },
+      "id": "92b584f8b5bd98820b022ce601628337"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 192,
+        "Caption": "Golden Gateway Center, May 15, 1967",
+        "Source": "/assets/images/1967-may15-golden-gateway-center.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.398542,
+          37.79803
+        ],
+        "type": "Point"
+      },
+      "id": "b0c7d8b9e8bdeda0b9d633a2f3c201b7"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 325,
+        "Caption": "Telegraph Hill and Coit Tower as seen from a Golden Gateway building, March or April, 1972",
+        "Source": "/assets/images/1971-marapr-telegraph-hill-and-coit-tower-as-seen-from-a-golden-gateway-building.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.397672,
+          37.796771
+        ],
+        "type": "Point"
+      },
+      "id": "b127df6ba28b1e7e48e742bc53c49b8b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 140,
+        "Caption": "Park and parking lot as seen looking south from a Golden Gateway Building, March or April, 1971",
+        "Source": "/assets/images/1971-marapr-park-and-parking-lot-as-seen-looking-south-from-a-golden-gateway-building.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.397672,
+          37.796727
+        ],
+        "type": "Point"
+      },
+      "id": "d4fc47d6ebb67c4be8308b54bd17786e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 94,
+        "Caption": "Golden Gateway Redevelopment Project, Nov 11, 1963",
+        "Source": "/assets/images/1963-nov11-golden-gateway-redevelopment-project.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.401735,
+          37.797099
+        ],
+        "type": "Point"
+      },
+      "id": "d6dc39b99f9c6c4564c69a6a2c7b20fa"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 38,
+        "Caption": "Golden Gateway, March 31, 1965",
+        "Source": "/assets/images/1965-mar31-golden-gateway.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.400043,
+          37.796537
+        ],
+        "type": "Point"
+      },
+      "id": "e1741577edb0f5dbe07a3d93cd28f5a1"
+    }
+  ],
+  "type": "FeatureCollection"
+}

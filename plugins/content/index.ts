@@ -1,3 +1,4 @@
+import { copyFile, mkdir } from 'node:fs/promises'
 import path from 'node:path'
 import { normalizePath, type Plugin } from 'vite'
 import { loadContent, type ContentIssue } from './load.ts'
@@ -6,22 +7,35 @@ import { resolveContent } from './resolve.ts'
 const VIRTUAL_ID = 'virtual:content'
 const RESOLVED_ID = `\0${VIRTUAL_ID}`
 
-/** Loads, validates and renders everything in a content directory. */
-async function buildContent(dir: string) {
-  const loaded = await loadContent(dir)
+/** Loads, validates and renders everything in content/ and assets/. */
+async function buildContent(root: string, base: string) {
+  const loaded = await loadContent(
+    path.join(root, 'content'),
+    path.join(root, 'assets'),
+  )
   // Cross-references are only checked once every file is valid on its own,
   // so one broken file doesn't also surface as a missing reference.
   if (loaded.errors.length > 0) {
-    return { content: undefined, errors: loaded.errors, warnings: [] }
+    return {
+      content: undefined,
+      assets: [],
+      errors: loaded.errors,
+      warnings: [],
+    }
   }
-  return resolveContent(loaded.raw)
+  return resolveContent(loaded.raw, { base })
 }
 
 const formatIssue = ({ file, message }: ContentIssue) => `${file}: ${message}`
 
-/** Provides the site content as `virtual:content`. */
+/**
+ * Provides the site content as `virtual:content`, and copies the files in
+ * assets/ that it uses into the build.
+ */
 export function content(): Plugin {
-  let contentDir = ''
+  let root = ''
+  let base = '/'
+  let usedAssets: string[] = []
   return {
     name: 'imaginedsf-content',
     config() {
@@ -40,14 +54,18 @@ export function content(): Plugin {
       }
     },
     configResolved(config) {
-      contentDir = normalizePath(path.join(config.root, 'content'))
+      root = normalizePath(config.root)
+      base = config.base
     },
     resolveId(id) {
       return id === VIRTUAL_ID ? RESOLVED_ID : undefined
     },
     async load(id) {
       if (id !== RESOLVED_ID) return
-      const { content, errors, warnings } = await buildContent(contentDir)
+      const { content, assets, errors, warnings } = await buildContent(
+        root,
+        base,
+      )
       for (const warning of warnings) {
         this.warn(formatIssue(warning))
       }
@@ -58,12 +76,26 @@ export function content(): Plugin {
           stack: '',
         })
       }
+      usedAssets = assets
       return `export default JSON.parse(${JSON.stringify(JSON.stringify(content))})`
+    },
+    // The dev server serves assets/ from the project root, so assets only need
+    // copying when building.
+    async writeBundle({ dir }) {
+      if (!dir) return
+      for (const asset of usedAssets) {
+        const target = path.join(dir, asset)
+        await mkdir(path.dirname(target), { recursive: true })
+        await copyFile(path.join(root, asset), target)
+      }
     },
     hotUpdate({ file }) {
       if (
         this.environment.name !== 'client' ||
-        !file.startsWith(`${contentDir}/`)
+        !(
+          file.startsWith(`${root}/content/`) ||
+          file.startsWith(`${root}/assets/`)
+        )
       ) {
         return
       }

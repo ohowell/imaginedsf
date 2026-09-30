@@ -4,7 +4,7 @@ year: 1905
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2022/10/Burnham-Existing-Views-1.geojson
+  url: /assets/geojson/existing-city.geojson
   properties:
     text: Caption
     images: URL

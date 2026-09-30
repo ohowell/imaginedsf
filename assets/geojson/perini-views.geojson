@@ -1,0 +1,229 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 25,
+        "Caption": "From the proposal: \"As a reminder of the area's recent function as the city's picturesque and colorful produce district, the arched entrance to the old Colombo Market has been retained as the park entrance on Front Street.  The 'street furniture' of the project--benches, light standards, planting boxes and such objects--will be designed to increase the visual reward of being outdoors.\"  ",
+        "URL": "/assets/images/perini-7.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.399694,
+          37.79721
+        ],
+        "type": "Point"
+      },
+      "id": "1080d3bbe7f391ce824656c8447dd13b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 350,
+        "Caption": "From proposal: \"View toward principal street entrance of Office Building.\"  \"The building's 25-story height, size and location make it a point of identification for the Golden Gateway area.  Within the context of the city, its location is ideal for all types of transportation, including the proposed subway line.  Although its first two floors are technically a part of the garage building, the office building's identity as a distinctive element of the development is established by the importance with which its entrance and lobbies (at street and plaza levels) are treated.  The principal street entrance is on Clay Street, and is set back from the line of the garage building's facade.  Front Street, on axis with the building, leads directly to the entrance.  The two-level lobby is enclosed in glass so that there are views from it as well as into it.  The walk at plaza level crosses the face of the building at second floor lobby, bringing the human scale into the design and implying the building's relation to the plaza.\" ",
+        "URL": "/assets/images/perini-13.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.399117,
+          37.795046
+        ],
+        "type": "Point"
+      },
+      "id": "327b82fc0abde339e2898f5abc9274e3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 115,
+        "Caption": "From the proposal: In the residential towers \"each floor, except the top two, contains eight apartments varying in size from one to two bedrooms.  At the top, two-story three-bedroom luxury apartments are a feature of this type of residential tower.  The balconies which add space and openness to each apartment give variety to the exterior appearance of the towers.  Since the plans are not the same for all towers, even of one type, the positions of the balconies vary with the location of the living room.\"  ",
+        "URL": "/assets/images/perini-11.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.39901,
+          37.798525
+        ],
+        "type": "Point"
+      },
+      "id": "51b41946176ab5f0cc165a3c2eb094d9"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 125,
+        "URL": "/assets/images/perini-16.jpg",
+        "Caption": "Model showing a bird's eye view of the proposal, looking southwest.  "
+      },
+      "geometry": {
+        "coordinates": [
+          -122.401804,
+          37.800069
+        ],
+        "type": "Point"
+      },
+      "id": "58962b5d0da616f11d61e90954cb1720"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 350,
+        "Caption": "View along Davis Street to the north.",
+        "URL": "/assets/images/perini-5.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.398534,
+          37.798026
+        ],
+        "type": "Point"
+      },
+      "id": "6b05ea15ce95385a52aba3ba71156d53"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 35,
+        "Caption": "From the proposal: \"The quality of outdoor space is as important as its amount and even its location, especially where population density is great; but it can be only as good as the initial concept on which it is based.  Given the premise of elevated plazas, there was the opportunity here to think of the landscaping as an open space network on more than one level.  This plan uses three levels: the tops of the garages, the ground, and the intermediate platforms at the north and souths sides of the park.  The bridges between the garage blocks act as horizontal ties between these levels, and the stairs at the sides of the blocks as vertical ties.  The major open space is the park.  A block-sized wooded space exploits, in informal planting, meandering paths and landscaped mounds, its 'on the ground' quality as fully as the courts with their formal spaces, planting boxes and fountains do their 'on the roof' quality.  But the siting of the buildings and the general openness of the plan give the project as a whole a park-like appearance which minimizes the difference, essential though it is, between the courts and the park.  In the park the shrubbery is kept at the street line, leaving he center open for lawns.  Tall trees form a canopy over paths and scenic spaces.\"",
+        "URL": "/assets/images/perini-8.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.399268,
+          37.797454
+        ],
+        "type": "Point"
+      },
+      "id": "8fb86989254033ce700d956282365cb7"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 80,
+        "Caption": "From proposal: \"Shops of the kind that any residential area needs are centrally located on the ground level of one of the residential blocks, in a key spot on Jackson Street, fronting on the park.  A particular feature of this shopping group is the recessing of the shops behind an arcade which provides protection from bad weather and adds spaciousness.  Off-street parking is located at either end of this shopping area.  Another group of shops--coffee shop, travel agency, etc.--which would cater to the adjacent commercial area as well as to the Golden Gateway, is a the west end of the same block, under the slab tower across from the Custom House.\"",
+        "URL": "/assets/images/perini-12.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.39885,
+          37.796955
+        ],
+        "type": "Point"
+      },
+      "id": "99c4cf53afeac145059f8b97bf89c765"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 240,
+        "Caption": "From the proposal: \"Located on the fringe of the financial district where tall buildings are the rule, the towers and slab buildings proposed in this design fit well into the city's skyline.  Where low buildings adjoin the project area, transition elements--the maisonettes, the plaza beside the Custom House, the Park--preclude the possibility of dark canyon-like streets between the buildings.\"  ",
+        "URL": "/assets/images/perini-4.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.394478,
+          37.800161
+        ],
+        "type": "Point"
+      },
+      "id": "9f9c31ee6164f31e27e7a7e820cbd313"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 260,
+        "Caption": "Looking west from the bay.",
+        "URL": "/assets/images/perini-3.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.392307,
+          37.798938
+        ],
+        "type": "Point"
+      },
+      "id": "a27ba067c95268fcf7fe22110b39f351"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 30,
+        "Caption": "Looking northeast.  ",
+        "URL": "/assets/images/perini-2.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.399452,
+          37.791306
+        ],
+        "type": "Point"
+      },
+      "id": "a35ceb4536ae749d7c15399b5ed6c2cf"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 340,
+        "Caption": "From proposal: The office building's \"second floor lobby opens onto the plaza with its landscaped courts, recreational facilities and garden offices.  These unique office suites, completely consistent with, though new to, San Francisco are the most urbane of the Golden Gateway's various kinds of buildings.  The garden offices are located in low buildings along the perimeter of the west end of the plaza and are approached through a handsomely landscaped formal court which opens off the lobby of the office building.  Sculpture and fountains add their part to the elegant environment in which these unusual offices are placed.  A covered walk links the entrances to the individual office units and frames the court.  The rounded roofs of the buildings recall the arches of the garage building below, relating these office suites to the design of the development as a whole and to the San Francisco tradition.\"  ",
+        "URL": "/assets/images/perini-14.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.399634,
+          37.795307
+        ],
+        "type": "Point"
+      },
+      "id": "a96773e6535377a44631807bb9de23cc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 350,
+        "Caption": "From proposal: \"Two kinds of recreation are provided for in the proposal--active and passive, each important in its own way in the planning of outdoor space for leisure-time use.  The glass-enclosed swimming pool at the east end of the plaza opposite the office building is accessible for and available to tenants of the office building as well as to residents in the project.  A coffee shop with a circular bar on its upper level, overlooking the pool and the landscaped area beside the freeway ramps, adds further a further festive note.  Tennis courts, located in the surface parking area at the northeast end of the project, offer a different kind of active recreation.  For children, a playground on the park mall at the north end of the park provides protected play space safely accessible, by walkways above the street, from all Golden Gateway buildings.  The large open space of the park, a welcome refuge in an area of relatively dense population, and the elevated courts offer a variety of pleasant walks and strolls, or the chance to sit in sun or shade.\"  ",
+        "URL": "/assets/images/perini-15.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.398258,
+          37.795522
+        ],
+        "type": "Point"
+      },
+      "id": "c3ce7a77478886a30ce2c14b68cc5733"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 80,
+        "Caption": "From proposal: \"The residential units which make up the greater part of the project's buildings are of three types: point towers, slab towers and maisonettes.  While each of these has its particular advantages, the maisonettes (and their counterparts, the garden offices) are a distinct feature of this proposal, providing not only a very different--yet typically San Franciscan--kind of living within the development but also making possible much of the openness of the over-all plan.  The maisonettes make economic use of the garage roof space; effect a subtle change in scale from the monumental to the human; and in the organization of the exterior spaces make an interesting pattern which both pedestrians on the plaza and dwellers in the tall buildings can enjoy.  Maisonettes are individual houses with private gardens in the tradition of San Francisco; here, however, they have an urbanity with which they have seldom been endowed in the city.  Set on the roofs of the garages for the residential area, they have an usual degree of above-the-street privacy; the provide big city living, in the heart of the city, within the human scale.  Their arched roofs not only identify their type, but unify their grouping; and the rhythm of the recurring curves is an architectural foil for the formal courts in which they are located.  Covered walkways link their front entrances and frame a landscaped court.  Stairways on the sides of the garage blocks give access to the street below.  Elevator access from the garage is provided.  Ranging in size from four- to seven-and-a-half-room units, they offer housing with a minimum of one bedroom and a maximum of four bedrooms.\"  ",
+        "URL": "/assets/images/perini-10.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.399623,
+          37.796521
+        ],
+        "type": "Point"
+      },
+      "id": "d872a59eabb2ba45ca308ec360462e63"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 350,
+        "Caption": "From the proposal: \"View through Court toward Maisonettes.\"  ",
+        "URL": "/assets/images/perini-9.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.397863,
+          37.797493
+        ],
+        "type": "Point"
+      },
+      "id": "ed0c6f40898a753caf57c303b1553d48"
+    }
+  ],
+  "type": "FeatureCollection"
+}

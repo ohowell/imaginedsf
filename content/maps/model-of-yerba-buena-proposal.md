@@ -4,7 +4,7 @@ year: 1965
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2023/07/YB-Model.geojson
+  url: /assets/geojson/model-of-yerba-buena-proposal.geojson
   properties:
     text: Caption
     images: URL

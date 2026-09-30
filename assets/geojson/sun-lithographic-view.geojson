@@ -1,0 +1,21 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 170,
+        "Caption": "Vignette appears on original map, with the caption: \"View of San Francisco in 1849.  The Large vessel at the wharf is the 'Apollo Store Ship.'\"",
+        "URL": "/assets/images/1849-wharf.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.403834,
+          37.798224
+        ],
+        "type": "Point"
+      },
+      "id": "01a802087b45d3c7eb5ac31027be1e5b"
+    }
+  ],
+  "type": "FeatureCollection"
+}

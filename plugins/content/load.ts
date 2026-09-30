@@ -36,17 +36,26 @@ export interface RawContent {
   groups: Entry<GroupData>[]
   eras: Entry<EraData>[]
   pages: Entry<PageData>[]
+  /** Files in assets/, as paths from the project root like "assets/images/x.jpg". */
+  assets: string[]
+  /** Parsed GeoJSON files in assets/, by path. */
+  geojson: Map<string, unknown>
 }
 
 const FRONT_MATTER = /^---\r?\n(?:([\s\S]*?)\r?\n)?---(?:\r?\n|$)/
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 
-/** Reads and validates each content file on its own. */
+/**
+ * Reads and validates each content file on its own, and lists the files in
+ * the assets directory.
+ */
 export async function loadContent(
   dir: string,
+  assetsDir: string,
 ): Promise<{ raw: RawContent; errors: ContentIssue[] }> {
   const errors: ContentIssue[] = []
-  const display = (file: string) => path.relative(path.dirname(dir), file)
+  const display = (file: string) =>
+    path.relative(path.dirname(dir), file).split(path.sep).join('/')
 
   function check<T>(schema: z.ZodType<T>, value: unknown, file: string) {
     const result = schema.safeParse(value)
@@ -91,7 +100,8 @@ export async function loadContent(
       if (!name.endsWith('.md')) {
         errors.push({
           file: display(file),
-          message: 'content files must end in .md',
+          message:
+            'content folders only hold Markdown; put other files in assets/',
         })
         continue
       }
@@ -125,6 +135,29 @@ export async function loadContent(
     return entries
   }
 
+  async function loadAssets() {
+    const entries = await readdir(assetsDir, {
+      recursive: true,
+      withFileTypes: true,
+    }).catch(() => [])
+    const assets: string[] = []
+    const geojson = new Map<string, unknown>()
+    for (const entry of entries) {
+      if (!entry.isFile() || entry.name.startsWith('.')) continue
+      const file = path.join(entry.parentPath, entry.name)
+      const asset = display(file)
+      assets.push(asset)
+      if (/\.(?:geo)?json$/i.test(entry.name)) {
+        try {
+          geojson.set(asset, JSON.parse(await readFile(file, 'utf8')))
+        } catch (error) {
+          errors.push({ file: asset, message: String(error) })
+        }
+      }
+    }
+    return { assets: assets.toSorted(), geojson }
+  }
+
   const raw: RawContent = {
     dir: display(dir),
     site: await loadSite(),
@@ -132,6 +165,7 @@ export async function loadContent(
     groups: await loadCollection('groups', groupSchema),
     eras: await loadCollection('eras', eraSchema),
     pages: await loadCollection('pages', pageSchema),
+    ...(await loadAssets()),
   }
   return { raw, errors }
 }

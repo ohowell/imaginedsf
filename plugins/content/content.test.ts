@@ -46,6 +46,8 @@ function fixture(overrides: Partial<RawContent> = {}): RawContent {
     groups: [group('proposals', ['grouped'])],
     eras: [era('later', 1950, ['plan']), era('earlier', 1900, ['proposals'])],
     pages: pageNames.map((name) => entry('pages', name, { title: name })),
+    assets: [],
+    geojson: new Map(),
     ...overrides,
   }
 }
@@ -132,6 +134,62 @@ describe('resolveContent', () => {
       'content/maps/plan.md: bbox is outside the San Francisco Bay Area; check its coordinates',
     ])
   })
+
+  it('adds the base path to files in assets/', () => {
+    const raw = fixture({
+      assets: ['assets/geojson/plan.geojson', 'assets/images/plan.jpg'],
+    })
+    raw.maps[1].data.source = {
+      type: 'geojson',
+      url: '/assets/geojson/plan.geojson',
+    }
+    raw.maps[1].body = '![](/assets/images/plan.jpg)'
+    const { content, assets, errors, warnings } = resolveContent(raw, {
+      base: '/imaginedsf/',
+    })
+    expect([...errors, ...warnings]).toEqual([])
+    expect(assets).toEqual([
+      'assets/geojson/plan.geojson',
+      'assets/images/plan.jpg',
+    ])
+    expect(content?.maps.plan.source.url).toBe(
+      '/imaginedsf/assets/geojson/plan.geojson',
+    )
+    expect(content?.maps.plan.description).toContain(
+      'src="/imaginedsf/assets/images/plan.jpg"',
+    )
+  })
+
+  it('checks files that bodies and GeoJSON popups refer to', () => {
+    const photos = '/assets/images/plan.jpg, /assets/images/missing.jpg'
+    const raw = fixture({
+      assets: [
+        'assets/geojson/plan.geojson',
+        'assets/images/plan.jpg',
+        'assets/images/old.jpg',
+      ],
+      geojson: new Map([
+        [
+          'assets/geojson/plan.geojson',
+          { features: [{ properties: { photos } }] },
+        ],
+      ]),
+    })
+    raw.maps[1].data.source = {
+      type: 'geojson',
+      url: '/assets/geojson/plan.geojson',
+      properties: { images: 'photos' },
+    }
+    raw.maps[0].body = '![](/assets/images/gone.jpg)'
+    const { errors, warnings } = resolveContent(raw)
+    expect(messages(errors)).toEqual([
+      'content/maps/base.md: body: no file at "/assets/images/gone.jpg"',
+      'assets/geojson/plan.geojson: photos: no file at "/assets/images/missing.jpg"',
+    ])
+    expect(messages(warnings)).toEqual([
+      "assets/images/old.jpg: isn't used by any content",
+    ])
+  })
 })
 
 describe('mapSchema', () => {
@@ -159,6 +217,17 @@ describe('mapSchema', () => {
         'https://earthworks.stanford.edu/catalog/stanford-kq996gp6880',
       ).error?.issues.map((issue) => issue.message),
     ).toEqual(['must be a .tif or .tiff file'])
+  })
+
+  it('accepts GeoJSON files in assets/, but not paths elsewhere', () => {
+    const geojson = (url: string) =>
+      mapSchema.safeParse({ title: 'Plan', source: { type: 'geojson', url } })
+        .success
+    expect(geojson('/assets/geojson/plan.geojson')).toBe(true)
+    expect(geojson('https://data.example/plan.geojson')).toBe(true)
+    expect(geojson('plan.geojson')).toBe(false)
+    expect(geojson('/assets/../content/plan.geojson')).toBe(false)
+    expect(geojson('/assets/geojson/plan.txt')).toBe(false)
   })
 })
 
@@ -190,29 +259,32 @@ describe('loadContent', () => {
   afterEach(() => rm(dir, { recursive: true, force: true }))
 
   it('reports malformed files', async () => {
-    dir = await mkdtemp(path.join(tmpdir(), 'content-'))
-    await mkdir(path.join(dir, 'maps'))
-    await writeFile(
-      path.join(dir, 'site.yml'),
-      'basemaps: [base]\ndefaultBasemap: base\n',
+    dir = await mkdtemp(path.join(tmpdir(), 'site-'))
+    const write = async (file: string, text: string) => {
+      await mkdir(path.dirname(path.join(dir, file)), { recursive: true })
+      await writeFile(path.join(dir, file), text)
+    }
+    await write('content/site.yml', 'basemaps: [base]\ndefaultBasemap: base\n')
+    await write('content/maps/no-front-matter.md', 'Just text')
+    await write('content/maps/Bad Name.md', '---\ntitle: x\n---\n')
+    await write('content/maps/bad-yaml.md', '---\ntitle: [unclosed\n---\n')
+    await write('content/maps/plan.geojson', '{}')
+    await write('assets/geojson/broken.geojson', '{"type":')
+    await write('assets/images/plan.jpg', '')
+    const { raw, errors } = await loadContent(
+      path.join(dir, 'content'),
+      path.join(dir, 'assets'),
     )
-    await writeFile(path.join(dir, 'maps', 'no-front-matter.md'), 'Just text')
-    await writeFile(
-      path.join(dir, 'maps', 'Bad Name.md'),
-      '---\ntitle: x\n---\n',
-    )
-    await writeFile(
-      path.join(dir, 'maps', 'bad-yaml.md'),
-      '---\ntitle: [unclosed\n---\n',
-    )
-    const name = path.basename(dir)
-    const { errors } = await loadContent(dir)
     expect(messages(errors).map((message) => message.split('\n')[0])).toEqual([
-      `${name}/maps/Bad Name.md: file name must be a lowercase slug such as "fulton-circle.md"`,
-      expect.stringMatching(
-        new RegExp(`^${name}/maps/bad-yaml.md: YAMLParseError`),
-      ),
-      `${name}/maps/no-front-matter.md: must start with YAML front matter between --- lines`,
+      'content/maps/Bad Name.md: file name must be a lowercase slug such as "fulton-circle.md"',
+      expect.stringMatching(/^content\/maps\/bad-yaml.md: YAMLParseError/),
+      'content/maps/no-front-matter.md: must start with YAML front matter between --- lines',
+      'content/maps/plan.geojson: content folders only hold Markdown; put other files in assets/',
+      expect.stringMatching(/^assets\/geojson\/broken.geojson: SyntaxError/),
+    ])
+    expect(raw.assets).toEqual([
+      'assets/geojson/broken.geojson',
+      'assets/images/plan.jpg',
     ])
   })
 })

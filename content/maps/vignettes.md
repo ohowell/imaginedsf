@@ -4,7 +4,7 @@ year: 1852
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2022/10/Vignettes-Eddy-Survey.geojson
+  url: /assets/geojson/vignettes.geojson
   properties:
     text: Caption
     images: URL

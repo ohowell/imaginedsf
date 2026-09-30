@@ -23,7 +23,7 @@ In any case, these maps show a long-forgotten fact of life in early San Francisc
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2024/01/Steam-Paddy.jpeg)
+![](/assets/images/steam-paddy.jpeg)
 
 <figcaption>
 
@@ -36,7 +36,7 @@ Residents in the 1860s described the [ceaseless activity of steam shovels](https
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2024/01/water-lots1-1024x775.jpeg)
+![](/assets/images/water-lots1-1024x775.jpeg)
 
 <figcaption>
 
@@ -49,7 +49,7 @@ Finally, the Coast Survey is notable in being the first map in the American peri
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2024/01/Beechey-detail.jpg)
+![](/assets/images/beechey-detail.jpg)
 
 <figcaption>
 

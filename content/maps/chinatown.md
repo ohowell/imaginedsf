@@ -30,7 +30,7 @@ Reference to “the East” showed up often in discussions not only of race, but
 
 <figure>
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2024/02/hb809nb2bd-FID4-714x1024.jpg)
+![](/assets/images/hb809nb2bd-fid4-714x1024.jpg)
 
 <figcaption>
 

@@ -1,0 +1,101 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 270,
+        "Caption": "Frank Lloyd Wright rendering of proposed bridge.  (Click for larger image.)  Source: Taliesin Drawings : Recent Architecture of Frank Lloyd Wright : Selected from his Drawings. Wittenborn, Schultz, Inc., [1952]. (Problems of Contemporary Art no. 6).   ",
+        "URL": "/assets/images/img-0065-scaled.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.36594,
+          37.75073
+        ],
+        "type": "Point"
+      },
+      "id": "0ea1835b7c5ec018b64d60926f6e1cd6"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 270,
+        "URL": "/assets/images/butterflybridge.jpg",
+        "Caption": "Model of the Butterfly Bridge, displayed at the Stonestown Shopping Center in 1953.  Source: San Francisco History Center, San Francisco Public Library.  Source: San Francisco History Center, San Francisco Public Library.  https://sfpl.org/locations/main-library/historical-photographs"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.307214,
+          37.738223
+        ],
+        "type": "Point"
+      },
+      "id": "788245ef51f036d22401177c8e3f7f15"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 45,
+        "URL": "/assets/images/aaz-0206.jpg",
+        "Caption": "Model of the Butterfly Bridge, displayed at the Stonestown Shopping Center in 1953.  Source: San Francisco History Center, San Francisco Public Library. https://sfpl.org/locations/main-library/historical-photographs"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.369204,
+          37.741788
+        ],
+        "type": "Point"
+      },
+      "id": "8bce74a8a4db279d799264f3026fcf29"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 0,
+        "Caption": "Frank Lloyd Wright rendering of proposed bridge.  (Click for larger image.)  Source: Taliesin Drawings : Recent Architecture of Frank Lloyd Wright : Selected from his Drawings. Wittenborn, Schultz, Inc., [1952]. (Problems of Contemporary Art no. 6).   ",
+        "URL": "/assets/images/img-0063-scaled.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.353465,
+          37.734319
+        ],
+        "type": "Point"
+      },
+      "id": "a4e14c714f17e434298dedcd799fb989"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 170,
+        "URL": "/assets/images/butterfly20bridge20drawing-1920x810-1.jpg",
+        "Caption": "Frank Lloyd Wright rendering of proposed bridge.  (Click for larger image.)  Source: Taliesin Drawings : Recent Architecture of Frank Lloyd Wright : Selected from his Drawings. Wittenborn, Schultz, Inc., [1952]. (Problems of Contemporary Art no. 6).   "
+      },
+      "geometry": {
+        "coordinates": [
+          -122.363258,
+          37.759579
+        ],
+        "type": "Point"
+      },
+      "id": "adf0a2ab8f9e9078e893a6fd5eb011c1"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 285,
+        "Caption": "Model of the Butterfly Bridge, displayed at the Stonestown Shopping Center in 1953.  Source: San Francisco History Center, San Francisco Public Library. https://sfpl.org/locations/main-library/historical-photographs",
+        "URL": "/assets/images/aad-1527.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.322569,
+          37.736256
+        ],
+        "type": "Point"
+      },
+      "id": "b9dc051bfea9592b5290ab58a516cbc8"
+    }
+  ],
+  "type": "FeatureCollection"
+}

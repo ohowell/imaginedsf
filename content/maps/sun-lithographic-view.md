@@ -4,7 +4,7 @@ year: 1850
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2022/10/Sun-Lithographic.geojson
+  url: /assets/geojson/sun-lithographic-view.geojson
   properties:
     text: Caption
     images: URL

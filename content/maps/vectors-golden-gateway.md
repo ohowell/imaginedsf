@@ -4,7 +4,7 @@ year: 1960
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2022/10/historicphotos_goldengateway.geojson
+  url: /assets/geojson/vectors-golden-gateway.geojson
   properties:
     text: Caption
     images: Source

@@ -4,7 +4,7 @@ year: 1960
 indented: true
 source:
   type: geojson
-  url: https://www.imaginedsanfrancisco.org/wp-content/uploads/2021/04/historicphotos_diamondheights.geojson
+  url: /assets/geojson/vectors-diamond-heights-historic-photographs.geojson
   properties:
     text: Caption
     images: Source

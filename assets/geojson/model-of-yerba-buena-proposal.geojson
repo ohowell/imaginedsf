@@ -1,0 +1,69 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 180,
+        "Caption": "Aerial view of Yerba Buena proposal.",
+        "URL": "/assets/images/yb4.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.403336,
+          37.788856
+        ],
+        "type": "Point"
+      },
+      "id": "9c0f646412d57764b1145e7851c5f61b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 315,
+        "Caption": "Yerba Buena Center model: view toward Market Street from industrial area.",
+        "URL": "/assets/images/yb1.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.397683,
+          37.781152
+        ],
+        "type": "Point"
+      },
+      "id": "ad45b7595e3023798ea20cc792eddfa1"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 170,
+        "Caption": "From the proposal: \"1. Breakthrough to Market Street.  Opposite Grant Avenue, a wide pedestrian mall will lead to into the heart of the new area.  Escalators will provide easy access from the rapid transit station under Market Street to a new plaza adjoining the mall.   2. St. Patrick's Church.  Fronting on Mission Street and connected to the pedestrian mall, a small plaza complements St. Patrick's Church.  Surrounding tiers of terraces and wide stairways enhance this historic structure.   3. The Central Plaza. The central plaza is the major attraction of the entire area. Raised upon a multi-level garage platform, the plaza provides a spectacular setting for cultural activities which could include two theaters and a museum. An ice-skating rink, indoor and outdoor restaurants, and three substantial office towers are also located on the garage platform. Access to all surrounding blocks is provided by elevated pedestrian bridges. 4. Theaters.   5. Museum.  To insure that the central plaza will be lively and exciting in the evening as well as during the day, two new commercial theaters and a museum are proposed. 6. Sports Arena - Convention Center Complex. To the south of the central plaza, a large Sports Arena - Convention Center Complex is proposed for development. The complex will include a sports arena of 14,000 permanent seats supplemented by a 200,000 square foot combined convention-exhibit facility. An arena club, parking garage, and two office towers complete the complex.\"",
+        "URL": "/assets/images/yb2.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.403448,
+          37.788261
+        ],
+        "type": "Point"
+      },
+      "id": "ef809364c408c547d0aaa535d98182fc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Bearing": 135,
+        "Caption": "View of the elevated Central Plaza, with the museum to the left, theaters to the right, and the domed sports arena central in the background.  ",
+        "URL": "/assets/images/yb5-scaled.jpg"
+      },
+      "geometry": {
+        "coordinates": [
+          -122.403949,
+          37.78617
+        ],
+        "type": "Point"
+      },
+      "id": "fcb4d13888be6a2381d647ef02533f2b"
+    }
+  ],
+  "type": "FeatureCollection"
+}

@@ -12,4 +12,4 @@ wordpressId: 300
 
 Source: [Internet Archive](https://archive.org/details/0358001.merged/mode/thumb)
 
-![](https://www.imaginedsanfrancisco.org/wp-content/uploads/2025/07/New-City-1947-3-1-791x1024.jpg)
+![](/assets/images/new-city-1947-3-1-791x1024.jpg)
