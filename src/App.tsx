@@ -6,7 +6,6 @@ export default function App() {
   return (
     <main>
       <h1>Imagined San Francisco</h1>
-      <p>Static rebuild in progress.</p>
       <p>
         {Object.keys(maps).length} maps, {Object.keys(groups).length} groups,{' '}
         {eras.length} proposal eras
