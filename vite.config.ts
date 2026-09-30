@@ -1,5 +1,6 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig, type Plugin } from 'vite'
+import { content } from './plugins/content/index.ts'
 
 // GitHub Pages answers unknown paths with 404.html, so a copy of index.html
 // lets deep links load the app.
@@ -24,5 +25,5 @@ function spaFallback(): Plugin {
 
 export default defineConfig({
   base: `${process.env.BASE_PATH?.replace(/\/+$/, '') ?? ''}/`,
-  plugins: [react(), spaFallback()],
+  plugins: [react(), content(), spaFallback()],
 })

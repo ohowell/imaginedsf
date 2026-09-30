@@ -1,0 +1,38 @@
+---
+title: Trans-Bay Bridge Study
+year: 1947
+source:
+  type: wms
+  url: https://geowebservices.stanford.edu/geoserver/wms
+  layers: druid:nd167tg1191
+bbox: [-122.5210112, 37.6808923, -122.1254482, 37.9098091]
+wordpressId: 1021
+---
+
+California Department of Public Works, “Report to the California Toll Bridge Authority Covering Preliminary Studies for an Additional Bridge between San Francisco and the East Bay Metropolitan Area,” California State Printing Office, 1947, Plate V-8.
+
+Source: [Archive.org](https://archive.org/details/1947-bay-crossings/mode/1up)
+
+The San Francisco Bay Bridge opened in 1936. From 1939 to 1958 the upper deck carried vehicular traffic, while the lower deck was devoted to passenger rail. By the end of World War II, the bridge was handling 91 percent more traffic than the California Department of Public Works (CDPW) had anticipated. By the time the CDPW published its [1947 report](https://archive.org/details/1947-bay-crossings/mode/1up), traffic had reached a volume not projected until 1970 (CDPW, 13). The map presented here shows 11 proposals that the report analyzed. The general aim of the proposals was to ease congestion and promote economic development without running afoul of maritime shipping interests or the United States military, which still had a substantial presence in the Bay Area. Though dozens of stakeholders put forward dozens of variations on these proposals, this map shows the main ideas that were debated from the 1940s to the 1970s.
+
+The proposals are numbered from 1 to 12 on the map, with 1 describing the original Bay Bridge. The report evaluated the proposals based on traffic patterns, vertical clearance for maritime navigation, rail infrastructure, soil quality for bridgeheads, and cost. The CDPW offered no formal recommendations, but an attentive reader would have found abundant support for a bridge very near the existing one, which was already in “the most favorable location” (97). The report argued that “no location other than one in close proximity to the existing bridge is likely to divert anything like half the traffic now using the San Francisco-Oakland Bay bridge” (CDPW, 18). However, the CDPW was only one of a host of stakeholders. In the postwar period, a vigorous debate was had between interests on both sides of the bay. City governments, chambers of commerce, and labor unions fought it out in the pages of the local press, as well as in state legislative hearings and with the Joint Army-Navy Board (JANB).
+
+To summarize, the proposals that terminated on Telegraph Hill (labeled 2-4 and 6 and 7) never received serious consideration from major stakeholders. There were a variety of reasons for this, but the most salient were the density of settlement and narrowness of streets in that part of San Francisco. These conditions meant that the capacity of any northern crossing would have to be limited, guaranteeing that the bridge would be less effective at easing congestion. But either a southern crossing (proposals 10-12) or a second bridge that ran parallel to the existing one (labeled 8 and 9) would likely be more effective in that regard. And indeed, the local debate revolved around those options.
+
+The planning historian [Sy Adler](https://doi.org/10.2307/3377832) has shown in detail how complex and occasionally capricious the politics of crossing the bay were. But some patterns are discernible. In general, the Oakland city government and business community favored a parallel crossing because it would ensure the economic centrality of Oakland in the East Bay. Though the CDPW’s 1947 report offered no recommendations, it did note that the location of the existing bridge was ideal–if a bridge had not already exist, one would need to have been built on that site. Cities to the south, like San Leandro and especially Hayward, favored a southern crossing since the investment would allow those cities more independence from their larger neighbor. San Franciscans favored different proposals at different moments. One of the principal aims of the city government and the business community was to compete with Oakland and the South Bay for the western termini of the major freight lines. The southern waterfront was much better suited to rail yards than was downtown or South of Market, so San Franciscans favored a southern crossing. However, once it became clear that the Southern Pacific, Western Pacific, and Santa Fé had no intention of moving their termini to San Francisco, the locals switched their support back to a parallel crossing.
+
+However, both options would eventually be thwarted by the military. In its own 1947 report, the JANB invoked civil defense. The parallel crossing violated the principle of dispersion: building major bridges too close to one another meant that both could be taken out with a single attack. Partly because the parallel crossing was unacceptable, the JANB did in fact support the southern crossing in 1947. However, the Navy pulled the rug out from under the proposal in 1949 because it had “plans for possible seaplane development.” Adler reports that these “plans were so new and so secret that the Bay Area navy official who made public the opposition did not know any of the details. This was a decision taken at the top level of the navy command in Washington; the local navy people were as surprised as everyone else” (Adler, 35). For the moment at least, both the parallel and southern crossing plans were dead.
+
+The failure of the two proposals with the most local support did, however, create the conditions where a third option could emerge. In addition to supporting a southern crossing, the 1947 JANB report also argued that the Bay Area’s transportation problems could not be solved only with private vehicles. The obvious solution was a regional rail rapid transit system, with an underwater tube connecting Oakland and San Francisco (Adler, 26). This solution would have the additional benefit of freeing the lower deck of the existing bridge from rail service, thereby doubling its capacity for vehicular traffic (Adler, 27). JANB believed that this tube should run close to the southern crossing, which terminated at Army Street in San Francisco, and 5th Street in Alameda (a route almost identical to proposal 12 here) (*Congressional Record*, 1947, A567). In the 1950s, interests in San Francisco and Oakland would coalesce around this plan but favored a route much closer to the CPDW’s tube (proposal 5 here) that would connect the two downtowns. This coalition was the driving force behind the eventual creation of the Bay Area Rapid Transit (BART) system.
+
+## Further Reading
+
+[Sy Adler, “Infrastructure Politics: The Dynamics of Crossing San Francisco Bay,” *The Public Historian*, 10(4), 1988.](https://www.jstor.org/stable/3377832)
+
+[Alameda County Committee for a Second Bay Crossing, “Report to the Joint Army-Navy Board appointed pursuant to House Resolution 529, 79th Congress in reference to additional crossings of San Francisco Bay,” 1946.](https://archive.org/details/reporttojointarm1946alam/page/n6/mode/thumb)
+
+[California Department of Public Works (CDPW), “Report to the California Toll Bridge Authority Covering Preliminary Studies for an Additional Bridge between San Francisco and the East Bay Metropolitan Area,” 1947.](https://archive.org/details/1947-bay-crossings/page/n8/mode/thumb)
+
+Joint Army-Navy Board (JANB), “An Additional Crossing of San Francisco Bay,” 1947.
+
+[“San Francisco Bay Bridges,” 80th Congress, First Session, *Congressional Record*, 1947, A567.](https://archive.org/details/dli.ernet.74503/page/n573/mode/2up)

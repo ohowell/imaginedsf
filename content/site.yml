@@ -1,0 +1,9 @@
+basemaps:
+  - light-basemap
+  - aerial-imagery
+  - openstreetmaps
+  - ryker-aerial-photographs
+defaultBasemap: light-basemap
+narratives:
+  - another-sample-narrative
+  - sample-narrative-with-many-links
