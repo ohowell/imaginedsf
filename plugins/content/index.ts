@@ -17,8 +17,7 @@ async function buildContent(dir: string) {
   return resolveContent(loaded.raw)
 }
 
-const formatIssue = ({ file, message }: ContentIssue) =>
-  `${file}: ${message}`
+const formatIssue = ({ file, message }: ContentIssue) => `${file}: ${message}`
 
 /** Provides the site content as `virtual:content`. */
 export function content(): Plugin {

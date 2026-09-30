@@ -31,9 +31,13 @@ export function headingProblems(markdown: string): string[] {
   for (const token of marked.lexer(markdown)) {
     if (token.type !== 'heading') continue
     if (token.depth === 1) {
-      problems.push(`heading "${token.text}" is level 1, which is for the title; use ## instead`)
+      problems.push(
+        `heading "${token.text}" is level 1, which is for the title; use ## instead`,
+      )
     } else if (token.depth > previous + 1) {
-      problems.push(`heading "${token.text}" skips from level ${previous} to level ${token.depth}`)
+      problems.push(
+        `heading "${token.text}" skips from level ${previous} to level ${token.depth}`,
+      )
     }
     previous = token.depth
   }

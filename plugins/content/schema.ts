@@ -19,19 +19,20 @@ const latitude = z.number().min(-90).max(90)
 const bbox = z
   .tuple([longitude, latitude, longitude, latitude])
   .refine(([west, south, east, north]) => west < east && south < north, {
-    error: 'must be [west, south, east, north] with west < east and south < north',
+    error:
+      'must be [west, south, east, north] with west < east and south < north',
   })
 
 /* Map source types */
 const wmsSource = z.strictObject({
-    type: z.literal('wms'),
-    url: httpsUrl,
-    layers: z.string().min(1),
-    minZoom: zoom.optional(),
-    maxZoom: zoom.optional(),
-  })
+  type: z.literal('wms'),
+  url: httpsUrl,
+  layers: z.string().min(1),
+  minZoom: zoom.optional(),
+  maxZoom: zoom.optional(),
+})
 
-const xyzTileSource =   z.strictObject({
+const xyzTileSource = z.strictObject({
   type: z.literal('tile'),
   url: z.string().regex(/^https:\/\/\S*\{z\}\S*\{x\}\S*\{y\}/, {
     error: 'must be an https URL template containing {z}, {x} and {y}',
@@ -40,22 +41,31 @@ const xyzTileSource =   z.strictObject({
   maxZoom: zoom.optional(),
 })
 const geoJsonSource = z.strictObject({
-    type: z.literal('geojson'),
-    url: httpsUrl,
-    // Names of the feature properties that hold popup text, comma-separated
-    // popup image URLs, and pin direction in degrees.
-    properties: z
-      .strictObject({
-        text: z.string().min(1).optional(),
-        images: z.string().min(1).optional(),
-        direction: z.string().min(1).optional(),
-      })
-      .optional(),
-  })
+  type: z.literal('geojson'),
+  url: httpsUrl,
+  // Names of the feature properties that hold popup text, comma-separated
+  // popup image URLs, and pin direction in degrees.
+  properties: z
+    .strictObject({
+      text: z.string().min(1).optional(),
+      images: z.string().min(1).optional(),
+      direction: z.string().min(1).optional(),
+    })
+    .optional(),
+})
+// A Cloud Optimized GeoTIFF, which the browser reads directly, downloading
+// only the parts of the file it needs.
+const cogSource = z.strictObject({
+  type: z.literal('cog'),
+  url: httpsUrl.regex(/\.tiff?(\?.*)?$/i, {
+    error: 'must be a .tif or .tiff file',
+  }),
+})
 const source = z.discriminatedUnion('type', [
   wmsSource,
   xyzTileSource,
   geoJsonSource,
+  cogSource,
 ])
 
 /* Schemas for each type of Markdown file */

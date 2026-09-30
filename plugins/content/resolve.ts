@@ -78,7 +78,10 @@ export function resolveContent(raw: RawContent): {
       list(slug, { file: site.file }, false)
     }
     if (!site.data.basemaps.includes(site.data.defaultBasemap)) {
-      error(site.file, `defaultBasemap "${site.data.defaultBasemap}" isn't one of the basemaps`)
+      error(
+        site.file,
+        `defaultBasemap "${site.data.defaultBasemap}" isn't one of the basemaps`,
+      )
     }
   }
   for (const era of raw.eras) {
@@ -102,12 +105,18 @@ export function resolveContent(raw: RawContent): {
 
   for (const group of raw.groups) {
     if (!listings.has(group.slug)) {
-      warn(group.file, "isn't listed in any era, so it and its maps aren't shown")
+      warn(
+        group.file,
+        "isn't listed in any era, so it and its maps aren't shown",
+      )
     }
   }
   for (const map of raw.maps) {
     if (!listings.has(map.slug)) {
-      warn(map.file, "isn't listed in any era, group or basemap list, so it isn't shown")
+      warn(
+        map.file,
+        "isn't listed in any era, group or basemap list, so it isn't shown",
+      )
     }
   }
 
@@ -129,7 +138,10 @@ export function resolveContent(raw: RawContent): {
         bbox[1] > BAY_AREA[3] ||
         bbox[3] < BAY_AREA[1])
     ) {
-      warn(map.file, "bbox is outside the San Francisco Bay Area; check its coordinates")
+      warn(
+        map.file,
+        'bbox is outside the San Francisco Bay Area; check its coordinates',
+      )
     }
   }
 

@@ -2,10 +2,21 @@ import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { afterEach, describe, expect, it } from 'vitest'
-import { loadContent, type ContentIssue, type Entry, type RawContent } from './load.ts'
+import {
+  loadContent,
+  type ContentIssue,
+  type Entry,
+  type RawContent,
+} from './load.ts'
 import { headingProblems, renderMarkdown } from './markdown.ts'
 import { resolveContent } from './resolve.ts'
-import { mapSchema, pageNames, type EraData, type GroupData, type MapData } from './schema.ts'
+import {
+  mapSchema,
+  pageNames,
+  type EraData,
+  type GroupData,
+  type MapData,
+} from './schema.ts'
 
 const entry = <T>(collection: string, slug: string, data: T): Entry<T> => ({
   slug,
@@ -48,7 +59,11 @@ describe('resolveContent', () => {
     expect(errors).toEqual([])
     expect(warnings).toEqual([])
     expect(content?.eras.map((era) => era.slug)).toEqual(['earlier', 'later'])
-    expect(Object.keys(content?.maps ?? {}).sort()).toEqual(['base', 'grouped', 'plan'])
+    expect(Object.keys(content?.maps ?? {}).sort()).toEqual([
+      'base',
+      'grouped',
+      'plan',
+    ])
   })
 
   it('leaves out maps that are not listed', () => {
@@ -127,10 +142,23 @@ describe('mapSchema', () => {
       source: { type: 'tile', url: 'https://tiles.example/{z}/{x}/{y}.png' },
       bbox: [-122.3, 37.8, -122.5, 37.7],
     })
-    expect(result.error?.issues.map((issue) => issue.path.join('.')).sort()).toEqual([
-      '',
-      'bbox',
-    ])
+    expect(
+      result.error?.issues.map((issue) => issue.path.join('.')).sort(),
+    ).toEqual(['', 'bbox'])
+  })
+
+  it('accepts COG sources that point at a GeoTIFF file', () => {
+    const cog = (url: string) =>
+      mapSchema.safeParse({ title: 'Plan', source: { type: 'cog', url } })
+    expect(
+      cog('https://stacks.stanford.edu/file/druid:kq996gp6880/SF1938_cog.tif')
+        .success,
+    ).toBe(true)
+    expect(
+      cog(
+        'https://earthworks.stanford.edu/catalog/stanford-kq996gp6880',
+      ).error?.issues.map((issue) => issue.message),
+    ).toEqual(['must be a .tif or .tiff file'])
   })
 })
 
@@ -144,7 +172,9 @@ describe('renderMarkdown', () => {
 
 describe('headingProblems', () => {
   it('accepts headings that start at level 2 without skipping', () => {
-    expect(headingProblems('## Sources\n\n### Books\n\n## Further Reading')).toEqual([])
+    expect(
+      headingProblems('## Sources\n\n### Books\n\n## Further Reading'),
+    ).toEqual([])
   })
 
   it('rejects level 1 headings and skipped levels', () => {
@@ -162,15 +192,26 @@ describe('loadContent', () => {
   it('reports malformed files', async () => {
     dir = await mkdtemp(path.join(tmpdir(), 'content-'))
     await mkdir(path.join(dir, 'maps'))
-    await writeFile(path.join(dir, 'site.yml'), 'basemaps: [base]\ndefaultBasemap: base\n')
+    await writeFile(
+      path.join(dir, 'site.yml'),
+      'basemaps: [base]\ndefaultBasemap: base\n',
+    )
     await writeFile(path.join(dir, 'maps', 'no-front-matter.md'), 'Just text')
-    await writeFile(path.join(dir, 'maps', 'Bad Name.md'), '---\ntitle: x\n---\n')
-    await writeFile(path.join(dir, 'maps', 'bad-yaml.md'), '---\ntitle: [unclosed\n---\n')
+    await writeFile(
+      path.join(dir, 'maps', 'Bad Name.md'),
+      '---\ntitle: x\n---\n',
+    )
+    await writeFile(
+      path.join(dir, 'maps', 'bad-yaml.md'),
+      '---\ntitle: [unclosed\n---\n',
+    )
     const name = path.basename(dir)
     const { errors } = await loadContent(dir)
     expect(messages(errors).map((message) => message.split('\n')[0])).toEqual([
       `${name}/maps/Bad Name.md: file name must be a lowercase slug such as "fulton-circle.md"`,
-      expect.stringMatching(new RegExp(`^${name}/maps/bad-yaml.md: YAMLParseError`)),
+      expect.stringMatching(
+        new RegExp(`^${name}/maps/bad-yaml.md: YAMLParseError`),
+      ),
       `${name}/maps/no-front-matter.md: must start with YAML front matter between --- lines`,
     ])
   })

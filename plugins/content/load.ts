@@ -89,13 +89,17 @@ export async function loadContent(
       const file = path.join(folder, name)
       const slug = path.basename(name, '.md')
       if (!name.endsWith('.md')) {
-        errors.push({ file: display(file), message: 'content files must end in .md' })
+        errors.push({
+          file: display(file),
+          message: 'content files must end in .md',
+        })
         continue
       }
       if (!SLUG.test(slug)) {
         errors.push({
           file: display(file),
-          message: 'file name must be a lowercase slug such as "fulton-circle.md"',
+          message:
+            'file name must be a lowercase slug such as "fulton-circle.md"',
         })
         continue
       }
