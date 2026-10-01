@@ -101,12 +101,23 @@ export const mapSchema = z.strictObject({
   wordpressId,
 })
 
-export const groupSchema = z.strictObject({
-  title,
-  year: year.optional(),
-  maps: z.array(slug).min(1),
-  wordpressId,
-})
+export const groupSchema = z
+  .strictObject({
+    title,
+    year: year.optional(),
+    // For groups that span years, like a series of surveys.
+    endYear: year.optional(),
+    maps: z.array(slug).min(1),
+    wordpressId,
+  })
+  .refine(({ year, endYear }) => endYear === undefined || year !== undefined, {
+    error: 'endYear needs a year to start from',
+    path: ['endYear'],
+  })
+  .refine(({ year, endYear }) => !year || !endYear || year < endYear, {
+    error: 'endYear must be after year',
+    path: ['endYear'],
+  })
 
 export const eraSchema = z
   .strictObject({

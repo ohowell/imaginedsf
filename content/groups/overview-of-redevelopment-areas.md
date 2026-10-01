@@ -1,6 +1,6 @@
 ---
-title: "- 1990 Summary of Redevelopment Projects"
-year: 1956
+title: Summary of Redevelopment Projects
+year: 1990
 maps:
   - bayview-redevelopment-area
   - chinese-cultural-center-redevelopment-area

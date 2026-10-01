@@ -13,7 +13,6 @@ items:
   - frank-lloyd-wrights-butterfly-bridge
   - southern-crossings-proposal
   - western-addition-urban-renewal
-  - overview-of-redevelopment-areas
   - golden-gateway-redevelopment-competition
   - fishermans-wharf-plan
   - views-of-wharf

@@ -11,6 +11,7 @@ import {
 import { headingProblems, renderMarkdown } from './markdown.ts'
 import { resolveContent } from './resolve.ts'
 import {
+  groupSchema,
   mapSchema,
   pageNames,
   type EraData,
@@ -244,6 +245,22 @@ describe('mapSchema', () => {
     expect(geojson('plan.geojson')).toBe(false)
     expect(geojson('/assets/../content/plan.geojson')).toBe(false)
     expect(geojson('/assets/geojson/plan.txt')).toBe(false)
+  })
+})
+
+describe('groupSchema', () => {
+  it('accepts an end year only after a start year', () => {
+    const errors = (data: object) =>
+      groupSchema
+        .safeParse({ title: 'Surveys', maps: ['survey'], ...data })
+        .error?.issues.map((issue) => issue.message)
+    expect(errors({ year: 1853, endYear: 1884 })).toBeUndefined()
+    expect(errors({ endYear: 1884 })).toEqual([
+      'endYear needs a year to start from',
+    ])
+    expect(errors({ year: 1884, endYear: 1853 })).toEqual([
+      'endYear must be after year',
+    ])
   })
 })
 

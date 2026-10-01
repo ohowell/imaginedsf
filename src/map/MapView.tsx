@@ -35,6 +35,10 @@ const SAN_FRANCISCO: LngLatBoundsLike = [
   [-122.3486, 37.8224],
 ]
 
+// Far enough out to fit the widest maps, the bay-wide harbour charts, with
+// some room around them on a phone-sized map.
+const MIN_ZOOM = 7.5
+
 // Carries the maps shown on top over to a new basemap's style.
 const keepLayers: TransformStyleFunction = (previous, next) => ({
   ...next,
@@ -79,6 +83,7 @@ export function MapView({ basemap, layers, opacity, focus }: MapViewProps) {
       container: container.current,
       style: { version: 8, sources: {}, layers: [] },
       bounds: SAN_FRANCISCO,
+      minZoom: MIN_ZOOM,
       attributionControl: { compact: true },
     })
     map.addControl(new NavigationControl(), 'top-right')

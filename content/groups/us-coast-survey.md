@@ -1,6 +1,7 @@
 ---
-title: "-    1884     US Coast Survey"
+title: US Coast Survey
 year: 1853
+endYear: 1884
 maps:
   - 1853-san-francisco
   - us-coast-survey-1859

@@ -85,7 +85,11 @@ export default function App() {
                 if (!group) return row(item)
                 return (
                   <li key={item}>
-                    {group.title}
+                    {group.title}{' '}
+                    <small>
+                      {group.year}
+                      {group.endYear && `–${group.endYear}`}
+                    </small>
                     <ul>{group.maps.map(row)}</ul>
                   </li>
                 )
