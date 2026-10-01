@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import content from 'virtual:content'
+import { AboutDialog } from './AboutDialog.tsx'
 import { MapView } from './map/MapView.tsx'
 
 type Bbox = [number, number, number, number]
@@ -10,15 +11,51 @@ export default function App() {
   const [overlays, setOverlays] = useState<string[]>([])
   const [opacity, setOpacity] = useState<Record<string, number>>({})
   const [focus, setFocus] = useState<{ bbox: Bbox }>()
+  // Slug of the map or group whose description is open.
+  const [about, setAbout] = useState<string>()
+
+  function show(slug: string) {
+    if (content.basemaps.includes(slug)) {
+      setBasemap(slug)
+      return
+    }
+    if (!overlays.includes(slug)) setOverlays([...overlays, slug])
+    const { bbox } = content.maps[slug]
+    if (bbox) setFocus({ bbox })
+  }
+
+  // For maps that help read others, so they shouldn't cover them or move away.
+  function showUnder(slug: string) {
+    if (content.basemaps.includes(slug)) {
+      setBasemap(slug)
+    } else if (!overlays.includes(slug)) {
+      setOverlays([slug, ...overlays])
+    }
+  }
 
   function toggle(slug: string) {
     if (overlays.includes(slug)) {
       setOverlays(overlays.filter((other) => other !== slug))
-      return
+    } else {
+      show(slug)
     }
-    setOverlays([...overlays, slug])
-    const { bbox } = content.maps[slug]
-    if (bbox) setFocus({ bbox })
+  }
+
+  // Opens the description of a map or group, for those that have one.
+  const info = (slug: string) => {
+    const { title, description } = content.maps[slug] ?? content.groups[slug]
+    if (!description) return null
+    return (
+      <button
+        type="button"
+        className="info"
+        aria-label={`About ${title}`}
+        aria-haspopup="dialog"
+        onClick={() => setAbout(slug)}
+      >
+        i
+      </button>
+    )
   }
 
   const row = (slug: string) => {
@@ -26,15 +63,18 @@ export default function App() {
     const shown = overlays.includes(slug)
     return (
       <li key={slug}>
-        <label>
-          <input
-            type="checkbox"
-            checked={shown}
-            onChange={() => toggle(slug)}
-          />{' '}
-          {map.title} <small>{map.year}</small>{' '}
-          <small className="tag">{map.source.type}</small>
-        </label>
+        <div className="row">
+          <label>
+            <input
+              type="checkbox"
+              checked={shown}
+              onChange={() => toggle(slug)}
+            />{' '}
+            {map.title} <small>{map.year}</small>{' '}
+            <small className="tag">{map.source.type}</small>
+          </label>
+          {info(slug)}
+        </div>
         {shown && (
           <input
             type="range"
@@ -59,16 +99,19 @@ export default function App() {
         <fieldset>
           <legend>Basemap</legend>
           {content.basemaps.map((slug) => (
-            <label key={slug}>
-              <input
-                type="radio"
-                name="basemap"
-                checked={basemap === slug}
-                onChange={() => setBasemap(slug)}
-              />{' '}
-              {content.maps[slug].title}{' '}
-              <small className="tag">{content.maps[slug].source.type}</small>
-            </label>
+            <div key={slug} className="row">
+              <label>
+                <input
+                  type="radio"
+                  name="basemap"
+                  checked={basemap === slug}
+                  onChange={() => setBasemap(slug)}
+                />{' '}
+                {content.maps[slug].title}{' '}
+                <small className="tag">{content.maps[slug].source.type}</small>
+              </label>
+              {info(slug)}
+            </div>
           ))}
         </fieldset>
         {content.eras.map((era) => (
@@ -85,11 +128,16 @@ export default function App() {
                 if (!group) return row(item)
                 return (
                   <li key={item}>
-                    {group.title}{' '}
-                    <small>
-                      {group.year}
-                      {group.endYear && `–${group.endYear}`}
-                    </small>
+                    <div className="row">
+                      <span>
+                        {group.title}{' '}
+                        <small>
+                          {group.year}
+                          {group.endYear && `–${group.endYear}`}
+                        </small>
+                      </span>
+                      {info(item)}
+                    </div>
                     <ul>{group.maps.map(row)}</ul>
                   </li>
                 )
@@ -103,6 +151,14 @@ export default function App() {
         layers={overlays}
         opacity={opacity}
         focus={focus}
+      />
+      <AboutDialog
+        slug={about}
+        basemap={basemap}
+        overlays={overlays}
+        onShow={show}
+        onShowUnder={showUnder}
+        onClose={() => setAbout(undefined)}
       />
     </div>
   )

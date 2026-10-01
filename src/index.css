@@ -54,6 +54,94 @@ body,
   width: 100%;
 }
 
+.row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.info {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  margin-top: 0.1rem;
+  font:
+    italic 0.8rem/1 Georgia,
+    serif;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: 1px solid currentcolor;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.info:hover,
+.info:focus-visible {
+  opacity: 1;
+}
+
+.about {
+  width: min(40rem, 100% - 2rem);
+  max-height: min(48rem, 100% - 2rem);
+  padding: 0;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 2rem rgb(0 0 0 / 40%);
+}
+
+.about::backdrop {
+  background: rgb(0 0 0 / 50%);
+}
+
+.about-content {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.about header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+  justify-content: space-between;
+  padding-top: 1rem;
+  background: Canvas;
+}
+
+.about h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.about h1 small {
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+.about .close {
+  flex: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.about .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.about .description img {
+  max-width: 100%;
+  height: auto;
+}
+
 .tag {
   font-family: ui-monospace, monospace;
   font-size: 0.75em;
