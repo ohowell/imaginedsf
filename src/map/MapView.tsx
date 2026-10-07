@@ -18,6 +18,7 @@ import {
   basemapStyle,
   isLayerId,
   layerId,
+  layerSlug,
   layerSpec,
   popupContent,
   setLayerOpacity,
@@ -35,11 +36,11 @@ const SAN_FRANCISCO: LngLatBoundsLike = [
   [-122.3486, 37.8224],
 ]
 
-// Far enough out to fit the widest maps, the bay-wide harbour charts, with
+// Far enough out to fit the widest layers, the bay-wide harbour charts, with
 // some room around them on a phone-sized map.
 const MIN_ZOOM = 7.5
 
-// Carries the maps shown on top over to a new basemap's style.
+// Carries the layers shown on top over to a new basemap's style.
 const keepLayers: TransformStyleFunction = (previous, next) => ({
   ...next,
   sources: {
@@ -57,9 +58,9 @@ const keepLayers: TransformStyleFunction = (previous, next) => ({
 interface MapViewProps {
   /** Slug of the basemap. */
   basemap: string
-  /** Slugs of the maps to show on the basemap, from bottom to top. */
+  /** Slugs of the layers to show on the basemap, from bottom to top. */
   layers: string[]
-  /** Opacity by slug, from 0 to 1. Maps without one are opaque. */
+  /** Opacity by slug, from 0 to 1. Layers without one are opaque. */
   opacity: Record<string, number>
   /** A box to zoom to whenever it changes. */
   focus?: { bbox: [number, number, number, number] }
@@ -98,7 +99,7 @@ export function MapView({ basemap, layers, opacity, focus }: MapViewProps) {
     styleLoaded.current = new Promise((resolve) =>
       map.once('style.load', () => resolve()),
     )
-    const { source } = content.maps[basemap]
+    const { source } = content.layers[basemap]
     const change = async () => {
       // Colors have to be set up before the first tile is drawn.
       if (source.type === 'cog') {
@@ -106,7 +107,7 @@ export function MapView({ basemap, layers, opacity, focus }: MapViewProps) {
       }
       if (cancelled) return
       // A full change, since styles differ too much to update in place.
-      map.setStyle(basemapStyle(content.maps[basemap]), {
+      map.setStyle(basemapStyle(content.layers[basemap]), {
         diff: false,
         transformStyle: keepLayers,
       })
@@ -134,7 +135,7 @@ export function MapView({ basemap, layers, opacity, focus }: MapViewProps) {
       }
       for (const slug of layers) {
         const id = layerId(slug)
-        const { source } = content.maps[slug]
+        const { source } = content.layers[slug]
         if (map.getSource(id) || source.type === 'style') continue
         // Colors have to be set up before the first tile is drawn.
         if (source.type === 'cog') {
@@ -143,10 +144,10 @@ export function MapView({ basemap, layers, opacity, focus }: MapViewProps) {
           if (cancelled || map.getSource(id)) continue
         }
         map.addSource(id, sourceSpec(source))
-        map.addLayer(layerSpec(content.maps[slug]))
+        map.addLayer(layerSpec(content.layers[slug]))
         setLayerOpacity(
           map,
-          content.maps[slug],
+          content.layers[slug],
           latestOpacity.current[slug] ?? 1,
         )
       }
@@ -168,7 +169,7 @@ export function MapView({ basemap, layers, opacity, focus }: MapViewProps) {
     const apply = () => {
       for (const slug of layers) {
         if (!map.getLayer(layerId(slug))) continue
-        setLayerOpacity(map, content.maps[slug], opacity[slug] ?? 1)
+        setLayerOpacity(map, content.layers[slug], opacity[slug] ?? 1)
       }
     }
     apply()
@@ -192,10 +193,10 @@ export function MapView({ basemap, layers, opacity, focus }: MapViewProps) {
     const onClick = (event: MapMouseEvent) => {
       const feature = pinAt(event)
       if (feature?.geometry.type !== 'Point') return
-      const slug = feature.layer.id.replace(/^map:/, '')
+      const slug = layerSlug(feature.layer.id)
       new Popup({ maxWidth: '20rem' })
         .setLngLat(feature.geometry.coordinates as [number, number])
-        .setDOMContent(popupContent(content.maps[slug], feature))
+        .setDOMContent(popupContent(content.layers[slug], feature))
         .addTo(map)
     }
     const onMove = (event: MapMouseEvent) => {

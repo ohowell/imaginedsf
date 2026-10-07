@@ -4,14 +4,14 @@ import type {
   MapGeoJSONFeature,
   TransformStyleFunction,
 } from 'maplibre-gl'
-import type { MapLayer, MapSource } from '../../plugins/content/types.ts'
+import type { Layer, LayerSource } from '../../plugins/content/types.ts'
 import { DIRECTIONAL_PIN, PIN } from './pins.ts'
 
 export type StyleSpecification = ReturnType<TransformStyleFunction>
 type SourceSpecification = StyleSpecification['sources'][string]
 /** Sources drawn as one layer, which is every kind but a whole style. */
-export type LayerSource = Exclude<MapSource, { type: 'style' }>
-type WmsSource = Extract<MapSource, { type: 'wms' }>
+export type SingleLayerSource = Exclude<LayerSource, { type: 'style' }>
+type WmsSource = Extract<LayerSource, { type: 'wms' }>
 
 // Credits shown in the attribution control, by host. Styles bring their own.
 const ATTRIBUTION: Record<string, string> = {
@@ -21,20 +21,23 @@ const ATTRIBUTION: Record<string, string> = {
     '<a href="https://www.usgs.gov/programs/national-geospatial-program/national-map">USGS The National Map</a>',
 }
 
-/** The ID of a map layer's MapLibre source, and of its one layer. */
-export const layerId = (slug: string) => `map:${slug}`
+/** The ID of a layer's MapLibre source, and of its one MapLibre layer. */
+export const layerId = (slug: string) => `layer:${slug}`
 
-/** Whether a source or layer is a map shown on the basemap. */
-export const isLayerId = (id: string) => id.startsWith('map:')
+/** Whether a MapLibre source or layer is a layer shown on the basemap. */
+export const isLayerId = (id: string) => id.startsWith('layer:')
+
+/** The slug of the layer a MapLibre source or layer draws. */
+export const layerSlug = (id: string) => id.replace(/^layer:/, '')
 
 /**
  * A basemap's style: the style itself for vector basemaps, or a style with
  * one raster layer for the others.
  */
-export function basemapStyle(map: MapLayer): StyleSpecification | string {
-  const { source } = map
+export function basemapStyle(layer: Layer): StyleSpecification | string {
+  const { source } = layer
   if (source.type === 'style') return source.url
-  const id = `basemap:${map.slug}`
+  const id = `basemap:${layer.slug}`
   return {
     version: 8,
     sources: { [id]: sourceSpec(source) },
@@ -74,7 +77,7 @@ function wmsTileUrl({ url, layers }: WmsSource): string {
   return `${url}?${params}&bbox={bbox-epsg-3857}`
 }
 
-export function sourceSpec(source: LayerSource): SourceSpecification {
+export function sourceSpec(source: SingleLayerSource): SourceSpecification {
   const credit = attribution(source.url)
   switch (source.type) {
     case 'cog':
@@ -106,13 +109,13 @@ export function sourceSpec(source: LayerSource): SourceSpecification {
   }
 }
 
-export function layerSpec(map: MapLayer): AddLayerObject {
-  const id = layerId(map.slug)
-  if (map.source.type !== 'geojson') {
+export function layerSpec(layer: Layer): AddLayerObject {
+  const id = layerId(layer.slug)
+  if (layer.source.type !== 'geojson') {
     return { id, type: 'raster', source: id }
   }
   // Directional pins point the way a photo was taken.
-  const direction = map.source.properties?.direction
+  const direction = layer.source.properties?.direction
   return {
     id,
     type: 'symbol',
@@ -128,26 +131,26 @@ export function layerSpec(map: MapLayer): AddLayerObject {
 }
 
 export function setLayerOpacity(
-  mapLibre: MapLibreMap,
-  map: MapLayer,
+  map: MapLibreMap,
+  layer: Layer,
   opacity: number,
 ) {
-  mapLibre.setPaintProperty(
-    layerId(map.slug),
-    map.source.type === 'geojson' ? 'icon-opacity' : 'raster-opacity',
+  map.setPaintProperty(
+    layerId(layer.slug),
+    layer.source.type === 'geojson' ? 'icon-opacity' : 'raster-opacity',
     opacity,
   )
 }
 
 /** The text and images for a pin's popup. */
 export function popupContent(
-  map: MapLayer,
+  layer: Layer,
   feature: MapGeoJSONFeature,
 ): HTMLElement {
   const element = document.createElement('div')
   element.className = 'map-popup'
-  if (map.source.type !== 'geojson') return element
-  const { text, images } = map.source.properties ?? {}
+  if (layer.source.type !== 'geojson') return element
+  const { text, images } = layer.source.properties ?? {}
   const caption = text && feature.properties[text]
   if (caption) {
     const paragraph = document.createElement('p')

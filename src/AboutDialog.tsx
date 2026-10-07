@@ -2,20 +2,20 @@ import { useEffect, useId, useRef } from 'react'
 import content from 'virtual:content'
 
 interface AboutDialogProps {
-  /** Slug of the map or group to describe, or nothing to stay closed. */
+  /** Slug of the layer or group to describe, or nothing to stay closed. */
   slug?: string
   /** Slug of the current basemap. */
   basemap: string
-  /** Slugs of the maps shown on the basemap. */
+  /** Slugs of the layers shown on the basemap. */
   overlays: string[]
-  /** Shows a map: as the basemap if it's one, or on top and zoomed to. */
+  /** Shows a layer: as the basemap if it's one, or on top and zoomed to. */
   onShow: (slug: string) => void
-  /** Shows a map under the others, or as the basemap if it's one. */
+  /** Shows a layer under the others, or as the basemap if it's one. */
   onShowUnder: (slug: string) => void
   onClose: () => void
 }
 
-/** A map's or group's description, with ways to see the map. */
+/** A layer's or group's description, with ways to see it on the map. */
 export function AboutDialog({
   slug,
   basemap,
@@ -34,28 +34,28 @@ export function AboutDialog({
     if (!slug) element.close()
   }, [slug])
 
-  const map = slug ? content.maps[slug] : undefined
+  const layer = slug ? content.layers[slug] : undefined
   const group = slug ? content.groups[slug] : undefined
-  const item = map ?? group
+  const item = layer ?? group
 
   const isShown = (target: string) =>
     target === basemap || overlays.includes(target)
 
   // Labels and what they do, which ends with closing to reveal the map.
   const actions: [string, () => void][] = []
-  if (map && !isShown(map.slug)) {
-    const isBasemap = content.basemaps.includes(map.slug)
+  if (layer && !isShown(layer.slug)) {
+    const isBasemap = content.basemaps.includes(layer.slug)
     actions.push([
       isBasemap ? 'Use as basemap' : 'Show on map',
-      () => onShow(map.slug),
+      () => onShow(layer.slug),
     ])
-  } else if (map?.bbox && map.slug !== basemap) {
-    actions.push(['Zoom to map', () => onShow(map.slug)])
+  } else if (layer?.bbox && layer.slug !== basemap) {
+    actions.push(['Zoom to layer', () => onShow(layer.slug)])
   }
-  const companion = map?.showWith
+  const companion = layer?.showWith
   if (companion && !isShown(companion)) {
     actions.push([
-      `Show with ${content.maps[companion].title}`,
+      `Show with ${content.layers[companion].title}`,
       () => onShowUnder(companion),
     ])
   }

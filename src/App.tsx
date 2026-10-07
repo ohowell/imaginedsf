@@ -5,13 +5,13 @@ import { MapView } from './map/MapView.tsx'
 
 type Bbox = [number, number, number, number]
 
-// Map test: a basemap switcher and every map, grouped by era.
+// Map test: a basemap switcher and every layer, grouped by era.
 export default function App() {
   const [basemap, setBasemap] = useState(content.defaultBasemap)
   const [overlays, setOverlays] = useState<string[]>([])
   const [opacity, setOpacity] = useState<Record<string, number>>({})
   const [focus, setFocus] = useState<{ bbox: Bbox }>()
-  // Slug of the map or group whose description is open.
+  // Slug of the layer or group whose description is open.
   const [about, setAbout] = useState<string>()
 
   function show(slug: string) {
@@ -20,11 +20,11 @@ export default function App() {
       return
     }
     if (!overlays.includes(slug)) setOverlays([...overlays, slug])
-    const { bbox } = content.maps[slug]
+    const { bbox } = content.layers[slug]
     if (bbox) setFocus({ bbox })
   }
 
-  // For maps that help read others, so they shouldn't cover them or move away.
+  // For layers that help read others, so they shouldn't cover them or move away.
   function showUnder(slug: string) {
     if (content.basemaps.includes(slug)) {
       setBasemap(slug)
@@ -41,9 +41,9 @@ export default function App() {
     }
   }
 
-  // Opens the description of a map or group, for those that have one.
+  // Opens the description of a layer or group, for those that have one.
   const info = (slug: string) => {
-    const { title, description } = content.maps[slug] ?? content.groups[slug]
+    const { title, description } = content.layers[slug] ?? content.groups[slug]
     if (!description) return null
     return (
       <button
@@ -59,7 +59,7 @@ export default function App() {
   }
 
   const row = (slug: string) => {
-    const map = content.maps[slug]
+    const layer = content.layers[slug]
     const shown = overlays.includes(slug)
     return (
       <li key={slug}>
@@ -70,8 +70,8 @@ export default function App() {
               checked={shown}
               onChange={() => toggle(slug)}
             />{' '}
-            {map.title} <small>{map.year}</small>{' '}
-            <small className="tag">{map.source.type}</small>
+            {layer.title} <small>{layer.year}</small>{' '}
+            <small className="tag">{layer.source.type}</small>
           </label>
           {info(slug)}
         </div>
@@ -82,13 +82,13 @@ export default function App() {
             max={1}
             step={0.05}
             value={opacity[slug] ?? 1}
-            aria-label={`${map.title} opacity`}
+            aria-label={`${layer.title} opacity`}
             onChange={(event) =>
               setOpacity({ ...opacity, [slug]: Number(event.target.value) })
             }
           />
         )}
-        {map.children && <ul>{map.children.map(row)}</ul>}
+        {layer.children && <ul>{layer.children.map(row)}</ul>}
       </li>
     )
   }
@@ -108,8 +108,10 @@ export default function App() {
                   checked={basemap === slug}
                   onChange={() => setBasemap(slug)}
                 />{' '}
-                {content.maps[slug].title}{' '}
-                <small className="tag">{content.maps[slug].source.type}</small>
+                {content.layers[slug].title}{' '}
+                <small className="tag">
+                  {content.layers[slug].source.type}
+                </small>
               </label>
               {info(slug)}
             </div>

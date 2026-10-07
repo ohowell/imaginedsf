@@ -12,7 +12,7 @@ const year = z.int().min(1500).max(2100)
 const httpsUrl = z.url({ protocol: /^https$/, error: 'must be an https URL' })
 const wordpressId = z.int().positive().optional()
 
-/* Map metadata */
+/* Layer metadata */
 const zoom = z.int().min(0).max(24)
 const longitude = z.number().min(-180).max(180)
 const latitude = z.number().min(-90).max(90)
@@ -23,7 +23,7 @@ const bbox = z
       'must be [west, south, east, north] with west < east and south < north',
   })
 
-/* Map source types */
+/* Layer source types */
 const wmsSource = z.strictObject({
   type: z.literal('wms'),
   url: httpsUrl,
@@ -91,14 +91,14 @@ const source = z.discriminatedUnion('type', [
 ])
 
 /* Schemas for each type of Markdown file */
-export const mapSchema = z.strictObject({
+export const layerSchema = z.strictObject({
   title,
   year: year.optional(),
-  // A map that helps read this one, offered to show underneath it.
+  // A layer that helps read this one, offered to show underneath it.
   showWith: slug.optional(),
   source,
   bbox: bbox.optional(),
-  // The era, group or map this one is listed under, like a plan for its
+  // The era, group or layer this one is listed under, like a plan for its
   // details and photos.
   parent: slug.optional(),
   wordpressId,
@@ -149,7 +149,7 @@ export const pageNames = [
   'feedback',
 ] as const
 
-export type MapData = z.output<typeof mapSchema>
+export type LayerData = z.output<typeof layerSchema>
 export type GroupData = z.output<typeof groupSchema>
 export type EraData = z.output<typeof eraSchema>
 export type PageData = z.output<typeof pageSchema>

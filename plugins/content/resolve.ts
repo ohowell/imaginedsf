@@ -8,13 +8,13 @@ const BAY_AREA = [-123.2, 37.1, -121.5, 38.5]
 
 interface Listing {
   file: string
-  /** Slug of the group or map it's listed under, if any. */
+  /** Slug of the era, group or layer it's listed under, if any. */
   parent?: string
 }
 
 /**
  * Checks references between content files and assembles the content the
- * site uses. Maps and groups that aren't listed anywhere are left out.
+ * site uses. Layers and groups that aren't listed anywhere are left out.
  */
 export function resolveContent(
   raw: RawContent,
@@ -33,14 +33,14 @@ export function resolveContent(
   const warn = (file: string, message: string) =>
     warnings.push({ file, message })
 
-  const maps = new Map(raw.maps.map((entry) => [entry.slug, entry]))
+  const layers = new Map(raw.layers.map((entry) => [entry.slug, entry]))
   const groups = new Map(raw.groups.map((entry) => [entry.slug, entry]))
   const eras = new Map(raw.eras.map((entry) => [entry.slug, entry]))
   const pages = new Map(raw.pages.map((entry) => [entry.slug, entry]))
 
-  // Parents are named by slug, so maps, groups and eras can't share one.
+  // Parents are named by slug, so layers, groups and eras can't share one.
   const slugs = new Map<string, string>()
-  for (const entry of [...raw.maps, ...raw.groups, ...raw.eras]) {
+  for (const entry of [...raw.layers, ...raw.groups, ...raw.eras]) {
     const other = slugs.get(entry.slug)
     if (other) {
       error(entry.file, `slug is also used by ${other}`)
@@ -51,7 +51,7 @@ export function resolveContent(
 
   // WordPress IDs identify items in links from the old site.
   const wordpressIds = new Map<number, string>()
-  for (const entry of [...raw.maps, ...raw.groups, ...raw.eras]) {
+  for (const entry of [...raw.layers, ...raw.groups, ...raw.eras]) {
     const id = entry.data.wordpressId
     if (id === undefined) continue
     const other = wordpressIds.get(id)
@@ -62,16 +62,16 @@ export function resolveContent(
     }
   }
 
-  // Each map or group is listed in one place: the basemaps, or under the
+  // Each layer or group is listed in one place: the basemaps, or under the
   // parent it names.
   const listings = new Map<string, Listing>()
   function list(slug: string, listing: Listing, allowGroups: boolean) {
-    if (!maps.has(slug) && !(allowGroups && groups.has(slug))) {
+    if (!layers.has(slug) && !(allowGroups && groups.has(slug))) {
       error(
         listing.file,
         groups.has(slug)
-          ? `"${slug}" is a group, but only maps can be listed here`
-          : `no ${allowGroups ? 'map or group' : 'map'} named "${slug}"`,
+          ? `"${slug}" is a group, but only layers can be listed here`
+          : `no ${allowGroups ? 'layer or group' : 'layer'} named "${slug}"`,
       )
       return
     }
@@ -95,25 +95,25 @@ export function resolveContent(
       )
     }
     // Styles draw a whole map, and basemaps draw under everything else.
-    for (const map of raw.maps) {
-      const isBasemap = site.data.basemaps.includes(map.slug)
-      const { type } = map.data.source
+    for (const layer of raw.layers) {
+      const isBasemap = site.data.basemaps.includes(layer.slug)
+      const { type } = layer.data.source
       if (type === 'style' && !isBasemap) {
         error(
-          map.file,
+          layer.file,
           'source: styles draw a whole map, so only basemaps can use them',
         )
       } else if (type === 'geojson' && isBasemap) {
         error(
-          map.file,
-          'source: basemaps must be styles or raster maps (cog, wms or tile)',
+          layer.file,
+          'source: basemaps must be styles or raster layers (cog, wms or tile)',
         )
       }
     }
   }
-  // Groups are listed under an era. Maps are listed under an era, a group,
-  // or a map like a plan's details and photos. Maps under maps nest one
-  // level, and not under basemaps.
+  // Groups are listed under an era. Layers are listed under an era, a group,
+  // or a layer, like a plan's details and photos. Layers under layers nest
+  // one level, and not under basemaps.
   const children = new Map<string, string[]>()
   const addChild = (parent: string, slug: string) =>
     children.set(parent, [...(children.get(parent) ?? []), slug])
@@ -127,32 +127,32 @@ export function resolveContent(
       error(group.file, `parent: no era named "${parent}"`)
     }
   }
-  for (const map of raw.maps) {
-    const { parent } = map.data
+  for (const layer of raw.layers) {
+    const { parent } = layer.data
     if (parent === undefined) continue
-    const target = maps.get(parent)
+    const target = layers.get(parent)
     if (!target && !groups.has(parent) && !eras.has(parent)) {
-      error(map.file, `parent: no era, group or map named "${parent}"`)
-    } else if (target?.data.parent && maps.has(target.data.parent)) {
+      error(layer.file, `parent: no era, group or layer named "${parent}"`)
+    } else if (target?.data.parent && layers.has(target.data.parent)) {
       error(
-        map.file,
-        `parent: "${parent}" is under another map, so it can't be a parent`,
+        layer.file,
+        `parent: "${parent}" is under another layer, so it can't be a parent`,
       )
     } else if (site?.data.basemaps.includes(parent)) {
-      error(map.file, `parent: "${parent}" is a basemap, so it can't be one`)
+      error(layer.file, `parent: "${parent}" is a basemap, so it can't be one`)
     } else {
-      list(map.slug, { file: map.file, parent }, false)
-      addChild(parent, map.slug)
+      list(layer.slug, { file: layer.file, parent }, false)
+      addChild(parent, layer.slug)
     }
   }
   for (const group of raw.groups) {
     if (!children.has(group.slug)) {
-      error(group.file, 'no maps name this group as their parent')
+      error(group.file, 'no layers name this group as their parent')
     }
   }
   for (const era of raw.eras) {
     if (!children.has(era.slug)) {
-      error(era.file, 'no maps or groups name this era as their parent')
+      error(era.file, 'no layers or groups name this era as their parent')
     }
   }
 
@@ -162,31 +162,31 @@ export function resolveContent(
     const listing = listings.get(slug)
     return listing !== undefined && (!listing.parent || isShown(listing.parent))
   }
-  const shownMaps = raw.maps.filter((map) => isShown(map.slug))
+  const shownLayers = raw.layers.filter((layer) => isShown(layer.slug))
   const shownGroups = raw.groups.filter((group) => isShown(group.slug))
 
   for (const group of raw.groups) {
     if (!listings.has(group.slug)) {
-      warn(group.file, "has no parent, so it and its maps aren't shown")
+      warn(group.file, "has no parent, so it and its layers aren't shown")
     }
   }
-  for (const map of raw.maps) {
-    if (!listings.has(map.slug)) {
-      warn(map.file, "has no parent and isn't a basemap, so it isn't shown")
+  for (const layer of raw.layers) {
+    if (!listings.has(layer.slug)) {
+      warn(layer.file, "has no parent and isn't a basemap, so it isn't shown")
     }
   }
 
-  for (const map of shownMaps) {
-    const target = map.data.showWith
+  for (const layer of shownLayers) {
+    const target = layer.data.showWith
     if (target !== undefined && !isShown(target)) {
       error(
-        map.file,
-        maps.has(target)
+        layer.file,
+        layers.has(target)
           ? `showWith "${target}" isn't shown on the site`
-          : `showWith: no map named "${target}"`,
+          : `showWith: no layer named "${target}"`,
       )
     }
-    const bbox = map.data.bbox
+    const bbox = layer.data.bbox
     if (
       bbox &&
       (bbox[0] > BAY_AREA[2] ||
@@ -195,7 +195,7 @@ export function resolveContent(
         bbox[3] < BAY_AREA[1])
     ) {
       warn(
-        map.file,
+        layer.file,
         'bbox is outside the San Francisco Bay Area; check its coordinates',
       )
     }
@@ -204,7 +204,7 @@ export function resolveContent(
   // Bodies are rendered up front so the files they refer to can be checked.
   const html = new Map<string, string>()
   for (const { file, body } of [
-    ...shownMaps,
+    ...shownLayers,
     ...shownGroups,
     ...raw.eras,
     ...raw.pages,
@@ -228,10 +228,10 @@ export function resolveContent(
       checkAsset(file, reference, 'body')
     }
   }
-  for (const map of shownMaps) {
-    const { source } = map.data
+  for (const layer of shownLayers) {
+    const { source } = layer.data
     if (source.type !== 'geojson' || !isAsset(source.url)) continue
-    checkAsset(map.file, source.url, 'source.url')
+    checkAsset(layer.file, source.url, 'source.url')
     const key = source.properties?.images
     const geojson = raw.geojson.get(source.url.slice(1))
     if (!key || !geojson) continue
@@ -260,10 +260,10 @@ export function resolveContent(
     return { content: undefined, assets: [], errors, warnings }
   }
 
-  // Child maps are listed by year, then title.
+  // Children are listed by year, then title.
   const byYearAndTitle = (a: string, b: string) => {
     const [first, second] = [a, b].map(
-      (slug) => (maps.get(slug) ?? groups.get(slug))?.data,
+      (slug) => (layers.get(slug) ?? groups.get(slug))?.data,
     )
     return (
       (first?.year ?? 0) - (second?.year ?? 0) ||
@@ -278,8 +278,8 @@ export function resolveContent(
     (html.get(file) ?? '').replaceAll('="/assets/', `="${base}assets/`)
 
   const content: Content = {
-    maps: Object.fromEntries(
-      shownMaps.map(({ slug, file, data }) => [
+    layers: Object.fromEntries(
+      shownLayers.map(({ slug, file, data }) => [
         slug,
         {
           ...data,

@@ -56,17 +56,17 @@ npm test
 
 Site content lives in `content/` as Markdown files with YAML front matter, one file per item:
 
-- `maps/`: map layers. The front matter sets the title, year, map source and bounding box, and the body is the description.
-- `groups/`: groups of maps, listed under `maps`.
-- `eras/`: proposal eras, listing maps and groups under `items`.
+- `layers/`: anything with data to draw on the map, like a scanned map, a set of photo pins, or a basemap. The front matter sets the title, year, source and bounding box, and the body is the description.
+- `groups/`: titled, described sets of layers, with no data of their own.
+- `eras/`: proposal eras, each with a title, start and end year, and description.
 - `pages/`: the introduction, maps and plans intro, bibliography, credits and feedback pages.
-- `site.yml`: basemap configuration.
+- `site.yml`: the basemaps, and which one shows first.
 
-Items refer to each other by file name, so listing `fulton-circle` in an era means `content/maps/fulton-circle.md`. A map only appears on the site once it's listed in an era, a group or the basemaps. `wordpressId` keeps each item's ID from the old WordPress site, for matching up old links.
+Layers and groups say where they're listed with `parent`, which names another item by its file name: `parent: burnham-plan` means `content/layers/burnham-plan.md`. A group's parent is an era. A layer's parent is an era, a group, or another layer, like a plan for its details and photos. Layers under layers nest only one level. Basemaps are listed in `site.yml` instead and have no parent. Items under a parent are listed by year, then title. Anything without a parent or basemap listing isn't shown. `wordpressId` keeps each item's ID from the old WordPress site, for matching up old links.
 
 The title in the front matter is each item's top-level heading, so headings in the body start at `##` and don't skip levels. Use headings only for sections, like "Further Reading", not to make text bigger.
 
-The build checks all content and fails with a list of problems if anything is wrong, such as a misspelled field, a reference to a missing map, a map listed in two places, or a heading at the wrong level. The dev server shows the same errors in the browser, and reloads when content changes.
+The build checks all content and fails with a list of problems if anything is wrong, such as a misspelled field, a parent that doesn't exist, an empty group or era, or a heading at the wrong level. The dev server shows the same errors in the browser, and reloads when content changes.
 
 ## Deployment
 

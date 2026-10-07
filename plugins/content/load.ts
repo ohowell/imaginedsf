@@ -6,12 +6,12 @@ import { headingProblems } from './markdown.ts'
 import {
   eraSchema,
   groupSchema,
-  mapSchema,
+  layerSchema,
   pageSchema,
   siteSchema,
   type EraData,
   type GroupData,
-  type MapData,
+  type LayerData,
   type PageData,
   type SiteData,
 } from './schema.ts'
@@ -32,7 +32,7 @@ export interface RawContent {
   /** The content directory as shown in messages, e.g. "content". */
   dir: string
   site: { file: string; data: SiteData } | undefined
-  maps: Entry<MapData>[]
+  layers: Entry<LayerData>[]
   groups: Entry<GroupData>[]
   eras: Entry<EraData>[]
   pages: Entry<PageData>[]
@@ -161,7 +161,7 @@ export async function loadContent(
   const raw: RawContent = {
     dir: display(dir),
     site: await loadSite(),
-    maps: await loadCollection('maps', mapSchema),
+    layers: await loadCollection('layers', layerSchema),
     groups: await loadCollection('groups', groupSchema),
     eras: await loadCollection('eras', eraSchema),
     pages: await loadCollection('pages', pageSchema),
