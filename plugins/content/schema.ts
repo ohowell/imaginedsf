@@ -95,7 +95,8 @@ export const mapSchema = z.strictObject({
   title,
   year: year.optional(),
   indented: z.boolean().optional(),
-  recommendedBasemap: slug.optional(),
+  // A map that helps read this one, offered to show underneath it.
+  showWith: slug.optional(),
   source,
   bbox: bbox.optional(),
   wordpressId,

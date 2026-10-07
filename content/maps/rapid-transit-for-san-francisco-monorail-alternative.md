@@ -1,7 +1,7 @@
 ---
 title: "Rapid Transit for San Francisco: Monorail Alternative, 1952"
 year: 1952
-recommendedBasemap: burnt-areas-1906
+showWith: burnt-areas-1906
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:mk287bp9385/RapidTransit1952_cog.tif

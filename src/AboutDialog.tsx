@@ -52,12 +52,11 @@ export function AboutDialog({
   } else if (map?.bbox && map.slug !== basemap) {
     actions.push(['Zoom to map', () => onShow(map.slug)])
   }
-  // Despite the name, these can be any map that helps read this one.
-  const recommended = map?.recommendedBasemap
-  if (recommended && !isShown(recommended)) {
+  const companion = map?.showWith
+  if (companion && !isShown(companion)) {
     actions.push([
-      `Show recommended basemap: ${content.maps[recommended].title}`,
-      () => onShowUnder(recommended),
+      `Show with ${content.maps[companion].title}`,
+      () => onShowUnder(companion),
     ])
   }
 

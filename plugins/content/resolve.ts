@@ -142,13 +142,13 @@ export function resolveContent(
   }
 
   for (const map of shownMaps) {
-    const target = map.data.recommendedBasemap
+    const target = map.data.showWith
     if (target !== undefined && !isShown(target)) {
       error(
         map.file,
         maps.has(target)
-          ? `recommendedBasemap "${target}" isn't shown on the site`
-          : `recommendedBasemap: no map named "${target}"`,
+          ? `showWith "${target}" isn't shown on the site`
+          : `showWith: no map named "${target}"`,
       )
     }
     const bbox = map.data.bbox

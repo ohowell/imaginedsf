@@ -111,12 +111,12 @@ describe('resolveContent', () => {
     )
   })
 
-  it('rejects a recommended basemap that is not shown', () => {
+  it('rejects a showWith map that is not shown', () => {
     const raw = fixture()
     raw.maps.push(map('draft'))
-    raw.maps[1].data.recommendedBasemap = 'draft'
+    raw.maps[1].data.showWith = 'draft'
     expect(messages(resolveContent(raw).errors)).toEqual([
-      'content/maps/plan.md: recommendedBasemap "draft" isn\'t shown on the site',
+      'content/maps/plan.md: showWith "draft" isn\'t shown on the site',
     ])
   })
 
