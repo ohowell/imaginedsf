@@ -4,7 +4,13 @@ import type { PageName } from '../plugins/content/schema.ts'
 import { AboutDialog } from './AboutDialog.tsx'
 import { BasemapControl } from './BasemapControl.tsx'
 import { Dialog } from './Dialog.tsx'
-import { fromHash, replaceHash, type Bbox, type MapState } from './hash.ts'
+import {
+  fromHash,
+  fromOldPath,
+  replaceHash,
+  type Bbox,
+  type MapState,
+} from './hash.ts'
 import { Header } from './Header.tsx'
 import { InfoButton } from './InfoButton.tsx'
 import { MapView } from './map/MapView.tsx'
@@ -76,11 +82,16 @@ export default function App() {
   const [opacity, setOpacity] = useState(linked.opacity)
   const [focus, setFocus] = useState(() => focusFor(linked))
   // Slug of the layer or group whose description is open.
-  const [about, setAbout] = useState<string>()
+  // Addresses from the old site, like /description/569, open what they did
+  // there. The path is dropped from the address once the map opens.
+  const [oldDialog] = useState(() => fromOldPath(window.location.pathname))
+  const [about, setAbout] = useState(oldDialog.about)
   // The page open from the header, starting with the introduction for
-  // first-time visitors.
-  const [page, setPage] = useState<PageName | undefined>(() =>
-    isFirstVisit() ? 'introduction' : undefined,
+  // first-time visitors, unless they came for something else.
+  const [page, setPage] = useState<PageName | undefined>(
+    () =>
+      oldDialog.page ??
+      (!oldDialog.about && isFirstVisit() ? 'introduction' : undefined),
   )
   useEffect(() => {
     try {
