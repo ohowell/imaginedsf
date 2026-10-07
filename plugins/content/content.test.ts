@@ -247,6 +247,29 @@ describe('resolveContent', () => {
     )
   })
 
+  it('checks style files in assets/, and adds the base path', () => {
+    const raw = fixture({ assets: ['assets/styles/dark.json'] })
+    raw.layers[0].data.source = {
+      type: 'style',
+      url: 'https://tiles.example/styles/light',
+      darkUrl: '/assets/styles/dark.json',
+    }
+    const { content, assets, errors } = resolveContent(raw, {
+      base: '/imaginedsf/',
+    })
+    expect(errors).toEqual([])
+    expect(assets).toEqual(['assets/styles/dark.json'])
+    expect(content?.layers.base.source).toEqual({
+      type: 'style',
+      url: 'https://tiles.example/styles/light',
+      darkUrl: '/imaginedsf/assets/styles/dark.json',
+    })
+    raw.layers[0].data.source.darkUrl = '/assets/styles/missing.json'
+    expect(messages(resolveContent(raw).errors)).toEqual([
+      'content/layers/base.md: source.darkUrl: no file at "/assets/styles/missing.json"',
+    ])
+  })
+
   it('checks files that bodies and GeoJSON popups refer to', () => {
     const photos = '/assets/images/plan.jpg, /assets/images/missing.jpg'
     const raw = fixture({

@@ -1,6 +1,6 @@
 basemaps:
-  - light-basemap
+  - simple-basemap
   - aerial-imagery
   - openstreetmaps
   - ryker-aerial-photographs
-defaultBasemap: light-basemap
+defaultBasemap: simple-basemap

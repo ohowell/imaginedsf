@@ -36,12 +36,20 @@ export const isLayerId = (id: string) => id.startsWith('layer:')
 export const layerSlug = (id: string) => id.replace(/^layer:/, '')
 
 /**
- * A basemap's style: the style itself for vector basemaps, or a style with
- * one raster layer for the others.
+ * A basemap's style: the style itself for vector basemaps, in its dark
+ * version if asked and it has one, or a style with one raster layer for the
+ * others.
  */
-export function basemapStyle(layer: Layer): StyleSpecification | string {
+export function basemapStyle(
+  layer: Layer,
+  dark = false,
+): StyleSpecification | string {
   const { source } = layer
-  if (source.type === 'style') return source.url
+  if (source.type === 'style') {
+    // Styles in assets/ have site paths, which MapLibre needs as full URLs.
+    const url = (dark && source.darkUrl) || source.url
+    return new URL(url, window.location.href).href
+  }
   const id = `basemap:${layer.slug}`
   return {
     version: 8,

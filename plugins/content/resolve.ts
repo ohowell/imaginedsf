@@ -230,8 +230,12 @@ export function resolveContent(
   }
   for (const layer of shownLayers) {
     const { source } = layer.data
-    if (source.type !== 'geojson' || !isAsset(source.url)) continue
+    if (source.type === 'style' && source.darkUrl && isAsset(source.darkUrl)) {
+      checkAsset(layer.file, source.darkUrl, 'source.darkUrl')
+    }
+    if (!isAsset(source.url)) continue
     checkAsset(layer.file, source.url, 'source.url')
+    if (source.type !== 'geojson') continue
     const key = source.properties?.images
     const geojson = raw.geojson.get(source.url.slice(1))
     if (!key || !geojson) continue
@@ -283,7 +287,14 @@ export function resolveContent(
         slug,
         {
           ...data,
-          source: { ...data.source, url: withBase(data.source.url) },
+          source:
+            data.source.type === 'style' && data.source.darkUrl
+              ? {
+                  ...data.source,
+                  url: withBase(data.source.url),
+                  darkUrl: withBase(data.source.darkUrl),
+                }
+              : { ...data.source, url: withBase(data.source.url) },
           slug,
           description: rendered(file),
           children: children.get(slug)?.toSorted(byYearAndTitle),

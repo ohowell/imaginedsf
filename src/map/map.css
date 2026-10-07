@@ -1,0 +1,80 @@
+/* MapLibre's controls and popups in the page's color scheme. Imported after
+   MapLibre's own styles, so these win where the selectors match. */
+
+.maplibregl-ctrl-group {
+  background: var(--float-surface);
+}
+
+.maplibregl-ctrl-group:not(:empty) {
+  box-shadow: 0 0 0 2px var(--float-border);
+}
+
+.maplibregl-ctrl-group button + button {
+  border-top-color: var(--float-border);
+}
+
+@media (hover: hover) {
+  .maplibregl-ctrl button:not(:disabled):hover {
+    background-color: var(--float-hover);
+  }
+}
+
+.maplibregl-ctrl button:not(:disabled):active {
+  background-color: var(--float-hover);
+}
+
+.maplibregl-ctrl.maplibregl-ctrl-attrib {
+  color: var(--float-text);
+  background-color: var(--float-surface);
+}
+
+.maplibregl-ctrl-attrib a {
+  color: var(--float-quiet);
+}
+
+.maplibregl-popup-content {
+  color: var(--float-text);
+  background: var(--float-surface);
+}
+
+.maplibregl-popup-close-button {
+  color: inherit;
+}
+
+.maplibregl-popup-close-button:hover {
+  background-color: var(--float-hover);
+}
+
+.maplibregl-popup-anchor-top .maplibregl-popup-tip,
+.maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-top-right .maplibregl-popup-tip {
+  border-bottom-color: var(--float-surface);
+}
+
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip {
+  border-top-color: var(--float-surface);
+}
+
+.maplibregl-popup-anchor-left .maplibregl-popup-tip {
+  border-right-color: var(--float-surface);
+}
+
+.maplibregl-popup-anchor-right .maplibregl-popup-tip {
+  border-left-color: var(--float-surface);
+}
+
+/* MapLibre's icons are images with dark ink baked in, so in dark mode only the
+   icons are inverted, which leaves focus rings and hover tints as they are.
+   The attribution button's own tint is inverted with it, from dark to light. */
+@media (prefers-color-scheme: dark) {
+  .maplibregl-ctrl-icon,
+  .maplibregl-ctrl-attrib-button {
+    filter: invert(1);
+  }
+
+  .maplibregl-ctrl-attrib-button {
+    background-color: transparent;
+  }
+}

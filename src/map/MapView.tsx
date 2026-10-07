@@ -10,8 +10,16 @@ import {
   type TransformStyleFunction,
 } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
+// After MapLibre's styles, which it overrides.
+import './map.css'
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import {
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type ReactNode,
+} from 'react'
 import content from 'virtual:content'
 import { prepareCog } from './cog.ts'
 import { MapContext } from './context.ts'
@@ -41,6 +49,19 @@ const SAN_FRANCISCO: LngLatBoundsLike = [
 // Far enough out to fit the widest layers, the bay-wide harbour charts, with
 // some room around them on a phone-sized map.
 const MIN_ZOOM = 7.5
+
+const darkScheme = window.matchMedia('(prefers-color-scheme: dark)')
+
+// Whether the page is in dark mode, following changes to it.
+function usePrefersDark() {
+  return useSyncExternalStore(
+    (onChange) => {
+      darkScheme.addEventListener('change', onChange)
+      return () => darkScheme.removeEventListener('change', onChange)
+    },
+    () => darkScheme.matches,
+  )
+}
 
 // Carries the layers shown on top over to a new basemap's style.
 const keepLayers: TransformStyleFunction = (previous, next) => ({
@@ -106,6 +127,15 @@ export function MapView({
     return () => map.remove()
   }, [])
 
+  // Basemaps with a dark version switch to it in dark mode. The rest stay put,
+  // so changing the color scheme doesn't reload them.
+  const prefersDark = usePrefersDark()
+  const basemapSource = content.layers[basemap].source
+  const darkBasemap =
+    prefersDark &&
+    basemapSource.type === 'style' &&
+    basemapSource.darkUrl !== undefined
+
   useEffect(() => {
     if (!map) return
     let cancelled = false
@@ -120,7 +150,7 @@ export function MapView({
       }
       if (cancelled) return
       // A full change, since styles differ too much to update in place.
-      map.setStyle(basemapStyle(content.layers[basemap]), {
+      map.setStyle(basemapStyle(content.layers[basemap], darkBasemap), {
         diff: false,
         transformStyle: keepLayers,
       })
@@ -129,7 +159,7 @@ export function MapView({
     return () => {
       cancelled = true
     }
-  }, [map, basemap])
+  }, [map, basemap, darkBasemap])
 
   // Adds, removes and reorders layers to match `layers`. Sources are only
   // added once shown, so hidden COGs aren't fetched.

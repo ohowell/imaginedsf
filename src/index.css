@@ -2,6 +2,13 @@
   color-scheme: light dark;
   font-family: system-ui, sans-serif;
   line-height: 1.5;
+
+  /* For things floating over the map, like its controls and popups. */
+  --float-surface: light-dark(#fff, #2a2a2a);
+  --float-text: light-dark(#333, #e8e8e8);
+  --float-quiet: light-dark(rgb(0 0 0 / 75%), rgb(255 255 255 / 70%));
+  --float-border: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 15%));
+  --float-hover: light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 8%));
 }
 
 html,
@@ -296,14 +303,12 @@ body,
 }
 
 .basemap-control {
-  /* Light like MapLibre's own controls, whatever the page's color scheme. */
-  color-scheme: light;
   padding: 0.375rem 0.625rem;
   font-size: 0.8125rem;
-  color: #333;
-  background: white;
+  color: var(--float-text);
+  background: var(--float-surface);
   border-radius: 0.25rem;
-  box-shadow: 0 0 0 2px rgb(0 0 0 / 10%);
+  box-shadow: 0 0 0 2px var(--float-border);
 }
 
 .basemap-toggle {
@@ -351,10 +356,6 @@ body,
 
 .map {
   height: 100%;
-}
-
-.map-popup {
-  color: black;
 }
 
 .map-popup p {
