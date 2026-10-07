@@ -1,5 +1,10 @@
-/* MapLibre's controls and popups in the page's color scheme. Imported after
-   MapLibre's own styles, so these win where the selectors match. */
+/* MapLibre's controls and popups in the page's color scheme and font.
+   Imported after MapLibre's own styles, so these win where the selectors
+   match. */
+
+.maplibregl-map {
+  font-family: inherit;
+}
 
 .maplibregl-ctrl-group {
   background: var(--float-surface);

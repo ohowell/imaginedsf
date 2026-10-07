@@ -1,6 +1,6 @@
 :root {
   color-scheme: light dark;
-  font-family: system-ui, sans-serif;
+  font-family: 'Mulish Variable', system-ui, sans-serif;
   line-height: 1.5;
 
   /* For things floating over the map, like its controls and popups. */
@@ -9,6 +9,14 @@
   --float-quiet: light-dark(rgb(0 0 0 / 75%), rgb(255 255 255 / 70%));
   --float-border: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 15%));
   --float-hover: light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 8%));
+}
+
+/* Form controls use the system font unless told otherwise. */
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 html,
