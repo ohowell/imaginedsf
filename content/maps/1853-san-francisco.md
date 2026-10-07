@@ -1,7 +1,6 @@
 ---
 title: 1853 San Francisco
 year: 1853
-indented: true
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:xz007mk8152/g3463000_cog.tif

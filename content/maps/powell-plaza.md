@@ -1,7 +1,6 @@
 ---
 title: Powell Plaza
 year: 1963
-indented: true
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:kk722zn5346/Powell_Cropped_WGS_cog.tif

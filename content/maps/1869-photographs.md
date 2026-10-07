@@ -1,7 +1,6 @@
 ---
 title: 1869 Photographs
 year: 1869
-indented: true
 source:
   type: geojson
   url: /assets/geojson/1869-photographs.geojson

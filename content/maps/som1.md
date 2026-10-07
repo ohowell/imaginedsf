@@ -1,7 +1,6 @@
 ---
 title: Kitchen / SOM Models
 year: 1960
-indented: true
 source:
   type: geojson
   url: /assets/geojson/som1.geojson

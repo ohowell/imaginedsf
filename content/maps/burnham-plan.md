@@ -5,6 +5,9 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:tf618bz0007/Burnham_cog.tif
 bbox: [-122.5300085, 37.6855041, -122.3487013, 37.8243963]
+children:
+  - existing-city
+  - burnham-proposed-changes
 wordpressId: 839
 ---
 

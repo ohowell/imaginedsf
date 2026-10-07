@@ -1,7 +1,6 @@
 ---
 title: Views of WPA Model
 year: 1938
-indented: true
 source:
   type: geojson
   url: /assets/geojson/views-of-wpa-model.geojson

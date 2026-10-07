@@ -1,7 +1,6 @@
 ---
 title: 1849 View of San Francisco
 year: 1850
-indented: true
 source:
   type: geojson
   url: /assets/geojson/sun-lithographic-view.geojson

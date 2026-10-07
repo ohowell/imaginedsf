@@ -9,9 +9,7 @@ items:
   - duflot-map-of-port-of-san-francisco
   - buckelew-map
   - sun-lithographic-map
-  - sun-lithographic-view
   - eddy-survey
-  - vignettes
   - us-coast-survey
   - san-francisco-section-i-map-of-western-addition-land-claims
   - butler

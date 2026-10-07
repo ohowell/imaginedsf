@@ -1,7 +1,6 @@
 ---
 title: 1869 San Francisco Peninsula
 year: 1869
-indented: true
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:wp866rv4743/g2648000_cog.tif

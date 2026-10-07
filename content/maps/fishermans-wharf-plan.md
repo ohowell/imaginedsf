@@ -5,6 +5,8 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:rs107gm7618/GeneralPlan_cog.tif
 bbox: [-122.4279565, 37.8030651, -122.4086618, 37.8143643]
+children:
+  - views-of-wharf
 wordpressId: 569
 ---
 

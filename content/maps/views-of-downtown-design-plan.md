@@ -1,7 +1,6 @@
 ---
 title: Views of Downtown Design Plan
 year: 1962
-indented: true
 source:
   type: geojson
   url: /assets/geojson/views-of-downtown-design-plan.geojson

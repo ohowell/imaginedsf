@@ -5,6 +5,8 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:xw740nt7176/Southern_56_WGS_cog.tif
 bbox: [-122.4342809, 37.6999548, -122.152305, 37.8416384]
+children:
+  - frank-lloyd-wrights-butterfly-bridge
 wordpressId: 1234
 ---
 

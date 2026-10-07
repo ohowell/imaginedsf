@@ -1,7 +1,6 @@
 ---
 title: Vignettes from Eddy Survey
 year: 1852
-indented: true
 source:
   type: geojson
   url: /assets/geojson/vignettes.geojson

@@ -1,7 +1,6 @@
 ---
 title: Perini / Wurster Views
 year: 1960
-indented: true
 source:
   type: geojson
   url: /assets/geojson/perini-views.geojson

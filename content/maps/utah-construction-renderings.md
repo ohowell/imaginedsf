@@ -1,7 +1,6 @@
 ---
 title: Utah Construction renderings
 year: 1960
-indented: true
 showWith: utah-construction-mcsweeney-kirby-loubet-glynn-architects
 source:
   type: geojson

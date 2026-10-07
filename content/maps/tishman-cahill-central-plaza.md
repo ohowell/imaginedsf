@@ -1,7 +1,6 @@
 ---
 title: Tishman Cahill / Warnecke, Dailey, Gruen, Central Plaza
 year: 1960
-indented: true
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:ny174yd7254/17_018_018_cog.tif

@@ -1,7 +1,6 @@
 ---
 title: Burnham Proposed Changes
 year: 1905
-indented: true
 source:
   type: geojson
   url: /assets/geojson/burnham-proposed-changes.geojson

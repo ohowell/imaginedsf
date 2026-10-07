@@ -3,27 +3,14 @@ title: Golden Gateway Redevelopment Competition
 year: 1960
 maps:
   - web-construction
-  - web-constructions-plaza-level-plan
-  - web-sketches
   - leiken-enterprises-ground-level-v2
-  - leiken-enterprisess-proposal-for-golden-gateway-shopping-center
-  - leiken-enterprises
-  - leiken-models-1
   - utah-construction-mcsweeney-kirby-loubet-glynn-architects
   - utah-construction-alternate-plan
-  - utah-construction-renderings
   - eichler-homes-inc
-  - eichler-homes-composite-photo
-  - eichler-renderings-1
   - barrett-diversified
-  - elevations-1
   - tishman-cahill
-  - tishman-cahill-central-plaza
   - som-with-shadows
-  - som1
-  - leiken
-  - perini-views
-  - vectors-golden-gateway
+  - perini
 wordpressId: 531
 ---
 

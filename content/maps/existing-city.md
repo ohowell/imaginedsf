@@ -1,7 +1,6 @@
 ---
 title: Existing City
 year: 1905
-indented: true
 source:
   type: geojson
   url: /assets/geojson/existing-city.geojson

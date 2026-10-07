@@ -1,7 +1,6 @@
 ---
 title: Views of Marin Bridges
 year: 1967
-indented: true
 source:
   type: geojson
   url: /assets/geojson/views-of-marin-bridges.geojson

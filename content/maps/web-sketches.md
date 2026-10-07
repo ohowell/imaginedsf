@@ -1,7 +1,6 @@
 ---
 title: Web / Becket sketches
 year: 1960
-indented: true
 source:
   type: geojson
   url: /assets/geojson/web-sketches.geojson

@@ -1,7 +1,6 @@
 ---
 title: Views of Wharf
 year: 1958
-indented: true
 source:
   type: geojson
   url: /assets/geojson/views-of-wharf.geojson

@@ -1,7 +1,6 @@
 ---
 title: Leiken / Lubicz Models
 year: 1960
-indented: true
 source:
   type: geojson
   url: /assets/geojson/leiken-models-1.geojson

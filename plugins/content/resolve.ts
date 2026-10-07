@@ -8,7 +8,8 @@ const BAY_AREA = [-123.2, 37.1, -121.5, 38.5]
 
 interface Listing {
   file: string
-  group?: string
+  /** Slug of the group or map it's listed under, if any. */
+  parent?: string
 }
 
 /**
@@ -57,7 +58,8 @@ export function resolveContent(
     }
   }
 
-  // Each map or group is listed in one place: the basemaps, an era, or a group.
+  // Each map or group is listed in one place: the basemaps, an era, a group,
+  // or a map.
   const listings = new Map<string, Listing>()
   function list(slug: string, listing: Listing, allowGroups: boolean) {
     if (!maps.has(slug) && !(allowGroups && groups.has(slug))) {
@@ -112,14 +114,39 @@ export function resolveContent(
   }
   for (const group of raw.groups) {
     for (const slug of group.data.maps) {
-      list(slug, { file: group.file, group: group.slug }, false)
+      list(slug, { file: group.file, parent: group.slug }, false)
+    }
+  }
+  // Maps can have maps as children, like details and photos of a plan.
+  for (const map of raw.maps) {
+    for (const slug of map.data.children ?? []) {
+      list(slug, { file: map.file, parent: map.slug }, false)
+    }
+  }
+  for (const map of raw.maps) {
+    if (!map.data.children) continue
+    const parent = listings.get(map.slug)?.parent
+    if (parent && maps.has(parent)) {
+      error(
+        map.file,
+        `children: "${map.slug}" is listed under "${parent}", so it can't have children of its own`,
+      )
+    } else if (site?.data.basemaps.includes(map.slug)) {
+      error(map.file, "children: basemaps can't have children")
     }
   }
 
   // Groups are shown when listed in an era; maps when listed anywhere shown.
+  // Maps listed under each other are already errors, but mustn't loop here.
   const isShown = (slug: string): boolean => {
-    const listing = listings.get(slug)
-    return listing !== undefined && (!listing.group || isShown(listing.group))
+    const seen = new Set<string>()
+    for (let current: string | undefined = slug; current;) {
+      const listing = listings.get(current)
+      if (!listing || seen.has(current)) return false
+      seen.add(current)
+      current = listing.parent
+    }
+    return true
   }
   const shownMaps = raw.maps.filter((map) => isShown(map.slug))
   const shownGroups = raw.groups.filter((group) => isShown(group.slug))
@@ -136,7 +163,7 @@ export function resolveContent(
     if (!listings.has(map.slug)) {
       warn(
         map.file,
-        "isn't listed in any era, group or basemap list, so it isn't shown",
+        "isn't listed in any era, group, map or basemap list, so it isn't shown",
       )
     }
   }

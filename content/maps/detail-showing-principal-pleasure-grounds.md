@@ -1,7 +1,6 @@
 ---
 title: Detail Showing Principal Pleasure Grounds
 year: 1873
-indented: true
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:nc805rf6310/olmstedCCWGS_cog.tif

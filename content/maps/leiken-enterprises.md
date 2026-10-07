@@ -1,7 +1,6 @@
 ---
 title: Leiken / Lubicz Open Space
 year: 1960
-indented: true
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:cg675ct4048/17_018_012_cog.tif

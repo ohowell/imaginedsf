@@ -88,6 +88,7 @@ export default function App() {
             }
           />
         )}
+        {map.children && <ul>{map.children.map(row)}</ul>}
       </li>
     )
   }

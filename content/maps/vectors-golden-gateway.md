@@ -1,7 +1,6 @@
 ---
 title: Before and After Photos
 year: 1960
-indented: true
 source:
   type: geojson
   url: /assets/geojson/vectors-golden-gateway.geojson

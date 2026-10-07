@@ -1,7 +1,6 @@
 ---
 title: Mission District Renderings
 year: 1964
-indented: true
 source:
   type: geojson
   url: /assets/geojson/mission-district-renderings.geojson

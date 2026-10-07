@@ -1,7 +1,6 @@
 ---
 title: Views
 year: 1980
-indented: true
 source:
   type: geojson
   url: /assets/geojson/views.geojson

@@ -94,11 +94,12 @@ const source = z.discriminatedUnion('type', [
 export const mapSchema = z.strictObject({
   title,
   year: year.optional(),
-  indented: z.boolean().optional(),
   // A map that helps read this one, offered to show underneath it.
   showWith: slug.optional(),
   source,
   bbox: bbox.optional(),
+  // Maps listed under this one, like details and photos of a plan.
+  children: z.array(slug).min(1).optional(),
   wordpressId,
 })
 

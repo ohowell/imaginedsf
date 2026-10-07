@@ -5,6 +5,8 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:vn977hm3834/yb1965_WGS_cog.tif
 bbox: [-122.4101185, 37.7752921, -122.3905898, 37.790966]
+children:
+  - model-of-yerba-buena-proposal
 wordpressId: 565
 ---
 

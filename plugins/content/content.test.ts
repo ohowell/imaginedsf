@@ -75,7 +75,7 @@ describe('resolveContent', () => {
     const { content, warnings } = resolveContent(raw)
     expect(content?.maps.draft).toBeUndefined()
     expect(messages(warnings)).toEqual([
-      "content/maps/draft.md: isn't listed in any era, group or basemap list, so it isn't shown",
+      "content/maps/draft.md: isn't listed in any era, group, map or basemap list, so it isn't shown",
     ])
   })
 
@@ -108,6 +108,41 @@ describe('resolveContent', () => {
     raw.maps.push(map('proposals'))
     expect(messages(resolveContent(raw).errors)).toContain(
       'content/groups/proposals.md: slug is also used by content/maps/proposals.md',
+    )
+  })
+
+  it('shows maps listed under a shown map', () => {
+    const raw = fixture()
+    raw.maps.push(map('detail'), map('draft', { children: ['draft-detail'] }))
+    raw.maps.push(map('draft-detail'))
+    raw.maps[1].data.children = ['detail']
+    const { content, errors, warnings } = resolveContent(raw)
+    expect([...errors, ...warnings]).toEqual([
+      expect.objectContaining({ file: 'content/maps/draft.md' }),
+    ])
+    expect(content?.maps.plan.children).toEqual(['detail'])
+    expect(content?.maps.detail).toBeDefined()
+    expect(content?.maps['draft-detail']).toBeUndefined()
+  })
+
+  it('keeps maps from nesting deeper, or under basemaps', () => {
+    const raw = fixture()
+    raw.maps.push(map('detail', { children: ['photos'] }), map('photos'))
+    raw.maps.push(map('legend'))
+    raw.maps[0].data.children = ['legend']
+    raw.maps[1].data.children = ['detail']
+    expect(messages(resolveContent(raw).errors)).toEqual([
+      "content/maps/base.md: children: basemaps can't have children",
+      'content/maps/detail.md: children: "detail" is listed under "plan", so it can\'t have children of its own',
+    ])
+  })
+
+  it('stops at maps listed under each other', () => {
+    const raw = fixture()
+    raw.maps.push(map('a', { children: ['b'] }), map('b', { children: ['a'] }))
+    const { errors } = resolveContent(raw)
+    expect(messages(errors)).toContain(
+      'content/maps/a.md: children: "a" is listed under "b", so it can\'t have children of its own',
     )
   })
 

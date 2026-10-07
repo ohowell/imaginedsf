@@ -1,7 +1,6 @@
 ---
 title: Eichler / Anshen & Allen Composite Photo
 year: 1960
-indented: true
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:rn433cp3449/17_018_034_cog.tif

@@ -1,7 +1,6 @@
 ---
 title: Monorail Models
 year: 1952
-indented: true
 source:
   type: geojson
   url: /assets/geojson/monorail-models.geojson

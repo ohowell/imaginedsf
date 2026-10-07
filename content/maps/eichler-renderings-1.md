@@ -1,7 +1,6 @@
 ---
 title: Eichler / Anshen & Allen Renderings
 year: 1960
-indented: true
 source:
   type: geojson
   url: /assets/geojson/eichler-renderings-1.geojson

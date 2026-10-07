@@ -1,7 +1,6 @@
 ---
 title: Historic Photographs of Diamond Heights
 year: 1960
-indented: true
 source:
   type: geojson
   url: /assets/geojson/vectors-diamond-heights-historic-photographs.geojson

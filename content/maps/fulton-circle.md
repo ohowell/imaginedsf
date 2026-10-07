@@ -1,7 +1,6 @@
 ---
 title: Fulton Circle
 year: 1963
-indented: true
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:mw570jd1313/FultonCircle_cog.tif

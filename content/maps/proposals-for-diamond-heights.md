@@ -1,7 +1,6 @@
 ---
 title: Proposals for Diamond Heights
 year: 1973
-indented: true
 source:
   type: geojson
   url: /assets/geojson/proposals-for-diamond-heights.geojson

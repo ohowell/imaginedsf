@@ -1,7 +1,6 @@
 ---
 title: Proposed Changes
 year: 1969
-indented: true
 source:
   type: geojson
   url: /assets/geojson/proposed-changes-2.geojson

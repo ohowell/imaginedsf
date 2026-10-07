@@ -1,7 +1,6 @@
 ---
 title: Model of Yerba Buena Proposal
 year: 1965
-indented: true
 source:
   type: geojson
   url: /assets/geojson/model-of-yerba-buena-proposal.geojson

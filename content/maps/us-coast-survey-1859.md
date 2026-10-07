@@ -1,7 +1,6 @@
 ---
 title: 1859 Bay Survey
 year: 1859
-indented: true
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:nd267sd5390/g1032000_cog.tif

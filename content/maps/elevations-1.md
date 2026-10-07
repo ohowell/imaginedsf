@@ -1,7 +1,6 @@
 ---
 title: Barrett / DMJM Models and Renderings
 year: 1960
-indented: true
 source:
   type: geojson
   url: /assets/geojson/elevations-1.geojson

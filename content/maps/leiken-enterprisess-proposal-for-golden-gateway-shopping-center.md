@@ -1,7 +1,6 @@
 ---
 title: Leiken / Lubicz Shopping Center
 year: 1960
-indented: true
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:zx087sb6046/17_018_013_cog.tif

@@ -1,7 +1,6 @@
 ---
 title: Web / Becket Plaza Level Plan
 year: 1960
-indented: true
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:rs156nt0154/17_018_045_cog.tif
