@@ -57,6 +57,10 @@ export default function App() {
   }, [])
   const [onlyInView, setOnlyInView] = useState(false)
   const [view, setView] = useState<Bbox>()
+  // Slugs of the eras open in the sidebar, starting with the first.
+  const [openEras, setOpenEras] = useState(
+    () => new Set(content.eras.slice(0, 1).map((era) => era.slug)),
+  )
 
   // Whether a layer is on, covers part of the view, or has a child that does.
   const affectsView = (slug: string): boolean => {
@@ -165,13 +169,29 @@ export default function App() {
             layersUnder(era.children, () => true).length -
             layersUnder(era.children, isListed).length
           return (
-            <section key={era.slug}>
-              <h2>
-                {era.title}{' '}
-                <small>
-                  {era.start}–{era.end}
-                </small>
-              </h2>
+            <details
+              key={era.slug}
+              className="era"
+              open={openEras.has(era.slug)}
+              onToggle={(event) => {
+                const { open } = event.currentTarget
+                setOpenEras((eras) => {
+                  if (eras.has(era.slug) === open) return eras
+                  const next = new Set(eras)
+                  if (open) next.add(era.slug)
+                  else next.delete(era.slug)
+                  return next
+                })
+              }}
+            >
+              <summary>
+                <h2>
+                  {era.title}{' '}
+                  <small>
+                    {era.start}–{era.end}
+                  </small>
+                </h2>
+              </summary>
               {/* Rendered at build time from the site's own Markdown. */}
               <div
                 className="era-description"
@@ -182,18 +202,19 @@ export default function App() {
                   const group = content.groups[item]
                   if (!group) return row(item)
                   return (
-                    <li key={item}>
-                      <div className="row">
-                        <span>
+                    <li key={item} className="group">
+                      <details>
+                        <summary>
                           {group.title}{' '}
                           <small>
                             {group.year}
                             {group.endYear && `–${group.endYear}`}
                           </small>
-                        </span>
-                        <InfoButton slug={item} onOpen={setAbout} />
-                      </div>
-                      <ul>{group.children.filter(isListed).map(row)}</ul>
+                        </summary>
+                        <ul>{group.children.filter(isListed).map(row)}</ul>
+                      </details>
+                      {/* Outside the summary, which can't hold buttons. */}
+                      <InfoButton slug={item} onOpen={setAbout} />
                     </li>
                   )
                 })}
@@ -210,7 +231,7 @@ export default function App() {
                   </li>
                 )}
               </ul>
-            </section>
+            </details>
           )
         })}
       </aside>

@@ -79,6 +79,76 @@ body,
   font-size: 1rem;
 }
 
+.era {
+  border-bottom: 1px solid rgb(128 128 128 / 40%);
+}
+
+.era > summary,
+.group > details > summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.era > summary::-webkit-details-marker,
+.group > details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* A triangle that points down when open. */
+.era > summary::before,
+.group > details > summary::before {
+  display: inline-block;
+  font-size: 0.75em;
+  content: '▶';
+  opacity: 0.6;
+  transition: transform 0.15s;
+}
+
+.era[open] > summary::before,
+.group > details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.era > summary {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+/* Lined up with the checkboxes of the layers around it. */
+.group > details > summary::before {
+  width: 13px;
+  margin: 0 7px 0 4px;
+  text-align: center;
+}
+
+/* The info button sits at the end of the summary's line. */
+.group {
+  position: relative;
+}
+
+.group > .info {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.group > details > summary {
+  padding-right: 1.75rem;
+}
+
+.era > summary h2 {
+  margin: 0.75rem 0;
+}
+
+.era[open] > summary h2 {
+  margin-bottom: 0.25rem;
+}
+
+.era[open] > ul {
+  margin-bottom: 1rem;
+}
+
 .intro {
   padding-bottom: 1rem;
   border-bottom: 1px solid rgb(128 128 128 / 40%);
