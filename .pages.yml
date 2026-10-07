@@ -1,0 +1,289 @@
+# Pages CMS (https://pagescms.org) editing interface for content/. The build
+# checks everything again, so these fields only need to catch mistakes early
+# and explain what goes where. Every front matter field has to be listed here,
+# since Pages CMS drops fields it doesn't know about when it saves a file.
+
+media:
+  - name: images
+    label: Images
+    input: assets/images
+    output: /assets/images
+    categories: [image]
+    rename: safe
+  - name: geojson
+    label: Pin data
+    input: assets/geojson
+    output: /assets/geojson
+    extensions: [geojson, json]
+    rename: safe
+
+components:
+  title:
+    label: Title
+    type: string
+    required: true
+  year:
+    label: Year
+    type: number
+    options:
+      min: 1500
+      max: 2100
+  slug:
+    type: string
+    pattern:
+      regex: '^[a-z0-9]+(-[a-z0-9]+)*$'
+      message: Use a file name without ".md", like "burnham-plan"
+  zoom:
+    type: number
+    options:
+      min: 0
+      max: 24
+  # Kept from the old WordPress site so its links still open, and hidden so
+  # it isn't changed by accident.
+  wordpressId:
+    type: number
+    hidden: true
+  # Plain Markdown rather than rich text, which would rewrite the HTML some
+  # descriptions use for figures.
+  body:
+    label: Text
+    type: code
+    description: >-
+      Written in Markdown. Headings start at "##", since the title is the top
+      heading. To add an image, upload it under Images, then write
+      ![Description](/assets/images/file-name.jpg).
+
+content:
+  - name: layers
+    label: Layers
+    description: Maps, photo pins and basemaps.
+    type: collection
+    path: content/layers
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    # File names are part of links and of other items' parents.
+    operations:
+      rename: false
+    view:
+      fields: [title, year, parent]
+      sort: [title, year]
+      default:
+        sort: title
+        order: asc
+    fields:
+      - name: title
+        component: title
+      - name: year
+        component: year
+      - name: showWith
+        label: Show with
+        component: slug
+        description: >-
+          The file name of a layer that helps read this one, like
+          "burnt-areas-1906", offered to show underneath it.
+      - name: source
+        label: Map data
+        type: block
+        blockKey: type
+        required: true
+        blocks:
+          - name: cog
+            label: Scanned map (Cloud Optimized GeoTIFF)
+            fields:
+              - name: url
+                label: GeoTIFF address
+                type: string
+                required: true
+                pattern:
+                  regex: '^https://\S+\.tiff?(\?\S*)?$'
+                  message: Use an https address ending in .tif or .tiff
+          - name: geojson
+            label: Pins (GeoJSON)
+            fields:
+              - name: url
+                label: GeoJSON file
+                type: file
+                required: true
+                options:
+                  media: geojson
+              - name: properties
+                label: Pin properties
+                description: >-
+                  Names of the properties in the GeoJSON that hold each pin's
+                  popup text, comma-separated image addresses, and direction
+                  in degrees.
+                type: object
+                fields:
+                  - name: text
+                    label: Text
+                    type: string
+                  - name: images
+                    label: Images
+                    type: string
+                  - name: direction
+                    label: Direction
+                    type: string
+          - name: wms
+            label: WMS service
+            fields:
+              - name: url
+                label: Service address
+                type: string
+                required: true
+                pattern:
+                  regex: '^https://\S+$'
+                  message: Use an https address
+              - name: layers
+                label: Layers
+                type: string
+                required: true
+              - name: minZoom
+                label: Minimum zoom
+                component: zoom
+              - name: maxZoom
+                label: Maximum zoom
+                component: zoom
+          - name: tile
+            label: Tiles
+            fields:
+              - name: url
+                label: Tile address
+                description: 'Contains {z}, {x} and {y}.'
+                type: string
+                required: true
+                pattern:
+                  regex: '^https://\S*\{z\}\S*\{x\}\S*\{y\}'
+                  message: Use an https address containing {z}, {x} and {y}
+              - name: minZoom
+                label: Minimum zoom
+                component: zoom
+              - name: maxZoom
+                label: Maximum zoom
+                component: zoom
+          - name: style
+            label: Map style (basemaps only)
+            fields:
+              - name: url
+                label: Style address
+                type: string
+                required: true
+              - name: darkUrl
+                label: Dark mode style address
+                type: string
+      - name: bbox
+        label: Bounding box
+        description: >-
+          Four numbers: west, south, east, north. The map zooms here when
+          someone opens a link to this layer.
+        type: number
+        list:
+          max: 4
+          collapsible: false
+      - name: parent
+        label: Listed under
+        component: slug
+        description: >-
+          The file name of the era, group or layer this is listed under, like
+          "the-great-society" or "burnham-plan". Leave empty for basemaps.
+      - name: wordpressId
+        component: wordpressId
+      - name: body
+        component: body
+
+  - name: groups
+    label: Groups
+    description: Titled sets of layers, listed in an era.
+    type: collection
+    path: content/groups
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    operations:
+      rename: false
+    view:
+      fields: [title, year, parent]
+      default:
+        sort: title
+        order: asc
+    fields:
+      - name: title
+        component: title
+      - name: year
+        component: year
+      - name: endYear
+        label: End year
+        description: For groups that span years, like a series of surveys.
+        component: year
+      - name: parent
+        label: Era
+        component: slug
+        description: >-
+          The file name of the era this group is listed in, like
+          "the-great-society".
+      - name: wordpressId
+        component: wordpressId
+      - name: body
+        component: body
+
+  - name: eras
+    label: Eras
+    type: collection
+    path: content/eras
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    operations:
+      rename: false
+    view:
+      fields: [title, start, end]
+      default:
+        sort: start
+        order: asc
+    fields:
+      - name: title
+        component: title
+      - name: start
+        label: Start year
+        component: year
+        required: true
+      - name: end
+        label: End year
+        component: year
+        required: true
+      - name: wordpressId
+        component: wordpressId
+      - name: body
+        component: body
+
+  - name: pages
+    label: Pages
+    description: The introduction, credits and other pages.
+    type: collection
+    path: content/pages
+    format: yaml-frontmatter
+    # The site has a fixed set of pages.
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+      - name: title
+        component: title
+      - name: body
+        component: body
+
+  - name: site
+    label: Basemaps
+    type: file
+    path: content/site.yml
+    format: yaml
+    fields:
+      - name: basemaps
+        label: Basemaps
+        description: File names of the layers offered as basemaps.
+        component: slug
+        required: true
+        list: true
+      - name: defaultBasemap
+        label: Default basemap
+        description: The basemap shown first.
+        component: slug
+        required: true

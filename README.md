@@ -70,6 +70,12 @@ The title in the front matter is each item's top-level heading, so headings in t
 
 The build checks all content and fails with a list of problems if anything is wrong, such as a misspelled field, a parent that doesn't exist, an empty group or era, or a heading at the wrong level. The dev server shows the same errors in the browser, and reloads when content changes.
 
+### Editing online
+
+Content can also be edited in the browser with [Pages CMS](https://pagescms.org), set up by `.pages.yml`. To use it, sign in at [app.pagescms.org](https://app.pagescms.org) with GitHub and install its GitHub app on this repository. From there, you can invite editors without GitHub accounts by email. Each save is a commit to `main`, which deploys like any other, so an edit the build rejects leaves the site as it was until it's fixed; the failed run's log lists the problems.
+
+Pages CMS removes front matter fields it doesn't know about when it saves a file, so a new field has to be added to `.pages.yml` along with `plugins/content/schema.ts`. Descriptions are edited as plain Markdown, which keeps HTML like `<figure>` intact. Saving also rewrites the front matter in its own style, like putting each number in `bbox` on its own line, which doesn't change what it says.
+
 ## Deployment
 
 The deploy workflow runs lint, tests and build on every push and pull request, and deploys `main` to GitHub Pages.
