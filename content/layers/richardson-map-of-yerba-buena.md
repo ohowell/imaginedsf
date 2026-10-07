@@ -13,6 +13,6 @@ William “Guillermo” Richardson, “Plano de Yerba Buena, Alta California,”
 
 Source: [Online Archive of California](https://oac.cdlib.org/ark:/13030/hb258003p6/?brand=oac4)
 
-\[ See Hittell, page 86:
+[ See Hittell, page 86:
 
-https://archive.org/details/historyofcityofs00hitt/page/86/mode/2up?view=theater \]
+https://archive.org/details/historyofcityofs00hitt/page/86/mode/2up?view=theater ]

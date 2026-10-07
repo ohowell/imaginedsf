@@ -23,53 +23,25 @@ The report did not consider the East Bay Viaduct in any depth, either, because t
 
 In general, the report advocated for public transit but made clear that any rail system would require subsidies, and that capacity for private vehicular traffic must be expanded first (CDPW and CDTC, 97). Public transit options would likely include busses, ferries, and possibly rail, but the report was creative in its consideration of other possibilities. Though it acknowledged that non-traditional modes could only be a small part of the solution, the report nonetheless considered [hydrofoil, hovercraft, vertical or short take-off and landing (V/STOL) aircraft, helicopters, helicopter-carried busses, and gravity-vacuum (pneumatic) tubes](https://archive.org/details/sf-marin-crossing-1967/page/n20/mode/1up).
 
-<figure>
-
 ![](/assets/images/helicopter-carried-bus-300x239.jpg)
-
-<figcaption>
 
 A helicopter-carried bus as a public transportation option. Source: CDPW and CDTC, “San Francisco-Marin Crossing,” 1967, 20.
 
-</figcaption>
-</figure>
-
-<figure>
-
 ![](/assets/images/vacuum-tube-300x203.jpg)
-
-<figcaption>
 
 Vacuum Tube (pneumatic) public transportation proposal. Source: CDPW and CDTC, “San Francisco-Marin Crossing,” 1967, 21.
 
-</figcaption>
-</figure>
-
 However, a second deck for the Golden Gate Bridge was the priority. According to the report, this was the quickest and most economical way to expand private-vehicle capacity and to accommodate busses. For structural reasons, the report considered Bay Area Rapid Transit (BART) on the second deck of the Golden Gate Bridge to be a non-starter (CDPW and CDTC, 24). However, a tube that extended the nascent BART system into Marin might be considered in a subsequent phase of development. But as it would strain available finance options a BART tube should only be considered once the capacity for private vehicles had been addressed (CDPW and CDTC, 109-110).
-
-<figure>
 
 ![](/assets/images/gg-bart-225x300.jpg)
 
-<figcaption>
-
 Early discussions of the BART system considered the possibility of including rail on the Golden Gate Bridge. The CDPW and CDTC report asserted that the idea was not structurally feasible, and so only considered vehicular traffic on a proposed second deck (24). Source: GE advertisement in *Holiday Magazine*, April 1961. (Image courtesy of Erica Fischer.)
-
-</figcaption>
-</figure>
-
-<figure>
 
 ![](/assets/images/4118652342-28936a67f5-c-300x194.jpg)
 
-<figcaption>
-
 The Golden Gate Bridge with a second deck accommodating one lane of bus-only traffic, as described by the CDPW and CDTC. The illustration comes from a report the following year elaborating on the plan. Source: Golden Gate Bridge District, “Golden Gate Bridge Lower Deck for Vehicular Traffic: Report on the Concept, Preliminary Design and Estimated Cost,” 1968.
 
-</figcaption>
-</figure>
-
-After the second deck of the existing bridge was completed, the report suggested that Phase-II options might be useful. The tube option labeled T-3 on the map was the only one that the authors considered appropriate for rapid transit, and the T-5 tube might be considered for vehicular traffic, though cost was a major concern with both these proposals (CDPW and CDTC, 25). The bridge options that traversed Angel Island and terminated in Tiburon–the Fort Mason and Kearney Street bridges–provided “the best service and \[would\] develop the highest usage in 1990,” but they were not financially feasible without additional sources of funding (CDPW and CDTC, 109). The report seemed to favor either the Point Diablo Bridge or the Twin Golden Gate bridge as Phase II options because they were more economical and they could rely on an expansion of existing infrastructure in San Francisco.
+After the second deck of the existing bridge was completed, the report suggested that Phase-II options might be useful. The tube option labeled T-3 on the map was the only one that the authors considered appropriate for rapid transit, and the T-5 tube might be considered for vehicular traffic, though cost was a major concern with both these proposals (CDPW and CDTC, 25). The bridge options that traversed Angel Island and terminated in Tiburon–the Fort Mason and Kearney Street bridges–provided “the best service and [would] develop the highest usage in 1990,” but they were not financially feasible without additional sources of funding (CDPW and CDTC, 109). The report seemed to favor either the Point Diablo Bridge or the Twin Golden Gate bridge as Phase II options because they were more economical and they could rely on an expansion of existing infrastructure in San Francisco.
 
 A combination of forces prevented any of the Marin Crossing plans from being realized. Because financing for any of the proposals would have tapped revenues from the existing crossing, the Golden Gate Bridge and Highway District (the authority that managed the bridge) put up administrative roadblocks (Dyble, Chapter 7). Over recent years, the emerging environmental movement had begun protesting projects that would alter the aesthetic qualities of the Bay or the Marin Headlands. San Francisco was also one of the birth places of a nationwide freeway revolt, and since any new bridge would require a new freeway in the city, the political atmosphere of the late 1960s meant that any proposal would face opposition not only from the citizenry, but also from the Board of Supervisors. By the mid-1970s, the proposals entertained here seemed well and truly dead. Unlike plans for a Southern Crossing, which seem to reemerge every 10 or 15 years, the more ambitious Marin Crossings have all but disappeared from policy debates in the early twenty-first century.
 

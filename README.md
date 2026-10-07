@@ -74,7 +74,9 @@ The build checks all content and fails with a list of problems if anything is wr
 
 Content can also be edited in the browser with [Pages CMS](https://pagescms.org), set up by `.pages.yml`. To use it, sign in at [app.pagescms.org](https://app.pagescms.org) with GitHub and install its GitHub app on this repository. From there, you can invite editors without GitHub accounts by email. Each save is a commit to `main`, which deploys like any other, so an edit the build rejects leaves the site as it was until it's fixed; the failed run's log lists the problems.
 
-Pages CMS removes front matter fields it doesn't know about when it saves a file, so a new field has to be added to `.pages.yml` along with `plugins/content/schema.ts`. Descriptions are edited as plain Markdown, which keeps HTML like `<figure>` intact. Saving also rewrites the front matter in its own style, like putting each number in `bbox` on its own line, which doesn't change what it says.
+Pages CMS removes front matter fields it doesn't know about when it saves a file, so a new field has to be added to `.pages.yml` along with `plugins/content/schema.ts`. Saving also rewrites the front matter in its own style, like putting each number in `bbox` on its own line, which doesn't change what it says.
+
+Descriptions are edited as rich text and saved as Markdown, but editing one rewrites all of it in the editor's own Markdown, which drops any HTML and deletes backslash escapes along with what they escape: `\[sic\]` becomes `sic`. So descriptions use neither. An image's caption is the paragraph after it, and brackets are left unescaped, which Markdown shows as written unless they make a link.
 
 ## Deployment
 

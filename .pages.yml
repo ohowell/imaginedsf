@@ -43,18 +43,18 @@ components:
   wordpressId:
     type: number
     hidden: true
-  # Plain Markdown rather than rich text, which would rewrite the HTML some
-  # descriptions use for figures.
+  # Saved as Markdown. The editor rewrites a description in its own Markdown
+  # once it's edited, and drops HTML and backslash escapes along with what they
+  # escape, so descriptions are written without either.
   body:
     label: Text
-    type: code
-    # The code editor breaks without options.
+    type: rich-text
     options:
       format: markdown
+      media: images
     description: >-
-      Written in Markdown. Headings start at "##", since the title is the top
-      heading. To add an image, upload it under Images, then write
-      ![Description](/assets/images/file-name.jpg).
+      Use Heading 2 for sections, and Heading 3 within them, since the title is
+      the top heading. Image captions go in the paragraph after the image.
 
 content:
   - name: layers

@@ -21,42 +21,21 @@ The Survey also holds the distinction of being the first accurate account of the
 
 In any case, these maps show a long-forgotten fact of life in early San Francisco: dunes dominated the landscape, and not only on the western half of the city, but also in the areas that would become downtown. Market Street was not the central artery that residents from the 1870s-on would come to know because it was completely obstructed. Heading southwest from the Bay, Market Street only spanned about four blocks before encountering a wall of sand around Sansome Street. That wall was only the first aspect of a collection of dunes that extended to around Stockton Street, then the edge of town. The dunes and the original coastline are perhaps the most disorienting features to twenty-first century San Franciscans, and those features were intimately connected. Where did the sand dunes go? Where did the material to fill the Bay come from? Both questions have the same answer.
 
-<figure>
-
 ![](/assets/images/steam-paddy.jpeg)
-
-<figcaption>
 
 ***1850s photo of a sand dune being removed around 8th and Harrison Streets. Photo shows early San Francisco rail line loaded with cars full of sand. The “Hewes Steam Paddy Works” appears at the left. “Steam Paddy” was a derogatory term for a steam shovel, the implication being that the machine did the work that would have been delegated to Irish laborers. Source: [FoundSF](https://www.foundsf.org/index.php?title=David_Hewes_and_His_Steam_Paddy_Works)***
 
-</figcaption>
-</figure>
-
 Residents in the 1860s described the [ceaseless activity of steam shovels](https://archive.org/details/abackwardglance01murdgoog/page/n132/mode/1up) as a feature of everyday life in San Francisco (Murdock, 108). Historian Matthew Booker notes that “California’s first railroad carried sand, not passengers or freight. It accomplished two tasks at the same time: filling up the unstable tidelands while removing unstable dunes” (Booker, 63). Tracks for rail operations were temporary, moving to a new dune once one current one was leveled. Rail operations represented enormous capital expenditures, but water-front property in San Francisco was the most valuable in the American West. Early in the land rush, there are reports of newly filled water lots appreciating as much as 4300% almost immediately after purchase, while inland property that might formerly have been buried under dunes might only expect to appreciate 2000% in one year (Ryan, 277). By the end of 1850, more than 770 water lots had been platted and sold, some of them still under “as much as 35-feet” of water (Booker, 55).
-
-<figure>
 
 ![](/assets/images/water-lots1-1024x775.jpeg)
 
-<figcaption>
-
 ***1855 view of water lots, marked off with posts in North Beach, with Alcatraz Island appearing in the background. All around the northern and eastern shoreline, the plat continued out into the Bay, creating lots awaiting fill and entry into the chaotic San Francisco real estate market. Photographer: G. R. Fardon. Source: [Bancroft Library](https://oac.cdlib.org/ark:/28722/bk0000x955v/?brand=oac4).***
-
-</figcaption>
-</figure>
 
 Finally, the Coast Survey is notable in being the first map in the American period to show the connection between the growing city and the original Spanish settlement. The Presidio lay to the west of the surveyed area, so does not appear in this map. But the *Misíon San Francisco de Asís* (Mission Dolores) appears in the lower left of the map. Dating back to the Spanish period, the old Mission Road was the original artery connecting Yerba Buena cove to the Mission. In 1851, an entrepreneur paved it with boards, and began charging a toll. Thenceforth, the artery was known as the Plank Road, as it is identified here. The connection to the Mission predated the American period and subsequent development responded to this pattern–the South of Market grid was oriented not North-South, but to the Mission Dolores (Ryan, 210, 296-297).
 
-<figure>
-
 ![](/assets/images/beechey-detail.jpg)
 
-<figcaption>
-
 ***Detail of William Frederick Beechey’s 1833 map, “The Harbour of San Francisco, Nueva California,” showing the rough locations of the original roads connecting the Presidio, Mission, and pueblo of Yerba Buena. Source: [David Rumsey](https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~291131~90062697:The-Harbour-of-San-Francisco%2C-Nueva?sort=Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No&qvq=w4s:/where%2FSan%2BFrancisco%2B\(Calif.\)%2Fwhen%2F1833;q:san%20francisco;sort:Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No;lc:RUMSEY~8~1&mi=0&trs=1).***
-
-</figcaption>
-</figure>
 
 ## Further Reading
 
