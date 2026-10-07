@@ -70,6 +70,60 @@
   border-left-color: var(--float-surface);
 }
 
+/* The search box, which is drawn with plain colors rather than images, so it
+   takes the color scheme's without being inverted. */
+.maplibregl-ctrl-geocoder,
+.maplibregl-ctrl-geocoder .suggestions {
+  font-family: inherit;
+  background-color: var(--float-surface);
+  box-shadow: 0 0 0 2px var(--float-border);
+}
+
+/* Wide enough for most addresses, which wrap rather than run out of the list
+   unseen. */
+.maplibregl-ctrl-geocoder {
+  width: min(20rem, 100vw - 2rem);
+  max-width: none;
+}
+
+.maplibregl-ctrl-geocoder--result > div {
+  min-width: 0;
+}
+
+.maplibregl-ctrl-geocoder--result-title,
+.maplibregl-ctrl-geocoder--result-address {
+  white-space: normal;
+}
+
+.maplibregl-ctrl-geocoder--input,
+.maplibregl-ctrl-geocoder--input:focus,
+.maplibregl-ctrl-geocoder .suggestions > li > a {
+  color: var(--float-text);
+}
+
+.maplibregl-ctrl-geocoder .suggestions > .active > a,
+.maplibregl-ctrl-geocoder .suggestions > li > a:hover {
+  color: var(--float-text);
+  background-color: var(--float-hover);
+}
+
+.maplibregl-ctrl-geocoder--icon {
+  fill: var(--float-quiet);
+}
+
+/* The search field's own clear button, beside the one the search box adds. */
+.maplibregl-ctrl-geocoder--input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.maplibregl-ctrl-geocoder--button {
+  background: var(--float-surface);
+}
+
+.maplibre-gl-geocoder--error {
+  color: var(--float-quiet);
+}
+
 /* MapLibre's icons are images with dark ink baked in, so in dark mode only the
    icons are inverted, which leaves focus rings and hover tints as they are.
    The attribution button's own tint is inverted with it, from dark to light. */

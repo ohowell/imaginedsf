@@ -1,4 +1,7 @@
 import { cogProtocol } from '@geomatico/maplibre-cog-protocol'
+import MaplibreGeocoder from '@maplibre/maplibre-gl-geocoder'
+import '@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css'
+import * as maplibregl from 'maplibre-gl'
 import {
   addProtocol,
   Map as MapLibreMap,
@@ -6,6 +9,8 @@ import {
   NavigationControl,
   Popup,
   setWorkerUrl,
+  type FitBoundsOptions,
+  type FlyToOptions,
   type LngLatBoundsLike,
   type MapMouseEvent,
   type TransformStyleFunction,
@@ -20,6 +25,7 @@ import { BAY_AREA } from '../../plugins/content/bounds.ts'
 import { useTheme } from '../theme.ts'
 import { prepareCog } from './cog.ts'
 import { MapContext } from './context.ts'
+import { nominatim } from './geocoder.ts'
 import {
   basemapStyle,
   isLayerId,
@@ -46,6 +52,10 @@ const SAN_FRANCISCO: LngLatBoundsLike = [
 // Far enough out to fit the widest layers, the bay-wide harbour charts, with
 // some room around them on a phone-sized map.
 const MIN_ZOOM = 7.5
+
+// Search results with an extent are fitted to it, and points flown to; either
+// way, no closer in than a few blocks.
+const SEARCH_ZOOM: FlyToOptions & FitBoundsOptions = { maxZoom: 17 }
 
 // Carries the layers shown on top over to a new basemap's style.
 const keepLayers: TransformStyleFunction = (previous, next) => ({
@@ -105,8 +115,23 @@ export function MapView({
       // Also keeps the location button from leaving the Bay Area.
       maxBounds: BAY_AREA,
       minZoom: MIN_ZOOM,
-      attributionControl: { compact: true },
+      attributionControl: {
+        compact: true,
+        customAttribution:
+          'Search by <a href="https://nominatim.org/">Nominatim</a>',
+      },
     })
+    // Searches only when asked, never as someone types; see nominatim.
+    map.addControl(
+      new MaplibreGeocoder(nominatim, {
+        maplibregl,
+        placeholder: 'Search for an address or place',
+        showResultMarkers: false,
+        flyTo: SEARCH_ZOOM,
+        enableEventLogging: false,
+      }),
+      'top-left',
+    )
     map.addControl(new NavigationControl(), 'top-left')
     // Finds the visitor and follows them as they move, until they turn it off.
     map.addControl(
