@@ -25,6 +25,21 @@ function isFirstVisit() {
 const overlaps = (a: Bbox, b: Bbox) =>
   a[0] <= b[2] && a[2] >= b[0] && a[1] <= b[3] && a[3] >= b[1]
 
+// The box around these layers' bounding boxes, if any of them have one.
+function boundsOf(slugs: string[]): Bbox | undefined {
+  const boxes = slugs.flatMap((slug) => {
+    const { bbox } = content.layers[slug]
+    return bbox ? [bbox] : []
+  })
+  if (boxes.length === 0) return undefined
+  return [
+    Math.min(...boxes.map((box) => box[0])),
+    Math.min(...boxes.map((box) => box[1])),
+    Math.max(...boxes.map((box) => box[2])),
+    Math.max(...boxes.map((box) => box[3])),
+  ]
+}
+
 // Layers under these items at every level that pass `keep`, where items that
 // don't pass hide everything under them.
 function layersUnder(slugs: string[], keep: (slug: string) => boolean) {
@@ -86,8 +101,11 @@ export default function App() {
       setBasemap(slug)
       return
     }
-    if (!overlays.includes(slug)) setOverlays([...overlays, slug])
-    const { bbox } = content.layers[slug]
+    // A layer already on gets zoomed to by itself. Turning one on zooms to
+    // everything on, so it can be seen with the rest.
+    const shown = overlays.includes(slug) ? [slug] : [...overlays, slug]
+    if (!overlays.includes(slug)) setOverlays(shown)
+    const bbox = boundsOf(shown)
     if (bbox) setFocus({ bbox })
   }
 
