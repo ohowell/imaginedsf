@@ -13,7 +13,7 @@ body,
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(16rem, 24rem) 1fr;
+  grid-template-columns: minmax(auto, 32rem) 1fr;
   height: 100%;
 }
 
