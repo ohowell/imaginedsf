@@ -5,6 +5,7 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:nd167tg1191/BC47_WGS_cog.tif
 bbox: [-122.5210112, 37.6808923, -122.1254482, 37.9098091]
+parent: the-era-of-radical-technocracy
 wordpressId: 1021
 ---
 

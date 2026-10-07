@@ -5,9 +5,7 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:dm470nx3190/17_018_031_cog.tif
 bbox: [-122.401941, 37.7947216, -122.3952817, 37.7997869]
-children:
-  - perini-views
-  - vectors-golden-gateway
+parent: golden-gateway-redevelopment-competition
 wordpressId: 571
 ---
 

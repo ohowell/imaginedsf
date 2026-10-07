@@ -5,6 +5,7 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:yt225fn3638/Bay_Dams_WGS_cog.tif
 bbox: [-122.5428817, 37.7164855, -122.2674604, 38.0305133]
+parent: the-city-in-the-nation
 wordpressId: 998
 ---
 

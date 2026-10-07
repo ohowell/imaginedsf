@@ -1,16 +1,7 @@
 ---
 title: Golden Gateway Redevelopment Competition
 year: 1960
-maps:
-  - web-construction
-  - leiken-enterprises-ground-level-v2
-  - utah-construction-mcsweeney-kirby-loubet-glynn-architects
-  - utah-construction-alternate-plan
-  - eichler-homes-inc
-  - barrett-diversified
-  - tishman-cahill
-  - som-with-shadows
-  - perini
+parent: the-era-of-radical-technocracy
 wordpressId: 531
 ---
 

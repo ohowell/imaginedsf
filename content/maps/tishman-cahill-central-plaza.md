@@ -5,6 +5,7 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:ny174yd7254/17_018_018_cog.tif
 bbox: [-122.402768, 37.7951663, -122.3941733, 37.7995399]
+parent: tishman-cahill
 wordpressId: 553
 ---
 

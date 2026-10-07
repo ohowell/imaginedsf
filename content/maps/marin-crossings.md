@@ -5,8 +5,7 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:mj633mx8023/Marin_Crossing_WGS_cog.tif
 bbox: [-122.5754754, 37.7645227, -122.2846299, 37.9532701]
-children:
-  - views-of-marin-bridges
+parent: the-great-society
 wordpressId: 994
 ---
 

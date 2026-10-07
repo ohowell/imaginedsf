@@ -129,7 +129,7 @@ export default function App() {
               dangerouslySetInnerHTML={{ __html: era.description }}
             />
             <ul>
-              {era.items.map((item) => {
+              {era.children.map((item) => {
                 const group = content.groups[item]
                 if (!group) return row(item)
                 return (
@@ -144,7 +144,7 @@ export default function App() {
                       </span>
                       {info(item)}
                     </div>
-                    <ul>{group.maps.map(row)}</ul>
+                    <ul>{group.children.map(row)}</ul>
                   </li>
                 )
               })}

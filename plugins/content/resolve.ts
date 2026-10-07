@@ -35,13 +35,17 @@ export function resolveContent(
 
   const maps = new Map(raw.maps.map((entry) => [entry.slug, entry]))
   const groups = new Map(raw.groups.map((entry) => [entry.slug, entry]))
+  const eras = new Map(raw.eras.map((entry) => [entry.slug, entry]))
   const pages = new Map(raw.pages.map((entry) => [entry.slug, entry]))
 
-  // Eras list maps and groups by slug, so the two can't share one.
-  for (const group of raw.groups) {
-    const map = maps.get(group.slug)
-    if (map) {
-      error(group.file, `slug is also used by ${map.file}`)
+  // Parents are named by slug, so maps, groups and eras can't share one.
+  const slugs = new Map<string, string>()
+  for (const entry of [...raw.maps, ...raw.groups, ...raw.eras]) {
+    const other = slugs.get(entry.slug)
+    if (other) {
+      error(entry.file, `slug is also used by ${other}`)
+    } else {
+      slugs.set(entry.slug, entry.file)
     }
   }
 
@@ -58,8 +62,8 @@ export function resolveContent(
     }
   }
 
-  // Each map or group is listed in one place: the basemaps, an era, a group,
-  // or a map.
+  // Each map or group is listed in one place: the basemaps, or under the
+  // parent it names.
   const listings = new Map<string, Listing>()
   function list(slug: string, listing: Listing, allowGroups: boolean) {
     if (!maps.has(slug) && !(allowGroups && groups.has(slug))) {
@@ -107,64 +111,68 @@ export function resolveContent(
       }
     }
   }
-  for (const era of raw.eras) {
-    for (const slug of era.data.items) {
-      list(slug, { file: era.file }, true)
+  // Groups are listed under an era. Maps are listed under an era, a group,
+  // or a map like a plan's details and photos. Maps under maps nest one
+  // level, and not under basemaps.
+  const children = new Map<string, string[]>()
+  const addChild = (parent: string, slug: string) =>
+    children.set(parent, [...(children.get(parent) ?? []), slug])
+  for (const group of raw.groups) {
+    const { parent } = group.data
+    if (parent === undefined) continue
+    if (eras.has(parent)) {
+      list(group.slug, { file: group.file, parent }, true)
+      addChild(parent, group.slug)
+    } else {
+      error(group.file, `parent: no era named "${parent}"`)
+    }
+  }
+  for (const map of raw.maps) {
+    const { parent } = map.data
+    if (parent === undefined) continue
+    const target = maps.get(parent)
+    if (!target && !groups.has(parent) && !eras.has(parent)) {
+      error(map.file, `parent: no era, group or map named "${parent}"`)
+    } else if (target?.data.parent && maps.has(target.data.parent)) {
+      error(
+        map.file,
+        `parent: "${parent}" is under another map, so it can't be a parent`,
+      )
+    } else if (site?.data.basemaps.includes(parent)) {
+      error(map.file, `parent: "${parent}" is a basemap, so it can't be one`)
+    } else {
+      list(map.slug, { file: map.file, parent }, false)
+      addChild(parent, map.slug)
     }
   }
   for (const group of raw.groups) {
-    for (const slug of group.data.maps) {
-      list(slug, { file: group.file, parent: group.slug }, false)
+    if (!children.has(group.slug)) {
+      error(group.file, 'no maps name this group as their parent')
     }
   }
-  // Maps can have maps as children, like details and photos of a plan.
-  for (const map of raw.maps) {
-    for (const slug of map.data.children ?? []) {
-      list(slug, { file: map.file, parent: map.slug }, false)
-    }
-  }
-  for (const map of raw.maps) {
-    if (!map.data.children) continue
-    const parent = listings.get(map.slug)?.parent
-    if (parent && maps.has(parent)) {
-      error(
-        map.file,
-        `children: "${map.slug}" is listed under "${parent}", so it can't have children of its own`,
-      )
-    } else if (site?.data.basemaps.includes(map.slug)) {
-      error(map.file, "children: basemaps can't have children")
+  for (const era of raw.eras) {
+    if (!children.has(era.slug)) {
+      error(era.file, 'no maps or groups name this era as their parent')
     }
   }
 
-  // Groups are shown when listed in an era; maps when listed anywhere shown.
-  // Maps listed under each other are already errors, but mustn't loop here.
+  // Eras are always shown, and the rest when listed under something shown.
   const isShown = (slug: string): boolean => {
-    const seen = new Set<string>()
-    for (let current: string | undefined = slug; current;) {
-      const listing = listings.get(current)
-      if (!listing || seen.has(current)) return false
-      seen.add(current)
-      current = listing.parent
-    }
-    return true
+    if (eras.has(slug)) return true
+    const listing = listings.get(slug)
+    return listing !== undefined && (!listing.parent || isShown(listing.parent))
   }
   const shownMaps = raw.maps.filter((map) => isShown(map.slug))
   const shownGroups = raw.groups.filter((group) => isShown(group.slug))
 
   for (const group of raw.groups) {
     if (!listings.has(group.slug)) {
-      warn(
-        group.file,
-        "isn't listed in any era, so it and its maps aren't shown",
-      )
+      warn(group.file, "has no parent, so it and its maps aren't shown")
     }
   }
   for (const map of raw.maps) {
     if (!listings.has(map.slug)) {
-      warn(
-        map.file,
-        "isn't listed in any era, group, map or basemap list, so it isn't shown",
-      )
+      warn(map.file, "has no parent and isn't a basemap, so it isn't shown")
     }
   }
 
@@ -252,6 +260,17 @@ export function resolveContent(
     return { content: undefined, assets: [], errors, warnings }
   }
 
+  // Child maps are listed by year, then title.
+  const byYearAndTitle = (a: string, b: string) => {
+    const [first, second] = [a, b].map(
+      (slug) => (maps.get(slug) ?? groups.get(slug))?.data,
+    )
+    return (
+      (first?.year ?? 0) - (second?.year ?? 0) ||
+      (first?.title ?? '').localeCompare(second?.title ?? '')
+    )
+  }
+
   // Asset paths get the site's base path, like /imaginedsf/assets/...
   const withBase = (url: string) =>
     isAsset(url) ? `${base}${url.slice(1)}` : url
@@ -267,13 +286,19 @@ export function resolveContent(
           source: { ...data.source, url: withBase(data.source.url) },
           slug,
           description: rendered(file),
+          children: children.get(slug)?.toSorted(byYearAndTitle),
         },
       ]),
     ),
     groups: Object.fromEntries(
       shownGroups.map(({ slug, file, data }) => [
         slug,
-        { ...data, slug, description: rendered(file) },
+        {
+          ...data,
+          slug,
+          description: rendered(file),
+          children: (children.get(slug) ?? []).toSorted(byYearAndTitle),
+        },
       ]),
     ),
     eras: raw.eras
@@ -281,6 +306,7 @@ export function resolveContent(
         ...data,
         slug,
         description: rendered(file),
+        children: (children.get(slug) ?? []).toSorted(byYearAndTitle),
       }))
       .sort((a, b) => a.start - b.start || a.title.localeCompare(b.title)),
     basemaps: site.data.basemaps,

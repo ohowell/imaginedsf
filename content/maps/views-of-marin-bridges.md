@@ -9,5 +9,6 @@ source:
     images: URL
     direction: Bearing
 bbox: [-122.5754754, 37.7645227, -122.2846299, 37.9532701]
+parent: marin-crossings
 wordpressId: 1330
 ---

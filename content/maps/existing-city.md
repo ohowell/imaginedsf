@@ -9,5 +9,6 @@ source:
     images: URL
     direction: Bearing
 bbox: [-122.5300085, 37.6855041, -122.3487013, 37.8243963]
+parent: burnham-plan
 wordpressId: 1045
 ---

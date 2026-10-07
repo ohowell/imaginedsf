@@ -10,6 +10,7 @@ source:
     images: URL
     direction: Bearing
 bbox: [-122.4023769, 37.7928788, -122.3905933, 37.8001978]
+parent: utah-construction-alternate-plan
 wordpressId: 1262
 ---
 

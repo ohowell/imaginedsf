@@ -31,10 +31,10 @@ const map = (slug: string, data: Partial<MapData> = {}) =>
     source: { type: 'tile', url: 'https://tiles.example/{z}/{x}/{y}.png' },
     ...data,
   })
-const group = (slug: string, maps: string[]) =>
-  entry<GroupData>('groups', slug, { title: slug, maps })
-const era = (slug: string, start: number, items: string[]) =>
-  entry<EraData>('eras', slug, { title: slug, start, end: start + 10, items })
+const group = (slug: string, parent?: string) =>
+  entry<GroupData>('groups', slug, { title: slug, parent })
+const era = (slug: string, start: number) =>
+  entry<EraData>('eras', slug, { title: slug, start, end: start + 10 })
 
 function fixture(overrides: Partial<RawContent> = {}): RawContent {
   return {
@@ -43,9 +43,13 @@ function fixture(overrides: Partial<RawContent> = {}): RawContent {
       file: 'content/site.yml',
       data: { basemaps: ['base'], defaultBasemap: 'base' },
     },
-    maps: [map('base'), map('plan'), map('grouped')],
-    groups: [group('proposals', ['grouped'])],
-    eras: [era('later', 1950, ['plan']), era('earlier', 1900, ['proposals'])],
+    maps: [
+      map('base'),
+      map('plan', { parent: 'later' }),
+      map('grouped', { parent: 'proposals' }),
+    ],
+    groups: [group('proposals', 'earlier')],
+    eras: [era('later', 1950), era('earlier', 1900)],
     pages: pageNames.map((name) => entry('pages', name, { title: name })),
     assets: [],
     geojson: new Map(),
@@ -62,6 +66,10 @@ describe('resolveContent', () => {
     expect(errors).toEqual([])
     expect(warnings).toEqual([])
     expect(content?.eras.map((era) => era.slug)).toEqual(['earlier', 'later'])
+    expect(content?.eras.map((era) => era.children)).toEqual([
+      ['proposals'],
+      ['plan'],
+    ])
     expect(Object.keys(content?.maps ?? {}).sort()).toEqual([
       'base',
       'grouped',
@@ -75,31 +83,75 @@ describe('resolveContent', () => {
     const { content, warnings } = resolveContent(raw)
     expect(content?.maps.draft).toBeUndefined()
     expect(messages(warnings)).toEqual([
-      "content/maps/draft.md: isn't listed in any era, group, map or basemap list, so it isn't shown",
+      "content/maps/draft.md: has no parent and isn't a basemap, so it isn't shown",
     ])
   })
 
   it('rejects a map listed in two places', () => {
     const raw = fixture()
-    raw.eras[0].data.items.push('grouped')
+    raw.site!.data.basemaps.push('plan')
     expect(messages(resolveContent(raw).errors)).toEqual([
-      'content/groups/proposals.md: "grouped" is also listed in content/eras/later.md',
+      'content/maps/plan.md: "plan" is also listed in content/site.yml',
     ])
   })
 
   it('rejects references to missing maps', () => {
     const raw = fixture()
-    raw.eras[0].data.items.push('missing')
+    raw.site!.data.basemaps.push('missing')
+    raw.maps.push(map('stray', { parent: 'missing' }))
+    raw.groups.push(group('lost', 'plan'))
     expect(messages(resolveContent(raw).errors)).toEqual([
-      'content/eras/later.md: no map or group named "missing"',
+      'content/site.yml: no map named "missing"',
+      'content/groups/lost.md: parent: no era named "plan"',
+      'content/maps/stray.md: parent: no era, group or map named "missing"',
+      'content/groups/lost.md: no maps name this group as their parent',
     ])
   })
 
   it('rejects groups where only maps are allowed', () => {
     const raw = fixture()
-    raw.groups.push(group('nested', ['proposals']))
+    raw.site!.data.basemaps.push('proposals')
     expect(messages(resolveContent(raw).errors)).toContain(
-      'content/groups/nested.md: "proposals" is a group, but only maps can be listed here',
+      'content/site.yml: "proposals" is a group, but only maps can be listed here',
+    )
+  })
+
+  it('lists maps under their group, and rejects empty groups', () => {
+    const raw = fixture()
+    raw.maps.push(map('also-grouped', { parent: 'proposals' }))
+    raw.groups.push(group('empty', 'earlier'))
+    const { content, errors } = resolveContent(raw)
+    expect(messages(errors)).toEqual([
+      'content/groups/empty.md: no maps name this group as their parent',
+    ])
+    raw.groups.pop()
+    expect(resolveContent(raw).content?.groups.proposals.children).toEqual([
+      'also-grouped',
+      'grouped',
+    ])
+    expect(content).toBeUndefined()
+  })
+
+  it('lists maps and groups in eras by year, and rejects empty eras', () => {
+    const raw = fixture()
+    raw.maps.push(map('survey', { parent: 'earlier', year: 1901 }))
+    raw.groups[0].data.year = 1905
+    raw.eras.push(era('empty', 2000))
+    expect(messages(resolveContent(raw).errors)).toEqual([
+      'content/eras/empty.md: no maps or groups name this era as their parent',
+    ])
+    raw.eras.pop()
+    expect(resolveContent(raw).content?.eras[0].children).toEqual([
+      'survey',
+      'proposals',
+    ])
+  })
+
+  it('rejects an era sharing a slug with a map', () => {
+    const raw = fixture()
+    raw.eras.push(era('plan', 2000))
+    expect(messages(resolveContent(raw).errors)).toContain(
+      'content/eras/plan.md: slug is also used by content/maps/plan.md',
     )
   })
 
@@ -111,39 +163,38 @@ describe('resolveContent', () => {
     )
   })
 
-  it('shows maps listed under a shown map', () => {
+  it('lists maps under their parent, by year and then title', () => {
     const raw = fixture()
-    raw.maps.push(map('detail'), map('draft', { children: ['draft-detail'] }))
-    raw.maps.push(map('draft-detail'))
-    raw.maps[1].data.children = ['detail']
-    const { content, errors, warnings } = resolveContent(raw)
-    expect([...errors, ...warnings]).toEqual([
-      expect.objectContaining({ file: 'content/maps/draft.md' }),
+    raw.maps.push(
+      map('photos', { parent: 'plan', year: 1960 }),
+      map('detail', { parent: 'plan', year: 1950 }),
+      map('draft'),
+      map('draft-detail', { parent: 'draft' }),
+    )
+    const { content, warnings } = resolveContent(raw)
+    expect(messages(warnings)).toEqual([
+      "content/maps/draft.md: has no parent and isn't a basemap, so it isn't shown",
     ])
-    expect(content?.maps.plan.children).toEqual(['detail'])
-    expect(content?.maps.detail).toBeDefined()
+    expect(content?.maps.plan.children).toEqual(['detail', 'photos'])
     expect(content?.maps['draft-detail']).toBeUndefined()
   })
 
-  it('keeps maps from nesting deeper, or under basemaps', () => {
+  it('keeps maps under maps one level deep, and off basemaps', () => {
     const raw = fixture()
-    raw.maps.push(map('detail', { children: ['photos'] }), map('photos'))
-    raw.maps.push(map('legend'))
-    raw.maps[0].data.children = ['legend']
-    raw.maps[1].data.children = ['detail']
-    expect(messages(resolveContent(raw).errors)).toEqual([
-      "content/maps/base.md: children: basemaps can't have children",
-      'content/maps/detail.md: children: "detail" is listed under "plan", so it can\'t have children of its own',
-    ])
-  })
-
-  it('stops at maps listed under each other', () => {
-    const raw = fixture()
-    raw.maps.push(map('a', { children: ['b'] }), map('b', { children: ['a'] }))
-    const { errors } = resolveContent(raw)
-    expect(messages(errors)).toContain(
-      'content/maps/a.md: children: "a" is listed under "b", so it can\'t have children of its own',
+    raw.maps.push(
+      map('detail', { parent: 'plan' }),
+      map('photos', { parent: 'detail' }),
+      map('entry-photos', { parent: 'grouped' }),
+      map('legend', { parent: 'base' }),
+      map('loop', { parent: 'loop' }),
+      map('stray', { parent: 'missing' }),
     )
+    expect(messages(resolveContent(raw).errors)).toEqual([
+      'content/maps/photos.md: parent: "detail" is under another map, so it can\'t be a parent',
+      'content/maps/legend.md: parent: "base" is a basemap, so it can\'t be one',
+      'content/maps/loop.md: parent: "loop" is under another map, so it can\'t be a parent',
+      'content/maps/stray.md: parent: no era, group or map named "missing"',
+    ])
   })
 
   it('rejects a showWith map that is not shown', () => {
@@ -287,7 +338,7 @@ describe('groupSchema', () => {
   it('accepts an end year only after a start year', () => {
     const errors = (data: object) =>
       groupSchema
-        .safeParse({ title: 'Surveys', maps: ['survey'], ...data })
+        .safeParse({ title: 'Surveys', ...data })
         .error?.issues.map((issue) => issue.message)
     expect(errors({ year: 1853, endYear: 1884 })).toBeUndefined()
     expect(errors({ endYear: 1884 })).toEqual([

@@ -6,6 +6,7 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:ry317rh9880/WesternAddition2_cog.tif
 bbox: [-122.4454647, 37.7744121, -122.4171837, 37.7899039]
+parent: western-addition-urban-renewal
 wordpressId: 271
 ---
 

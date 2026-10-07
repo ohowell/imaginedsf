@@ -9,6 +9,7 @@ source:
     images: URL
     direction: Bearing
 bbox: [-122.4024207, 37.7946642, -122.3942623, 37.7995399]
+parent: eichler-homes-inc
 wordpressId: 1088
 ---
 

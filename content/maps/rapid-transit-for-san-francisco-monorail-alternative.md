@@ -6,8 +6,7 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:mk287bp9385/RapidTransit1952_cog.tif
 bbox: [-122.5234834, 37.6972869, -122.3488354, 37.8250557]
-children:
-  - monorail-models
+parent: the-era-of-radical-technocracy
 wordpressId: 273
 ---
 

@@ -10,9 +10,24 @@ import type {
 // and items refer to each other by slug.
 
 export type MapSource = MapData['source']
-export type MapLayer = MapData & { slug: string; description: string }
-export type MapGroup = GroupData & { slug: string; description: string }
-export type Era = EraData & { slug: string; description: string }
+export type MapLayer = MapData & {
+  slug: string
+  description: string
+  /** Slugs of the maps whose parent this is. */
+  children?: string[]
+}
+export type MapGroup = GroupData & {
+  slug: string
+  description: string
+  /** Slugs of the maps whose parent this is. */
+  children: string[]
+}
+export type Era = EraData & {
+  slug: string
+  description: string
+  /** Slugs of the maps and groups whose parent this is. */
+  children: string[]
+}
 export type Page = PageData & { body: string }
 
 export interface Content {

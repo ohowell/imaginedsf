@@ -98,8 +98,9 @@ export const mapSchema = z.strictObject({
   showWith: slug.optional(),
   source,
   bbox: bbox.optional(),
-  // Maps listed under this one, like details and photos of a plan.
-  children: z.array(slug).min(1).optional(),
+  // The era, group or map this one is listed under, like a plan for its
+  // details and photos.
+  parent: slug.optional(),
   wordpressId,
 })
 
@@ -109,7 +110,8 @@ export const groupSchema = z
     year: year.optional(),
     // For groups that span years, like a series of surveys.
     endYear: year.optional(),
-    maps: z.array(slug).min(1),
+    // The era this group is listed in.
+    parent: slug.optional(),
     wordpressId,
   })
   .refine(({ year, endYear }) => endYear === undefined || year !== undefined, {
@@ -126,7 +128,6 @@ export const eraSchema = z
     title,
     start: year,
     end: year,
-    items: z.array(slug),
     wordpressId,
   })
   .refine(({ start, end }) => start <= end, {

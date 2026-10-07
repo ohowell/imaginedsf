@@ -5,6 +5,7 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:kk722zn5346/Powell_Cropped_WGS_cog.tif
 bbox: [-122.4131667, 37.7799707, -122.4045615, 37.7867108]
+parent: downtown-design-plan
 wordpressId: 275
 ---
 

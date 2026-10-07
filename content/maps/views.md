@@ -8,5 +8,6 @@ source:
     text: Caption
     images: URL
     direction: Bearing
+parent: jefferson-square
 wordpressId: 1049
 ---

@@ -5,10 +5,7 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:sc701bn0182/DTPlanWGS_cog.tif
 bbox: [-122.4444617, 37.7552866, -122.3715582, 37.8124211]
-children:
-  - powell-plaza
-  - fulton-circle
-  - views-of-downtown-design-plan
+parent: the-era-of-radical-technocracy
 wordpressId: 303
 ---
 

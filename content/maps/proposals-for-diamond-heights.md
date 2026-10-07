@@ -7,6 +7,7 @@ source:
   properties:
     text: Caption
     images: URL
+parent: diamond-heights-1973
 wordpressId: 1253
 ---
 

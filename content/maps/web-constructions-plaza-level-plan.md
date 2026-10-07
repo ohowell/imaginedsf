@@ -5,6 +5,7 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:rs156nt0154/17_018_045_cog.tif
 bbox: [-122.4016494, 37.7935954, -122.3950888, 37.7997431]
+parent: web-construction
 wordpressId: 541
 ---
 

@@ -8,5 +8,6 @@ source:
     text: Caption
     images: URL
     direction: Bearing
+parent: southern-crossing
 wordpressId: 1250
 ---

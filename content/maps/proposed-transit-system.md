@@ -5,6 +5,7 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:mh004sr6425/RapidTransit1950_cog.tif
 bbox: [-122.5175077, 37.7050263, -122.322507, 37.8202307]
+parent: the-era-of-radical-technocracy
 wordpressId: 299
 ---
 

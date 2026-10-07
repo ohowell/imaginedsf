@@ -5,9 +5,7 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:pr375py0621/DiamondHeights_cog.tif
 bbox: [-122.4524919, 37.7333223, -122.4234321, 37.7501957]
-children:
-  - proposals-for-diamond-heights
-  - vectors-diamond-heights-historic-photographs
+parent: the-era-of-radical-technocracy
 wordpressId: 301
 ---
 
