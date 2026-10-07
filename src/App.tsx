@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import content from 'virtual:content'
 import type { PageName } from '../plugins/content/schema.ts'
 import { AboutDialog } from './AboutDialog.tsx'
@@ -9,6 +9,18 @@ import { InfoButton } from './InfoButton.tsx'
 import { MapView } from './map/MapView.tsx'
 
 type Bbox = [number, number, number, number]
+
+// Remembers that someone has been here, so the introduction opens only once.
+const VISITED_KEY = 'imaginedsf:visited'
+
+function isFirstVisit() {
+  try {
+    return localStorage.getItem(VISITED_KEY) === null
+  } catch {
+    // With storage blocked, the introduction opens on every visit.
+    return true
+  }
+}
 
 const overlaps = (a: Bbox, b: Bbox) =>
   a[0] <= b[2] && a[2] >= b[0] && a[1] <= b[3] && a[3] >= b[1]
@@ -31,8 +43,18 @@ export default function App() {
   const [focus, setFocus] = useState<{ bbox: Bbox }>()
   // Slug of the layer or group whose description is open.
   const [about, setAbout] = useState<string>()
-  // The page open from the header.
-  const [page, setPage] = useState<PageName>()
+  // The page open from the header, starting with the introduction for
+  // first-time visitors.
+  const [page, setPage] = useState<PageName | undefined>(() =>
+    isFirstVisit() ? 'introduction' : undefined,
+  )
+  useEffect(() => {
+    try {
+      localStorage.setItem(VISITED_KEY, new Date().toISOString())
+    } catch {
+      // Storage is blocked; see isFirstVisit.
+    }
+  }, [])
   const [onlyInView, setOnlyInView] = useState(false)
   const [view, setView] = useState<Bbox>()
 
