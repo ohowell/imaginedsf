@@ -85,6 +85,8 @@ content:
     type: collection
     path: content/layers
     format: yaml-frontmatter
+    # The site only reads files directly in each content folder.
+    subfolders: false
     filename: '{primary}.md'
     # File names are part of links, and of other items' lists.
     operations:
@@ -221,6 +223,7 @@ content:
     type: collection
     path: content/groups
     format: yaml-frontmatter
+    subfolders: false
     filename: '{primary}.md'
     operations:
       rename: false
@@ -252,6 +255,7 @@ content:
     type: collection
     path: content/eras
     format: yaml-frontmatter
+    subfolders: false
     filename: '{primary}.md'
     operations:
       rename: false
@@ -288,6 +292,7 @@ content:
     type: collection
     path: content/pages
     format: yaml-frontmatter
+    subfolders: false
     # The site has a fixed set of pages.
     operations:
       create: false
