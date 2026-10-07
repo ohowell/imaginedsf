@@ -32,6 +32,31 @@ body,
   font-size: 1rem;
 }
 
+.intro {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(128 128 128 / 40%);
+}
+
+.intro p {
+  margin: 0;
+}
+
+.intro label {
+  margin-top: 0.75rem;
+}
+
+.show-hidden {
+  padding: 0;
+  font: inherit;
+  font-style: italic;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  opacity: 0.8;
+}
+
 .era-description {
   margin-bottom: 0.5rem;
   font-style: italic;

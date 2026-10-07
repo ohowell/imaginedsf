@@ -7,6 +7,19 @@ import { MapView } from './map/MapView.tsx'
 
 type Bbox = [number, number, number, number]
 
+const overlaps = (a: Bbox, b: Bbox) =>
+  a[0] <= b[2] && a[2] >= b[0] && a[1] <= b[3] && a[3] >= b[1]
+
+// Layers under these items at every level that pass `keep`, where items that
+// don't pass hide everything under them.
+function layersUnder(slugs: string[], keep: (slug: string) => boolean) {
+  return slugs.filter(keep).flatMap((slug): string[] => {
+    const group = content.groups[slug]
+    if (group) return layersUnder(group.children, keep)
+    return [slug, ...layersUnder(content.layers[slug].children ?? [], keep)]
+  })
+}
+
 // Map test: every layer, grouped by era, and a basemap switcher on the map.
 export default function App() {
   const [basemap, setBasemap] = useState(content.defaultBasemap)
@@ -15,6 +28,27 @@ export default function App() {
   const [focus, setFocus] = useState<{ bbox: Bbox }>()
   // Slug of the layer or group whose description is open.
   const [about, setAbout] = useState<string>()
+  const [onlyInView, setOnlyInView] = useState(false)
+  const [view, setView] = useState<Bbox>()
+
+  // Whether a layer is on, covers part of the view, or has a child that does.
+  const affectsView = (slug: string): boolean => {
+    const { bbox, children = [] } = content.layers[slug]
+    return (
+      overlays.includes(slug) ||
+      (bbox !== undefined && view !== undefined && overlaps(bbox, view)) ||
+      children.some(affectsView)
+    )
+  }
+
+  // Whether to list an item. Layers without a bounding box go with their
+  // parent, and groups are listed while any of their layers are.
+  const isListed = (slug: string): boolean => {
+    if (!onlyInView) return true
+    const group = content.groups[slug]
+    if (group) return group.children.some(isListed)
+    return !content.layers[slug].bbox || affectsView(slug)
+  }
 
   function show(slug: string) {
     if (content.basemaps.includes(slug)) {
@@ -73,7 +107,7 @@ export default function App() {
             }
           />
         )}
-        {layer.children && <ul>{layer.children.map(row)}</ul>}
+        {layer.children && <ul>{layer.children.filter(isListed).map(row)}</ul>}
       </li>
     )
   }
@@ -82,48 +116,83 @@ export default function App() {
     <div className="layout">
       <aside className="panel">
         <h1>Imagined San Francisco</h1>
-        {content.eras.map((era) => (
-          <section key={era.slug}>
-            <h2>
-              {era.title}{' '}
-              <small>
-                {era.start}–{era.end}
-              </small>
-            </h2>
-            {/* Rendered at build time from the site's own Markdown. */}
-            <div
-              className="era-description"
-              dangerouslySetInnerHTML={{ __html: era.description }}
-            />
-            <ul>
-              {era.children.map((item) => {
-                const group = content.groups[item]
-                if (!group) return row(item)
-                return (
-                  <li key={item}>
-                    <div className="row">
-                      <span>
-                        {group.title}{' '}
-                        <small>
-                          {group.year}
-                          {group.endYear && `–${group.endYear}`}
-                        </small>
-                      </span>
-                      <InfoButton slug={item} onOpen={setAbout} />
-                    </div>
-                    <ul>{group.children.map(row)}</ul>
+        <section className="intro">
+          <h2>{content.pages['maps-and-plans'].title}</h2>
+          {/* Rendered at build time from the site's own Markdown. */}
+          <div
+            dangerouslySetInnerHTML={{
+              __html: content.pages['maps-and-plans'].body,
+            }}
+          />
+          <label>
+            <input
+              type="checkbox"
+              checked={onlyInView}
+              onChange={() => setOnlyInView(!onlyInView)}
+            />{' '}
+            Only show layers affecting visible area
+          </label>
+        </section>
+        {content.eras.map((era) => {
+          const hidden =
+            layersUnder(era.children, () => true).length -
+            layersUnder(era.children, isListed).length
+          return (
+            <section key={era.slug}>
+              <h2>
+                {era.title}{' '}
+                <small>
+                  {era.start}–{era.end}
+                </small>
+              </h2>
+              {/* Rendered at build time from the site's own Markdown. */}
+              <div
+                className="era-description"
+                dangerouslySetInnerHTML={{ __html: era.description }}
+              />
+              <ul>
+                {era.children.filter(isListed).map((item) => {
+                  const group = content.groups[item]
+                  if (!group) return row(item)
+                  return (
+                    <li key={item}>
+                      <div className="row">
+                        <span>
+                          {group.title}{' '}
+                          <small>
+                            {group.year}
+                            {group.endYear && `–${group.endYear}`}
+                          </small>
+                        </span>
+                        <InfoButton slug={item} onOpen={setAbout} />
+                      </div>
+                      <ul>{group.children.filter(isListed).map(row)}</ul>
+                    </li>
+                  )
+                })}
+                {hidden > 0 && (
+                  <li>
+                    <button
+                      type="button"
+                      className="show-hidden"
+                      onClick={() => setOnlyInView(false)}
+                    >
+                      Show {hidden} hidden {hidden === 1 ? 'layer' : 'layers'}{' '}
+                      outside the visible area
+                    </button>
                   </li>
-                )
-              })}
-            </ul>
-          </section>
-        ))}
+                )}
+              </ul>
+            </section>
+          )
+        })}
       </aside>
       <MapView
         basemap={basemap}
         layers={overlays}
         opacity={opacity}
         focus={focus}
+        onViewChange={setView}
       >
         <BasemapControl
           basemap={basemap}

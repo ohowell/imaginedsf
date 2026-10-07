@@ -65,6 +65,8 @@ interface MapViewProps {
   opacity: Record<string, number>
   /** A box to zoom to whenever it changes. */
   focus?: { bbox: [number, number, number, number] }
+  /** Called with the visible area as it changes, as west, south, east, north. */
+  onViewChange?: (bbox: [number, number, number, number]) => void
   /** Controls to float over the map, like `MapControl`s. */
   children?: ReactNode
 }
@@ -74,6 +76,7 @@ export function MapView({
   layers,
   opacity,
   focus,
+  onViewChange,
   children,
 }: MapViewProps) {
   const container = useRef<HTMLDivElement>(null)
@@ -191,6 +194,19 @@ export function MapView({
   useEffect(() => {
     if (map && focus) map.fitBounds(focus.bbox, { padding: 40 })
   }, [map, focus])
+
+  useEffect(() => {
+    if (!map || !onViewChange) return
+    const report = () => {
+      const [[west, south], [east, north]] = map.getBounds().toArray()
+      onViewChange([west, south, east, north])
+    }
+    report()
+    map.on('moveend', report)
+    return () => {
+      map.off('moveend', report)
+    }
+  }, [map, onViewChange])
 
   // Pins open a popup with their caption and photos.
   useEffect(() => {
