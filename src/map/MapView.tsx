@@ -23,9 +23,10 @@ import {
   layerSpec,
   popupContent,
   setLayerOpacity,
+  setSelectedPin,
   sourceSpec,
 } from './layers.ts'
-import { addMissingPin } from './pins.ts'
+import { addMissingPin, PIN_SIZE } from './pins.ts'
 
 // MapLibre finds its worker next to its own file, which Vite moves, so point
 // it at a bundled copy instead.
@@ -215,14 +216,31 @@ export function MapView({
       map
         .queryRenderedFeatures(event.point)
         .find((feature) => isLayerId(feature.layer.id))
+    // The pin whose popup is open, which looks selected.
+    type Pin = { slug: string; id: string | number }
+    let selected: Pin | undefined
+    const select = (pin?: Pin) => {
+      if (selected) setSelectedPin(map, content.layers[selected.slug])
+      selected = pin
+      if (pin) setSelectedPin(map, content.layers[pin.slug], pin.id)
+    }
     const onClick = (event: MapMouseEvent) => {
       const feature = pinAt(event)
       if (feature?.geometry.type !== 'Point') return
       const slug = layerSlug(feature.layer.id)
-      new Popup({ maxWidth: '20rem' })
+      const pin =
+        feature.id === undefined ? undefined : { slug, id: feature.id }
+      select(pin)
+      // Opens beside the pin's target rather than over it.
+      const popup = new Popup({ maxWidth: '20rem', offset: PIN_SIZE / 2 })
         .setLngLat(feature.geometry.coordinates as [number, number])
         .setDOMContent(popupContent(content.layers[slug], feature))
-        .addTo(map)
+      // Clicking another pin closes this popup after opening the next, so
+      // only deselect if this popup's pin is still the selected one.
+      popup.on('close', () => {
+        if (selected === pin) select()
+      })
+      popup.addTo(map)
     }
     const onMove = (event: MapMouseEvent) => {
       map.getCanvas().style.cursor = pinAt(event) ? 'pointer' : ''

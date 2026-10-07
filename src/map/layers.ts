@@ -5,7 +5,12 @@ import type {
   TransformStyleFunction,
 } from 'maplibre-gl'
 import type { Layer, LayerSource } from '../../plugins/content/types.ts'
-import { DIRECTIONAL_PIN, PIN } from './pins.ts'
+import {
+  DIRECTIONAL_PIN,
+  PIN,
+  SELECTED_DIRECTIONAL_PIN,
+  SELECTED_PIN,
+} from './pins.ts'
 
 export type StyleSpecification = ReturnType<TransformStyleFunction>
 type SourceSpecification = StyleSpecification['sources'][string]
@@ -105,7 +110,13 @@ export function sourceSpec(source: SingleLayerSource): SourceSpecification {
         attribution: credit,
       }
     case 'geojson':
-      return { type: 'geojson', data: source.url, attribution: credit }
+      // IDs for each feature, so the one whose popup is open can be picked out.
+      return {
+        type: 'geojson',
+        data: source.url,
+        attribution: credit,
+        generateId: true,
+      }
   }
 }
 
@@ -121,7 +132,7 @@ export function layerSpec(layer: Layer): AddLayerObject {
     type: 'symbol',
     source: id,
     layout: {
-      'icon-image': direction ? DIRECTIONAL_PIN : PIN,
+      ...pinLayout(layer),
       'icon-rotate': direction ? ['to-number', ['get', direction], 0] : 0,
       'icon-rotation-alignment': 'map',
       'icon-allow-overlap': true,
@@ -130,16 +141,55 @@ export function layerSpec(layer: Layer): AddLayerObject {
   }
 }
 
+type SymbolLayout = NonNullable<
+  Extract<AddLayerObject, { type: 'symbol' }>['layout']
+>
+
+// Pin images, with the selected one for the feature whose popup is open,
+// drawn above the others.
+function pinLayout(
+  layer: Layer,
+  selectedId?: string | number,
+): Pick<SymbolLayout, 'icon-image' | 'symbol-sort-key'> {
+  const directional =
+    layer.source.type === 'geojson' &&
+    Boolean(layer.source.properties?.direction)
+  const pin = directional ? DIRECTIONAL_PIN : PIN
+  if (selectedId === undefined) {
+    return { 'icon-image': pin, 'symbol-sort-key': 0 }
+  }
+  return {
+    'icon-image': [
+      'case',
+      ['==', ['id'], selectedId],
+      directional ? SELECTED_DIRECTIONAL_PIN : SELECTED_PIN,
+      pin,
+    ],
+    'symbol-sort-key': ['case', ['==', ['id'], selectedId], 1, 0],
+  }
+}
+
+/** Shows which of a layer's pins has its popup open, or none. */
+export function setSelectedPin(
+  map: MapLibreMap,
+  layer: Layer,
+  featureId?: string | number,
+) {
+  const id = layerId(layer.slug)
+  if (!map.getLayer(id)) return
+  const layout = pinLayout(layer, featureId)
+  map.setLayoutProperty(id, 'icon-image', layout['icon-image'])
+  map.setLayoutProperty(id, 'symbol-sort-key', layout['symbol-sort-key'])
+}
+
+/** Fades a raster layer. Pins always stay fully opaque. */
 export function setLayerOpacity(
   map: MapLibreMap,
   layer: Layer,
   opacity: number,
 ) {
-  map.setPaintProperty(
-    layerId(layer.slug),
-    layer.source.type === 'geojson' ? 'icon-opacity' : 'raster-opacity',
-    opacity,
-  )
+  if (layer.source.type === 'geojson') return
+  map.setPaintProperty(layerId(layer.slug), 'raster-opacity', opacity)
 }
 
 /** The text and images for a pin's popup. */

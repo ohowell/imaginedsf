@@ -143,7 +143,7 @@ export default function App() {
           </label>
           <InfoButton slug={slug} onOpen={setAbout} />
         </div>
-        {shown && (
+        {shown && layer.source.type !== 'geojson' && (
           <input
             type="range"
             min={0}
