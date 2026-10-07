@@ -37,7 +37,7 @@ body,
 .layout {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  grid-template-columns: minmax(auto, 32rem) 1fr;
+  grid-template-columns: minmax(auto, 26rem) 1fr;
   height: 100%;
 }
 
