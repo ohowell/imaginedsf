@@ -73,7 +73,7 @@
 /* MapLibre's icons are images with dark ink baked in, so in dark mode only the
    icons are inverted, which leaves focus rings and hover tints as they are.
    The attribution button's own tint is inverted with it, from dark to light. */
-@media (prefers-color-scheme: dark) {
+:root[data-theme='dark'] {
   .maplibregl-ctrl-icon,
   .maplibregl-ctrl-attrib-button {
     filter: invert(1);

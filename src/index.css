@@ -1,7 +1,11 @@
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   font-family: 'Mulish Variable', system-ui, sans-serif;
   line-height: 1.5;
+  /* Set rather than left to the browser, which can keep its own scheme's
+     background when the page's changes. */
+  color: CanvasText;
+  background-color: Canvas;
 
   /* For things floating over the map, like its controls and popups. */
   --float-surface: light-dark(#fff, #2a2a2a);
@@ -9,6 +13,10 @@
   --float-quiet: light-dark(rgb(0 0 0 / 75%), rgb(255 255 255 / 70%));
   --float-border: light-dark(rgb(0 0 0 / 10%), rgb(255 255 255 / 15%));
   --float-hover: light-dark(rgb(0 0 0 / 5%), rgb(255 255 255 / 8%));
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
 }
 
 /* Form controls use the system font unless told otherwise. */
@@ -62,6 +70,7 @@ body,
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem 1.5rem;
+  align-items: center;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -76,6 +85,20 @@ body,
   background: none;
   border: none;
   opacity: 0.8;
+}
+
+.site-header .theme-toggle {
+  display: flex;
+}
+
+.site-header .theme-toggle svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .site-header nav button:hover,

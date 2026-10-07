@@ -13,14 +13,9 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 // After MapLibre's styles, which it overrides.
 import './map.css'
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
-import {
-  useEffect,
-  useRef,
-  useState,
-  useSyncExternalStore,
-  type ReactNode,
-} from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import content from 'virtual:content'
+import { useTheme } from '../theme.ts'
 import { prepareCog } from './cog.ts'
 import { MapContext } from './context.ts'
 import {
@@ -49,19 +44,6 @@ const SAN_FRANCISCO: LngLatBoundsLike = [
 // Far enough out to fit the widest layers, the bay-wide harbour charts, with
 // some room around them on a phone-sized map.
 const MIN_ZOOM = 7.5
-
-const darkScheme = window.matchMedia('(prefers-color-scheme: dark)')
-
-// Whether the page is in dark mode, following changes to it.
-function usePrefersDark() {
-  return useSyncExternalStore(
-    (onChange) => {
-      darkScheme.addEventListener('change', onChange)
-      return () => darkScheme.removeEventListener('change', onChange)
-    },
-    () => darkScheme.matches,
-  )
-}
 
 // Carries the layers shown on top over to a new basemap's style.
 const keepLayers: TransformStyleFunction = (previous, next) => ({
@@ -129,10 +111,10 @@ export function MapView({
 
   // Basemaps with a dark version switch to it in dark mode. The rest stay put,
   // so changing the color scheme doesn't reload them.
-  const prefersDark = usePrefersDark()
+  const theme = useTheme()
   const basemapSource = content.layers[basemap].source
   const darkBasemap =
-    prefersDark &&
+    theme === 'dark' &&
     basemapSource.type === 'style' &&
     basemapSource.darkUrl !== undefined
 

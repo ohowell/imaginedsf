@@ -6,6 +6,22 @@
     <!-- TODO: remove this once the rebuild is finished and domain cut-over is done -->
     <meta name="robots" content="noindex" />
     <title>Imagined San Francisco</title>
+    <script>
+      // Sets the color scheme before the page draws, so it doesn't flash the
+      // wrong one: the visitor's choice, or their system's. See src/theme.ts.
+      ;(() => {
+        let theme
+        try {
+          theme = localStorage.getItem('imaginedsf:theme')
+        } catch {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+        }
+        document.documentElement.dataset.theme = theme
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
