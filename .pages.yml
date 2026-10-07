@@ -90,10 +90,10 @@ content:
     operations:
       rename: false
     view:
-      fields: [year, title, source]
+      fields: [year, title]
       sort: [year, title]
       default:
-        sort: title
+        sort: year
         order: asc
     fields:
       - name: title
@@ -225,9 +225,9 @@ content:
     operations:
       rename: false
     view:
-      fields: [title, year]
+      fields: [year, title]
       default:
-        sort: title
+        sort: year
         order: asc
     fields:
       - name: title
@@ -256,7 +256,7 @@ content:
     operations:
       rename: false
     view:
-      fields: [title, start, end]
+      fields: [start, end, title]
       default:
         sort: start
         order: asc
