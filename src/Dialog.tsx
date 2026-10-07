@@ -4,13 +4,21 @@ interface DialogProps {
   open: boolean
   /** The dialog's heading. */
   title: ReactNode
+  /** Added to the dialog's own class, for sizing it. */
+  className?: string
   /** Called when the dialog closes itself, by Escape, × or a click outside. */
   onClose: () => void
   children: ReactNode
 }
 
 /** A modal dialog with a title and close button, over the rest of the page. */
-export function Dialog({ open, title, onClose, children }: DialogProps) {
+export function Dialog({
+  open,
+  title,
+  className,
+  onClose,
+  children,
+}: DialogProps) {
   const dialog = useRef<HTMLDialogElement>(null)
   const titleId = useId()
 
@@ -24,7 +32,7 @@ export function Dialog({ open, title, onClose, children }: DialogProps) {
   return (
     <dialog
       ref={dialog}
-      className="dialog"
+      className={className ? `dialog ${className}` : 'dialog'}
       aria-labelledby={titleId}
       onClose={onClose}
       // Clicks outside the content land on the dialog itself, as backdrop.

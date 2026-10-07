@@ -53,6 +53,9 @@ const SAN_FRANCISCO: LngLatBoundsLike = [
 // some room around them on a phone-sized map.
 const MIN_ZOOM = 7.5
 
+// Room left around a box the map zooms to.
+const FOCUS_PADDING = 40
+
 // Search results with an extent are fitted to it, and points flown to; either
 // way, no closer in than a few blocks.
 const SEARCH_ZOOM: FlyToOptions & FitBoundsOptions = { maxZoom: 17 }
@@ -79,8 +82,11 @@ interface MapViewProps {
   layers: string[]
   /** Opacity by slug, from 0 to 1. Layers without one are opaque. */
   opacity: Record<string, number>
-  /** A box to zoom to whenever it changes. */
-  focus?: { bbox: [number, number, number, number] }
+  /**
+   * A box to zoom to whenever it changes, with room around it unless `padding`
+   * says otherwise. The map starts out showing the first one.
+   */
+  focus?: { bbox: [number, number, number, number]; padding?: number }
   /** Called with the visible area as it changes, as west, south, east, north. */
   onViewChange?: (bbox: [number, number, number, number]) => void
   /** Controls to float over the map, like `MapControl`s. */
@@ -96,6 +102,7 @@ export function MapView({
   children,
 }: MapViewProps) {
   const container = useRef<HTMLDivElement>(null)
+  const initialFocus = useRef(focus)
   const [map, setMap] = useState<MapLibreMap>()
   // Settles once the current basemap's style has loaded, since changing the
   // basemap replaces the whole style.
@@ -111,7 +118,15 @@ export function MapView({
     const map = new MapLibreMap({
       container: container.current,
       style: { version: 8, sources: {}, layers: [] },
-      bounds: SAN_FRANCISCO,
+      // A linked view or layers, or else the whole city edge to edge.
+      ...(initialFocus.current
+        ? {
+            bounds: initialFocus.current.bbox,
+            fitBoundsOptions: {
+              padding: initialFocus.current.padding ?? FOCUS_PADDING,
+            },
+          }
+        : { bounds: SAN_FRANCISCO }),
       // Also keeps the location button from leaving the Bay Area.
       maxBounds: BAY_AREA,
       minZoom: MIN_ZOOM,
@@ -242,7 +257,9 @@ export function MapView({
   }, [map, layers, opacity])
 
   useEffect(() => {
-    if (map && focus) map.fitBounds(focus.bbox, { padding: 40 })
+    if (map && focus) {
+      map.fitBounds(focus.bbox, { padding: focus.padding ?? FOCUS_PADDING })
+    }
   }, [map, focus])
 
   useEffect(() => {

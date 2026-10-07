@@ -87,11 +87,11 @@ body,
   opacity: 0.8;
 }
 
-.site-header .theme-toggle {
+.site-header .icon-button {
   display: flex;
 }
 
-.site-header .theme-toggle svg {
+.site-header .icon-button svg {
   width: 1.25rem;
   height: 1.25rem;
   fill: none;
@@ -326,6 +326,24 @@ body,
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+.share-dialog {
+  width: min(32rem, 100% - 2rem);
+}
+
+.share-link {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.share-link input {
+  flex: 1;
+  min-width: 0;
+}
+
+.share-status:empty {
+  margin: 0;
 }
 
 .dialog-content img {

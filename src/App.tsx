@@ -4,11 +4,11 @@ import type { PageName } from '../plugins/content/schema.ts'
 import { AboutDialog } from './AboutDialog.tsx'
 import { BasemapControl } from './BasemapControl.tsx'
 import { Dialog } from './Dialog.tsx'
+import { fromHash, replaceHash, type Bbox, type MapState } from './hash.ts'
 import { Header } from './Header.tsx'
 import { InfoButton } from './InfoButton.tsx'
 import { MapView } from './map/MapView.tsx'
-
-type Bbox = [number, number, number, number]
+import { ShareDialog } from './ShareDialog.tsx'
 
 // Remembers that someone has been here, so the introduction opens only once.
 const VISITED_KEY = 'imaginedsf:visited'
@@ -40,6 +40,23 @@ function boundsOf(slugs: string[]): Bbox | undefined {
   ]
 }
 
+// Where to take the map for a link: the view it names, or else around its
+// layers, if they have bounding boxes.
+function focusFor({ bbox, layers }: MapState) {
+  if (bbox) return { bbox, padding: 0 }
+  const around = boundsOf(layers)
+  return around && { bbox: around }
+}
+
+// Slugs of the eras, groups and layers these layers are listed under, so they
+// can be opened to show them.
+function sectionsAbove(slugs: string[]): string[] {
+  return slugs.flatMap((slug) => {
+    const { parent } = content.layers[slug] ?? content.groups[slug] ?? {}
+    return parent ? [parent, ...sectionsAbove([parent])] : []
+  })
+}
+
 // Layers under these items at every level that pass `keep`, where items that
 // don't pass hide everything under them.
 function layersUnder(slugs: string[], keep: (slug: string) => boolean) {
@@ -52,10 +69,12 @@ function layersUnder(slugs: string[], keep: (slug: string) => boolean) {
 
 // Map test: every layer, grouped by era, and a basemap switcher on the map.
 export default function App() {
-  const [basemap, setBasemap] = useState(content.defaultBasemap)
-  const [overlays, setOverlays] = useState<string[]>([])
-  const [opacity, setOpacity] = useState<Record<string, number>>({})
-  const [focus, setFocus] = useState<{ bbox: Bbox }>()
+  // The view the address links to, if any, read once to start from.
+  const [linked] = useState(() => fromHash(window.location.hash))
+  const [basemap, setBasemap] = useState(linked.basemap)
+  const [overlays, setOverlays] = useState(linked.layers)
+  const [opacity, setOpacity] = useState(linked.opacity)
+  const [focus, setFocus] = useState(() => focusFor(linked))
   // Slug of the layer or group whose description is open.
   const [about, setAbout] = useState<string>()
   // The page open from the header, starting with the introduction for
@@ -70,12 +89,50 @@ export default function App() {
       // Storage is blocked; see isFirstVisit.
     }
   }, [])
+  const [sharing, setSharing] = useState(false)
   const [onlyInView, setOnlyInView] = useState(false)
   const [view, setView] = useState<Bbox>()
-  // Slugs of the eras open in the sidebar, starting with the first.
-  const [openEras, setOpenEras] = useState(
-    () => new Set(content.eras.slice(0, 1).map((era) => era.slug)),
+  // Slugs of the eras and groups open in the sidebar, starting with the ones
+  // holding linked layers, or else the first era.
+  const [openSections, setOpenSections] = useState(
+    () =>
+      new Set(
+        linked.layers.length > 0
+          ? sectionsAbove(linked.layers)
+          : content.eras.slice(0, 1).map((era) => era.slug),
+      ),
   )
+  const setOpen = (slug: string, open: boolean) =>
+    setOpenSections((sections) => {
+      if (sections.has(slug) === open) return sections
+      const next = new Set(sections)
+      if (open) next.add(slug)
+      else next.delete(slug)
+      return next
+    })
+
+  // Keeps the address linking to what's shown once the map reports its view,
+  // so a linked view isn't lost while the map loads.
+  useEffect(() => {
+    if (view) replaceHash({ basemap, layers: overlays, opacity, bbox: view })
+  }, [basemap, overlays, opacity, view])
+
+  // Follows links to other views, and addresses edited by hand. The site's own
+  // changes replace the hash without this event.
+  useEffect(() => {
+    const follow = () => {
+      const state = fromHash(window.location.hash)
+      setBasemap(state.basemap)
+      setOverlays(state.layers)
+      setOpacity(state.opacity)
+      setFocus(focusFor(state))
+      setOpenSections(
+        (sections) => new Set([...sections, ...sectionsAbove(state.layers)]),
+      )
+    }
+    window.addEventListener('hashchange', follow)
+    return () => window.removeEventListener('hashchange', follow)
+  }, [])
 
   // Whether a layer is on, covers part of the view, or has a child that does.
   const affectsView = (slug: string): boolean => {
@@ -163,7 +220,7 @@ export default function App() {
 
   return (
     <div className="layout">
-      <Header onOpenPage={setPage} />
+      <Header onOpenPage={setPage} onShare={() => setSharing(true)} />
       <aside className="panel">
         <section className="intro">
           <h2>{content.pages['maps-and-plans'].title}</h2>
@@ -190,17 +247,8 @@ export default function App() {
             <details
               key={era.slug}
               className="era"
-              open={openEras.has(era.slug)}
-              onToggle={(event) => {
-                const { open } = event.currentTarget
-                setOpenEras((eras) => {
-                  if (eras.has(era.slug) === open) return eras
-                  const next = new Set(eras)
-                  if (open) next.add(era.slug)
-                  else next.delete(era.slug)
-                  return next
-                })
-              }}
+              open={openSections.has(era.slug)}
+              onToggle={(event) => setOpen(era.slug, event.currentTarget.open)}
             >
               <summary>
                 <h2>
@@ -221,7 +269,12 @@ export default function App() {
                   if (!group) return row(item)
                   return (
                     <li key={item} className="group">
-                      <details>
+                      <details
+                        open={openSections.has(item)}
+                        onToggle={(event) =>
+                          setOpen(item, event.currentTarget.open)
+                        }
+                      >
                         <summary>
                           {group.title}{' '}
                           <small>
@@ -274,6 +327,7 @@ export default function App() {
         onShowUnder={showUnder}
         onClose={() => setAbout(undefined)}
       />
+      <ShareDialog open={sharing} onClose={() => setSharing(false)} />
       <Dialog
         open={page !== undefined}
         title={page && content.pages[page].title}

@@ -11,10 +11,11 @@ const headerPages = (Object.keys(content.pages) as PageName[]).filter(
 
 interface HeaderProps {
   onOpenPage: (name: PageName) => void
+  onShare: () => void
 }
 
 /** The site's logo, which starts over, and links to its pages. */
-export function Header({ onOpenPage }: HeaderProps) {
+export function Header({ onOpenPage, onShare }: HeaderProps) {
   const theme = useTheme()
   const other = theme === 'dark' ? 'light' : 'dark'
   return (
@@ -46,7 +47,22 @@ export function Header({ onOpenPage }: HeaderProps) {
           <li>
             <button
               type="button"
-              className="theme-toggle"
+              className="icon-button"
+              aria-haspopup="dialog"
+              aria-label="Share this view"
+              title="Share this view"
+              onClick={onShare}
+            >
+              {/* A box with an arrow coming out of it. */}
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v12M7.5 7.5 12 3l4.5 4.5M8 11H6a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-2" />
+              </svg>
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+              className="icon-button"
               aria-label={`Switch to ${other} mode`}
               title={`Switch to ${other} mode`}
               onClick={() => chooseTheme(other)}
