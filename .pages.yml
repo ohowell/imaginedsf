@@ -68,8 +68,8 @@ content:
     operations:
       rename: false
     view:
-      fields: [title, year, parent]
-      sort: [title, year]
+      fields: [year, title, source, parent]
+      sort: [year, title]
       default:
         sort: title
         order: asc
@@ -183,11 +183,9 @@ content:
           max: 4
           collapsible: false
       - name: parent
-        label: Listed under
-        component: slug
-        description: >-
-          The file name of the era, group or layer this is listed under, like
-          "the-great-society" or "burnham-plan". Leave empty for basemaps.
+        label: Parent
+        component: layerParent
+        description: The era, group or layer this is listed under.
       - name: wordpressId
         component: wordpressId
       - name: body
@@ -218,10 +216,8 @@ content:
         component: year
       - name: parent
         label: Era
-        component: slug
-        description: >-
-          The file name of the era this group is listed in, like
-          "the-great-society".
+        component: era
+        description: The era this group is listed under.
       - name: wordpressId
         component: wordpressId
       - name: body
