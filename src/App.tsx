@@ -122,6 +122,11 @@ export default function App() {
                 {era.start}–{era.end}
               </small>
             </h2>
+            {/* Rendered at build time from the site's own Markdown. */}
+            <div
+              className="era-description"
+              dangerouslySetInnerHTML={{ __html: era.description }}
+            />
             <ul>
               {era.items.map((item) => {
                 const group = content.groups[item]
