@@ -192,15 +192,6 @@ export function resolveContent(
   }
 
   for (const layer of shownLayers) {
-    const target = layer.data.showWith
-    if (target !== undefined && !isShown(target)) {
-      error(
-        layer.file,
-        layers.has(target)
-          ? `showWith: ${named(target)} isn't shown on the site`
-          : `showWith: no layer named ${named(target)}`,
-      )
-    }
     const bbox = layer.data.bbox
     if (
       bbox &&

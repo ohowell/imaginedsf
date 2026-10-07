@@ -217,15 +217,6 @@ describe('resolveContent', () => {
     ])
   })
 
-  it('rejects a showWith layer that is not shown', () => {
-    const raw = fixture()
-    raw.layers.push(layer('draft'))
-    raw.layers[1].data.showWith = 'draft'
-    expect(messages(resolveContent(raw).errors)).toEqual([
-      'content/layers/plan.md: showWith: "draft.md" isn\'t shown on the site',
-    ])
-  })
-
   it('requires every page', () => {
     const raw = fixture()
     raw.pages = raw.pages.filter((page) => page.slug !== 'credits')
@@ -356,18 +347,11 @@ describe('layerSchema', () => {
       type: 'tile',
       url: 'https://tiles.example/{z}/{x}/{y}.png',
     }
-    const result = layerSchema.safeParse({
-      title: 'Plan',
-      source,
-      showWith: 'burnt-areas-1906.md',
-      layers: ['plan-details.md'],
-    })
-    expect(result.data?.showWith).toBe('burnt-areas-1906')
-    expect(result.data?.layers).toEqual(['plan-details'])
+    const layers = (names: string[]) =>
+      layerSchema.safeParse({ title: 'Plan', source, layers: names })
+    expect(layers(['plan-details.md']).data?.layers).toEqual(['plan-details'])
     expect(
-      layerSchema
-        .safeParse({ title: 'Plan', source, showWith: 'burnt-areas-1906' })
-        .error?.issues.map((issue) => issue.message),
+      layers(['plan-details']).error?.issues.map((issue) => issue.message),
     ).toEqual(['must be a file name such as "fulton-circle.md"'])
   })
 

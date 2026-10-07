@@ -10,8 +10,6 @@ interface AboutDialogProps {
   overlays: string[]
   /** Shows a layer: as the basemap if it's one, or on top and zoomed to. */
   onShow: (slug: string) => void
-  /** Shows a layer under the others, or as the basemap if it's one. */
-  onShowUnder: (slug: string) => void
   onClose: () => void
 }
 
@@ -21,7 +19,6 @@ export function AboutDialog({
   basemap,
   overlays,
   onShow,
-  onShowUnder,
   onClose,
 }: AboutDialogProps) {
   const layer = slug ? content.layers[slug] : undefined
@@ -41,13 +38,6 @@ export function AboutDialog({
     ])
   } else if (layer?.bbox && layer.slug !== basemap) {
     actions.push(['Zoom to layer', () => onShow(layer.slug)])
-  }
-  const companion = layer?.showWith
-  if (companion && !isShown(companion)) {
-    actions.push([
-      `Show with ${content.layers[companion].title}`,
-      () => onShowUnder(companion),
-    ])
   }
 
   return (

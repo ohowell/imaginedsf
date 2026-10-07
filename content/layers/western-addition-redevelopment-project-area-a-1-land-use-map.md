@@ -1,7 +1,6 @@
 ---
 title: Western Addition Redevelopment Project Area, A-1, Land Use Map
 year: 1956
-showWith: burnt-areas-1906.md
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:ry317rh9880/WesternAddition2_cog.tif

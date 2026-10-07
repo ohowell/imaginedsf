@@ -102,10 +102,6 @@ content:
         component: title
       - name: year
         component: year
-      - name: showWith
-        label: Show with
-        component: layer
-        description: A layer that helps read this one, offered to show underneath it.
       - name: source
         label: Map data
         type: block

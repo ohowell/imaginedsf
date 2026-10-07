@@ -1,7 +1,6 @@
 ---
 title: Rapid Transit Plan, 1972
 year: 1972
-showWith: burnt-areas-1906.md
 source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:md565sn7692/RapidTransitPlanND_cog.tif

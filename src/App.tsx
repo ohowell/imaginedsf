@@ -177,15 +177,6 @@ export default function App() {
     if (bbox) setFocus({ bbox })
   }
 
-  // For layers that help read others, so they shouldn't cover them or move away.
-  function showUnder(slug: string) {
-    if (content.basemaps.includes(slug)) {
-      setBasemap(slug)
-    } else if (!overlays.includes(slug)) {
-      setOverlays([slug, ...overlays])
-    }
-  }
-
   function toggle(slug: string) {
     if (overlays.includes(slug)) {
       setOverlays(overlays.filter((other) => other !== slug))
@@ -334,7 +325,6 @@ export default function App() {
         basemap={basemap}
         overlays={overlays}
         onShow={show}
-        onShowUnder={showUnder}
         onClose={() => setAbout(undefined)}
       />
       <ShareDialog open={sharing} onClose={() => setSharing(false)} />

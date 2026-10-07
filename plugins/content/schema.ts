@@ -101,8 +101,6 @@ const source = z.discriminatedUnion('type', [
 export const layerSchema = z.strictObject({
   title,
   year: year.optional(),
-  // A layer that helps read this one, offered to show underneath it.
-  showWith: file.optional(),
   source,
   bbox: bbox.optional(),
   // Layers listed under this one, like a plan's details and photos.
