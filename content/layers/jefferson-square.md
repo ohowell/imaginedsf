@@ -5,7 +5,8 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:zg150pg1648/JeffersonSq_WGS_cog.tif
 bbox: [-122.4314318, 37.7777144, -122.4196926, 37.7861082]
-parent: the-era-of-radical-technocracy
+layers:
+  - views.md
 wordpressId: 300
 ---
 

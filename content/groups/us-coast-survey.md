@@ -2,7 +2,11 @@
 title: US Coast Survey
 year: 1853
 endYear: 1884
-parent: claiming-the-land
+layers:
+  - 1853-san-francisco.md
+  - us-coast-survey-1859.md
+  - 1869-photographs.md
+  - us-coast-survey-1869.md
 wordpressId: 1300
 ---
 

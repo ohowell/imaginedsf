@@ -5,7 +5,6 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:bm594nd9684/1906BurntAreaMap_cog.tif
 bbox: [-122.5688601, 37.6918093, -122.3083798, 37.8311334]
-parent: imagining-utopia
 wordpressId: 270
 ---
 

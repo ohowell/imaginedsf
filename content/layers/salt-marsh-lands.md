@@ -5,7 +5,6 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:wf803xx4789/Salt_Marshes_WGS_cog.tif
 bbox: [-122.624626, 37.3593394, -122.0051364, 38.1999935]
-parent: claiming-the-land
 wordpressId: 1344
 ---
 

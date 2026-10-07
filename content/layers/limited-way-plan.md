@@ -5,7 +5,8 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:yg013jx3895/Limited_Way_Plan_WGS_cog.tif
 bbox: [-122.521559, 37.7045969, -122.3537365, 37.8158897]
-parent: the-city-in-the-nation
+layers:
+  - civic-center-detail.md
 wordpressId: 1001
 ---
 

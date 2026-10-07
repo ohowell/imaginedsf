@@ -28,11 +28,31 @@ components:
     options:
       min: 1500
       max: 2100
-  slug:
-    type: string
-    pattern:
-      regex: '^[a-z0-9]+(-[a-z0-9]+)*$'
-      message: Use a file name without ".md", like "burnham-plan"
+  # References to other files, chosen by title and saved as file names, like
+  # "burnham-plan.md".
+  layer:
+    type: reference
+    options:
+      collection: layers
+      value: '{name}'
+      label: '{title}'
+      search: title,name
+  layers:
+    type: reference
+    options:
+      collection: layers
+      multiple: true
+      value: '{name}'
+      label: '{title}'
+      search: title,name
+  groups:
+    type: reference
+    options:
+      collection: groups
+      multiple: true
+      value: '{name}'
+      label: '{title}'
+      search: title,name
   zoom:
     type: number
     options:
@@ -59,16 +79,18 @@ components:
 content:
   - name: layers
     label: Layers
-    description: Maps, photo pins and basemaps.
+    description: >-
+      Maps, photo pins and basemaps. A new layer shows on the site once it's
+      added to the layers of an era, group or other layer.
     type: collection
     path: content/layers
     format: yaml-frontmatter
     filename: '{primary}.md'
-    # File names are part of links and of other items' parents.
+    # File names are part of links, and of other items' lists.
     operations:
       rename: false
     view:
-      fields: [year, title, source, parent]
+      fields: [year, title, source]
       sort: [year, title]
       default:
         sort: title
@@ -80,10 +102,8 @@ content:
         component: year
       - name: showWith
         label: Show with
-        component: slug
-        description: >-
-          The file name of a layer that helps read this one, like
-          "burnt-areas-1906", offered to show underneath it.
+        component: layer
+        description: A layer that helps read this one, offered to show underneath it.
       - name: source
         label: Map data
         type: block
@@ -182,10 +202,12 @@ content:
         list:
           max: 4
           collapsible: false
-      - name: parent
-        label: Parent
-        component: layerParent
-        description: The era, group or layer this is listed under.
+      - name: layers
+        label: Layers under this one
+        component: layers
+        description: >-
+          Like a plan's details and photos. Layers listed under another layer
+          can't list layers of their own.
       - name: wordpressId
         component: wordpressId
       - name: body
@@ -193,7 +215,9 @@ content:
 
   - name: groups
     label: Groups
-    description: Titled sets of layers, listed in an era.
+    description: >-
+      Titled sets of layers. A new group shows on the site once it's added to
+      the groups of an era.
     type: collection
     path: content/groups
     format: yaml-frontmatter
@@ -201,7 +225,7 @@ content:
     operations:
       rename: false
     view:
-      fields: [title, year, parent]
+      fields: [title, year]
       default:
         sort: title
         order: asc
@@ -214,10 +238,10 @@ content:
         label: End year
         description: For groups that span years, like a series of surveys.
         component: year
-      - name: parent
-        label: Era
-        component: era
-        description: The era this group is listed under.
+      - name: layers
+        label: Layers
+        component: layers
+        required: true
       - name: wordpressId
         component: wordpressId
       - name: body
@@ -247,6 +271,12 @@ content:
         label: End year
         component: year
         required: true
+      - name: groups
+        label: Groups
+        component: groups
+      - name: layers
+        label: Layers
+        component: layers
       - name: wordpressId
         component: wordpressId
       - name: body
@@ -277,12 +307,11 @@ content:
     fields:
       - name: basemaps
         label: Basemaps
-        description: File names of the layers offered as basemaps.
-        component: slug
+        description: The layers offered as basemaps, in order.
+        component: layers
         required: true
-        list: true
       - name: defaultBasemap
         label: Default basemap
-        description: The basemap shown first.
-        component: slug
+        description: The basemap shown first, which has to be one of the basemaps.
+        component: layer
         required: true

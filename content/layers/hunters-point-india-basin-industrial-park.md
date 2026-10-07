@@ -5,7 +5,8 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:nq732wy3436/HP_WGS_cog.tif
 bbox: [-122.3927104, 37.726571, -122.37261, 37.7415459]
-parent: the-great-society
+layers:
+  - proposed-changes-2.md
 wordpressId: 1018
 ---
 

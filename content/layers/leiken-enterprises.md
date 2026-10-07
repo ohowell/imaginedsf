@@ -5,7 +5,6 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:cg675ct4048/17_018_012_cog.tif
 bbox: [-122.402768, 37.7951663, -122.3941733, 37.7995399]
-parent: leiken-enterprises-ground-level-v2
 wordpressId: 533
 ---
 

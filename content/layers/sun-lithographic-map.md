@@ -5,7 +5,8 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:pn124cp0101/SF_wgs84_cog.tif
 bbox: [-122.4253843, 37.7693366, -122.3761459, 37.814849]
-parent: claiming-the-land
+layers:
+  - sun-lithographic-view.md
 wordpressId: 925
 ---
 

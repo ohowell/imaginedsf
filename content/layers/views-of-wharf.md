@@ -9,7 +9,6 @@ source:
     images: URL
     direction: Bearing
 bbox: [-122.4253843, 37.7693366, -122.3761459, 37.814849]
-parent: fishermans-wharf-plan
 wordpressId: 1221
 ---
 

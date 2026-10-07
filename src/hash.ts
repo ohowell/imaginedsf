@@ -40,7 +40,7 @@ export function toHash({ basemap, layers, opacity, bbox }: MapState) {
 }
 
 const isOverlay = (slug: string) =>
-  slug in content.layers && !content.basemaps.includes(slug)
+  Object.hasOwn(content.layers, slug) && !content.basemaps.includes(slug)
 
 /**
  * The state a hash from `toHash` describes, or a link from the old site.
@@ -214,6 +214,6 @@ export function fromOldPath(pathname: string): OldDialog {
     return about ? { about } : {}
   }
   const isPage = (name: string): name is PageName =>
-    name in content.pages && name !== 'maps-and-plans'
+    Object.hasOwn(content.pages, name) && name !== 'maps-and-plans'
   return route && !id && isPage(route) ? { page: route } : {}
 }

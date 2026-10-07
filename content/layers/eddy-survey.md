@@ -5,7 +5,8 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:pt741vq0927/SF1852_wgs84_cog.tif
 bbox: [-122.4413274, 37.7640079, -122.3799837, 37.8137172]
-parent: claiming-the-land
+layers:
+  - vignettes.md
 wordpressId: 579
 ---
 

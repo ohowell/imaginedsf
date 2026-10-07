@@ -5,7 +5,8 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:dv566pd4199/SFmodel_WGS84_cog.tif
 bbox: [-122.5155439, 37.6885778, -122.3531066, 37.8174206]
-parent: the-city-in-the-nation
+layers:
+  - views-of-wpa-model.md
 wordpressId: 931
 ---
 

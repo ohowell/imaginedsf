@@ -9,6 +9,5 @@ source:
     images: Source
     direction: Bearing
 bbox: [-122.4524919, 37.7333223, -122.4234321, 37.7501957]
-parent: diamond-heights-1973
 wordpressId: 917
 ---

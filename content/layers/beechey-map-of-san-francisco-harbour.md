@@ -5,7 +5,6 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:pd612sw8059/Beechey_WGS_cog.tif
 bbox: [-122.7517154, 37.3646171, -121.8098903, 38.2269428]
-parent: claiming-the-land
 wordpressId: 1342
 ---
 

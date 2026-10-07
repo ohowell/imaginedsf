@@ -5,7 +5,6 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:pc204zy5923/April_1937_SF_Map_State_cog.tif
 bbox: [-122.5234249, 37.7013481, -122.3192174, 37.8207145]
-parent: the-city-in-the-nation
 wordpressId: 305
 ---
 

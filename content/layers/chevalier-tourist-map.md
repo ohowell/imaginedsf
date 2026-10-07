@@ -5,7 +5,6 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:qw598hh2965/g0140000_cog.tif
 bbox: [-122.5356391, 37.6603065, -122.3490421, 37.8277875]
-parent: imagining-utopia
 wordpressId: 297
 ---
 

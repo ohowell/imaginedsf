@@ -5,7 +5,6 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:wp866rv4743/g2648000_cog.tif
 bbox: [-122.5450221, 37.5787553, -122.3357521, 37.8440233]
-parent: us-coast-survey
 wordpressId: 935
 ---
 

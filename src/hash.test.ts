@@ -56,6 +56,7 @@ describe('map state hashes', () => {
       opacity: {},
       bbox: undefined,
     })
+    expect(fromHash('#layers=constructor,toString').layers).toEqual([])
     expect(fromHash('#bbox=a,b,c,d').bbox).toBeUndefined()
     expect(fromHash('')).toEqual({
       basemap: content.defaultBasemap,
@@ -168,6 +169,8 @@ describe('old site paths', () => {
       '/narratives/some-narrative',
       '/introduction/extra',
       '/share',
+      '/toString',
+      '/constructor',
     ]) {
       expect(fromOldPath(path)).toEqual({})
     }

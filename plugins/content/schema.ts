@@ -3,10 +3,15 @@ import { z } from 'zod'
 // Schemas for the front matter of files in content/. Unknown keys are errors,
 // so typos fail the build instead of being silently ignored.
 
-/* Content metadata: title, date, slug, etc */
-const slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
-  error: 'must be a lowercase slug such as "fulton-circle"',
-})
+/* Content metadata: title, date, references, etc */
+// Another content file, named by its file name, which becomes its slug.
+const file = z
+  .string()
+  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*\.md$/, {
+    error: 'must be a file name such as "fulton-circle.md"',
+  })
+  .transform((name) => name.slice(0, -'.md'.length))
+const files = z.array(file).optional()
 const title = z.string().trim().min(1)
 const year = z.int().min(1500).max(2100)
 const httpsUrl = z.url({ protocol: /^https$/, error: 'must be an https URL' })
@@ -97,12 +102,11 @@ export const layerSchema = z.strictObject({
   title,
   year: year.optional(),
   // A layer that helps read this one, offered to show underneath it.
-  showWith: slug.optional(),
+  showWith: file.optional(),
   source,
   bbox: bbox.optional(),
-  // The era, group or layer this one is listed under, like a plan for its
-  // details and photos.
-  parent: slug.optional(),
+  // Layers listed under this one, like a plan's details and photos.
+  layers: files,
   wordpressId,
 })
 
@@ -112,8 +116,7 @@ export const groupSchema = z
     year: year.optional(),
     // For groups that span years, like a series of surveys.
     endYear: year.optional(),
-    // The era this group is listed in.
-    parent: slug.optional(),
+    layers: files,
     wordpressId,
   })
   .refine(({ year, endYear }) => endYear === undefined || year !== undefined, {
@@ -130,6 +133,8 @@ export const eraSchema = z
     title,
     start: year,
     end: year,
+    groups: files,
+    layers: files,
     wordpressId,
   })
   .refine(({ start, end }) => start <= end, {
@@ -139,8 +144,8 @@ export const eraSchema = z
 export const pageSchema = z.strictObject({ title })
 
 export const siteSchema = z.strictObject({
-  basemaps: z.array(slug).min(1),
-  defaultBasemap: slug,
+  basemaps: z.array(file).min(1),
+  defaultBasemap: file,
 })
 
 export const pageNames = [

@@ -7,27 +7,32 @@ import type {
 } from './schema.ts'
 
 // The shape of `virtual:content`. Descriptions and bodies are rendered HTML,
-// and items refer to each other by slug.
+// and items refer to each other by slug. Content files list what's under
+// them; here, items name their parent and list their children instead.
 
 export type LayerSource = LayerData['source']
 /** Anything with data to draw on the map, like a scanned map or photo pins. */
-export type Layer = LayerData & {
+export type Layer = Omit<LayerData, 'layers'> & {
   slug: string
   description: string
-  /** Slugs of the layers whose parent this is. */
+  /** Slug of the era, group or layer it's listed under, unless a basemap. */
+  parent?: string
+  /** Slugs of the layers listed under it, by year and then title. */
   children?: string[]
 }
 /** A titled, described set of layers, with no data of its own. */
-export type Group = GroupData & {
+export type Group = Omit<GroupData, 'layers'> & {
   slug: string
   description: string
-  /** Slugs of the layers whose parent this is. */
+  /** Slug of the era it's listed under. */
+  parent: string
+  /** Slugs of the layers listed under it, by year and then title. */
   children: string[]
 }
-export type Era = EraData & {
+export type Era = Omit<EraData, 'groups' | 'layers'> & {
   slug: string
   description: string
-  /** Slugs of the layers and groups whose parent this is. */
+  /** Slugs of the layers and groups listed under it, by year and then title. */
   children: string[]
 }
 export type Page = PageData & { body: string }

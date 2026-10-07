@@ -1,7 +1,7 @@
 ---
 title: Utah Construction renderings
 year: 1960
-showWith: utah-construction-mcsweeney-kirby-loubet-glynn-architects
+showWith: utah-construction-mcsweeney-kirby-loubet-glynn-architects.md
 source:
   type: geojson
   url: /assets/geojson/utah-construction-renderings.geojson
@@ -10,7 +10,6 @@ source:
     images: URL
     direction: Bearing
 bbox: [-122.4023769, 37.7928788, -122.3905933, 37.8001978]
-parent: utah-construction-alternate-plan
 wordpressId: 1262
 ---
 

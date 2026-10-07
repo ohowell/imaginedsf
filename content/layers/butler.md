@@ -5,7 +5,6 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:xj983zr6622/11809000b_cog.tif
 bbox: [-122.524351, 37.70139, -122.355639, 37.820995]
-parent: claiming-the-land
 wordpressId: 943
 ---
 

@@ -9,7 +9,6 @@ source:
     images: url
     direction: Bearing
 bbox: [-122.5450221, 37.5787553, -122.3357521, 37.8440233]
-parent: us-coast-survey
 wordpressId: 1315
 ---
 

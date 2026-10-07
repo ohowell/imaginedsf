@@ -5,7 +5,10 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:xh797zx2465/17_018_011_cog.tif
 bbox: [-122.4093967, 37.7899663, -122.3858514, 37.8024156]
-parent: golden-gateway-redevelopment-competition
+layers:
+  - leiken-models-1.md
+  - leiken-enterprises.md
+  - leiken-enterprisess-proposal-for-golden-gateway-shopping-center.md
 wordpressId: 551
 ---
 

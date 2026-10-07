@@ -5,7 +5,9 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:tv959tt1859/17_018_037_cog.tif
 bbox: [-122.402768, 37.7951663, -122.3941733, 37.7995399]
-parent: golden-gateway-redevelopment-competition
+layers:
+  - eichler-homes-composite-photo.md
+  - eichler-renderings-1.md
 wordpressId: 527
 ---
 

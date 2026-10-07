@@ -5,6 +5,5 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:fn919zw7941/86_A1_WGS_cog.tif
 bbox: [-122.4430858, 37.7798446, -122.4203423, 37.7882394]
-parent: overview-of-redevelopment-areas
 wordpressId: 1014
 ---

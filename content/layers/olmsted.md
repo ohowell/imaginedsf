@@ -5,7 +5,8 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:wt284ks4027/IMG_3277_cog.tif
 bbox: [-122.4536133, 37.7446571, -122.3657227, 37.8228024]
-parent: imagining-utopia
+layers:
+  - detail-showing-principal-pleasure-grounds.md
 wordpressId: 947
 ---
 

@@ -31,10 +31,19 @@ const layer = (slug: string, data: Partial<LayerData> = {}) =>
     source: { type: 'tile', url: 'https://tiles.example/{z}/{x}/{y}.png' },
     ...data,
   })
-const group = (slug: string, parent?: string) =>
-  entry<GroupData>('groups', slug, { title: slug, parent })
-const era = (slug: string, start: number) =>
-  entry<EraData>('eras', slug, { title: slug, start, end: start + 10 })
+const group = (slug: string, layers: string[] = []) =>
+  entry<GroupData>('groups', slug, { title: slug, layers })
+const era = (
+  slug: string,
+  start: number,
+  lists: Pick<EraData, 'groups' | 'layers'> = {},
+) =>
+  entry<EraData>('eras', slug, {
+    title: slug,
+    start,
+    end: start + 10,
+    ...lists,
+  })
 
 function fixture(overrides: Partial<RawContent> = {}): RawContent {
   return {
@@ -43,13 +52,12 @@ function fixture(overrides: Partial<RawContent> = {}): RawContent {
       file: 'content/site.yml',
       data: { basemaps: ['base'], defaultBasemap: 'base' },
     },
-    layers: [
-      layer('base'),
-      layer('plan', { parent: 'later' }),
-      layer('grouped', { parent: 'proposals' }),
+    layers: [layer('base'), layer('plan'), layer('grouped')],
+    groups: [group('proposals', ['grouped'])],
+    eras: [
+      era('later', 1950, { layers: ['plan'] }),
+      era('earlier', 1900, { groups: ['proposals'] }),
     ],
-    groups: [group('proposals', 'earlier')],
-    eras: [era('later', 1950), era('earlier', 1900)],
     pages: pageNames.map((name) => entry('pages', name, { title: name })),
     assets: [],
     geojson: new Map(),
@@ -75,6 +83,10 @@ describe('resolveContent', () => {
       'grouped',
       'plan',
     ])
+    expect(content?.layers.plan.parent).toBe('later')
+    expect(content?.layers.grouped.parent).toBe('proposals')
+    expect(content?.layers.base.parent).toBeUndefined()
+    expect(content?.groups.proposals.parent).toBe('earlier')
   })
 
   it('leaves out layers that are not listed', () => {
@@ -83,7 +95,7 @@ describe('resolveContent', () => {
     const { content, warnings } = resolveContent(raw)
     expect(content?.layers.draft).toBeUndefined()
     expect(messages(warnings)).toEqual([
-      "content/layers/draft.md: has no parent and isn't a basemap, so it isn't shown",
+      "content/layers/draft.md: isn't listed under an era, group or layer, or as a basemap, so it isn't shown",
     ])
   })
 
@@ -91,40 +103,45 @@ describe('resolveContent', () => {
     const raw = fixture()
     raw.site!.data.basemaps.push('plan')
     expect(messages(resolveContent(raw).errors)).toEqual([
-      'content/layers/plan.md: "plan" is also listed in content/site.yml',
+      'content/eras/later.md: layers: "plan.md" is also listed in content/site.yml',
+      'content/eras/later.md: lists no groups or layers',
     ])
   })
 
-  it('rejects references to missing layers', () => {
+  it('rejects references to missing files', () => {
     const raw = fixture()
     raw.site!.data.basemaps.push('missing')
-    raw.layers.push(layer('stray', { parent: 'missing' }))
-    raw.groups.push(group('lost', 'plan'))
+    raw.eras[0].data.groups = ['lost']
+    raw.eras[0].data.layers!.push('gone')
+    raw.groups[0].data.layers!.push('stray')
     expect(messages(resolveContent(raw).errors)).toEqual([
-      'content/site.yml: no layer named "missing"',
-      'content/groups/lost.md: parent: no era named "plan"',
-      'content/layers/stray.md: parent: no era, group or layer named "missing"',
-      'content/groups/lost.md: no layers name this group as their parent',
+      'content/site.yml: basemaps: no layer named "missing.md"',
+      'content/eras/later.md: groups: no group named "lost.md"',
+      'content/eras/later.md: layers: no layer named "gone.md"',
+      'content/groups/proposals.md: layers: no layer named "stray.md"',
     ])
   })
 
-  it('rejects groups where only layers are allowed', () => {
+  it('rejects groups listed as layers', () => {
     const raw = fixture()
-    raw.site!.data.basemaps.push('proposals')
-    expect(messages(resolveContent(raw).errors)).toContain(
-      'content/site.yml: "proposals" is a group, but only layers can be listed here',
-    )
+    raw.eras[0].data.layers!.push('proposals')
+    expect(messages(resolveContent(raw).errors)).toEqual([
+      'content/eras/later.md: layers: no layer named "proposals.md"',
+    ])
   })
 
   it('lists layers under their group, and rejects empty groups', () => {
     const raw = fixture()
-    raw.layers.push(layer('also-grouped', { parent: 'proposals' }))
-    raw.groups.push(group('empty', 'earlier'))
+    raw.layers.push(layer('also-grouped'))
+    raw.groups[0].data.layers!.push('also-grouped')
+    raw.groups.push(group('empty'))
+    raw.eras[1].data.groups!.push('empty')
     const { content, errors } = resolveContent(raw)
     expect(messages(errors)).toEqual([
-      'content/groups/empty.md: no layers name this group as their parent',
+      'content/groups/empty.md: layers: lists no layers',
     ])
     raw.groups.pop()
+    raw.eras[1].data.groups!.pop()
     expect(resolveContent(raw).content?.groups.proposals.children).toEqual([
       'also-grouped',
       'grouped',
@@ -134,11 +151,12 @@ describe('resolveContent', () => {
 
   it('lists layers and groups in eras by year, and rejects empty eras', () => {
     const raw = fixture()
-    raw.layers.push(layer('survey', { parent: 'earlier', year: 1901 }))
+    raw.layers.push(layer('survey', { year: 1901 }))
+    raw.eras[1].data.layers = ['survey']
     raw.groups[0].data.year = 1905
     raw.eras.push(era('empty', 2000))
     expect(messages(resolveContent(raw).errors)).toEqual([
-      'content/eras/empty.md: no layers or groups name this era as their parent',
+      'content/eras/empty.md: lists no groups or layers',
     ])
     raw.eras.pop()
     expect(resolveContent(raw).content?.eras[0].children).toEqual([
@@ -166,14 +184,15 @@ describe('resolveContent', () => {
   it('lists layers under their parent, by year and then title', () => {
     const raw = fixture()
     raw.layers.push(
-      layer('photos', { parent: 'plan', year: 1960 }),
-      layer('detail', { parent: 'plan', year: 1950 }),
-      layer('draft'),
-      layer('draft-detail', { parent: 'draft' }),
+      layer('photos', { year: 1960 }),
+      layer('detail', { year: 1950 }),
+      layer('draft', { layers: ['draft-detail'] }),
+      layer('draft-detail'),
     )
+    raw.layers[1].data.layers = ['photos', 'detail']
     const { content, warnings } = resolveContent(raw)
     expect(messages(warnings)).toEqual([
-      "content/layers/draft.md: has no parent and isn't a basemap, so it isn't shown",
+      "content/layers/draft.md: isn't listed under an era, group or layer, or as a basemap, so it isn't shown",
     ])
     expect(content?.layers.plan.children).toEqual(['detail', 'photos'])
     expect(content?.layers['draft-detail']).toBeUndefined()
@@ -181,19 +200,20 @@ describe('resolveContent', () => {
 
   it('keeps layers under layers one level deep, and off basemaps', () => {
     const raw = fixture()
+    raw.layers[0].data.layers = ['legend']
+    raw.layers[1].data.layers = ['detail']
+    raw.layers[2].data.layers = ['entry-photos']
     raw.layers.push(
-      layer('detail', { parent: 'plan' }),
-      layer('photos', { parent: 'detail' }),
-      layer('entry-photos', { parent: 'grouped' }),
-      layer('legend', { parent: 'base' }),
-      layer('loop', { parent: 'loop' }),
-      layer('stray', { parent: 'missing' }),
+      layer('detail', { layers: ['photos'] }),
+      layer('photos'),
+      layer('entry-photos'),
+      layer('legend'),
+      layer('loop', { layers: ['loop'] }),
     )
     expect(messages(resolveContent(raw).errors)).toEqual([
-      'content/layers/photos.md: parent: "detail" is under another layer, so it can\'t be a parent',
-      'content/layers/legend.md: parent: "base" is a basemap, so it can\'t be one',
-      'content/layers/loop.md: parent: "loop" is under another layer, so it can\'t be a parent',
-      'content/layers/stray.md: parent: no era, group or layer named "missing"',
+      "content/layers/base.md: layers: it's a basemap, so it can't list layers",
+      'content/layers/detail.md: layers: it\'s listed under "plan.md", so it can\'t list layers too',
+      'content/layers/loop.md: layers: it\'s listed under "loop.md", so it can\'t list layers too',
     ])
   })
 
@@ -202,7 +222,7 @@ describe('resolveContent', () => {
     raw.layers.push(layer('draft'))
     raw.layers[1].data.showWith = 'draft'
     expect(messages(resolveContent(raw).errors)).toEqual([
-      'content/layers/plan.md: showWith "draft" isn\'t shown on the site',
+      'content/layers/plan.md: showWith: "draft.md" isn\'t shown on the site',
     ])
   })
 
@@ -331,6 +351,26 @@ describe('layerSchema', () => {
     ).toEqual(['', 'bbox'])
   })
 
+  it('names other files by file name, and gives their slugs', () => {
+    const source = {
+      type: 'tile',
+      url: 'https://tiles.example/{z}/{x}/{y}.png',
+    }
+    const result = layerSchema.safeParse({
+      title: 'Plan',
+      source,
+      showWith: 'burnt-areas-1906.md',
+      layers: ['plan-details.md'],
+    })
+    expect(result.data?.showWith).toBe('burnt-areas-1906')
+    expect(result.data?.layers).toEqual(['plan-details'])
+    expect(
+      layerSchema
+        .safeParse({ title: 'Plan', source, showWith: 'burnt-areas-1906' })
+        .error?.issues.map((issue) => issue.message),
+    ).toEqual(['must be a file name such as "fulton-circle.md"'])
+  })
+
   it('accepts COG sources that point at a GeoTIFF file', () => {
     const cog = (url: string) =>
       layerSchema.safeParse({ title: 'Plan', source: { type: 'cog', url } })
@@ -406,7 +446,10 @@ describe('loadContent', () => {
       await mkdir(path.dirname(path.join(dir, file)), { recursive: true })
       await writeFile(path.join(dir, file), text)
     }
-    await write('content/site.yml', 'basemaps: [base]\ndefaultBasemap: base\n')
+    await write(
+      'content/site.yml',
+      'basemaps: [base.md]\ndefaultBasemap: base.md\n',
+    )
     await write('content/layers/no-front-matter.md', 'Just text')
     await write('content/layers/Bad Name.md', '---\ntitle: x\n---\n')
     await write('content/layers/bad-yaml.md', '---\ntitle: [unclosed\n---\n')

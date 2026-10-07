@@ -5,7 +5,6 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:mw570jd1313/FultonCircle_cog.tif
 bbox: [-122.4169201, 37.7772047, -122.4078665, 37.7843127]
-parent: downtown-design-plan
 wordpressId: 310
 ---
 

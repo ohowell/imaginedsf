@@ -1,6 +1,6 @@
 basemaps:
-  - simple-basemap
-  - aerial-imagery
-  - openstreetmaps
-  - ryker-aerial-photographs
-defaultBasemap: simple-basemap
+  - simple-basemap.md
+  - aerial-imagery.md
+  - openstreetmaps.md
+  - ryker-aerial-photographs.md
+defaultBasemap: simple-basemap.md

@@ -5,10 +5,14 @@ import { pageNames, type PageName } from './schema.ts'
 import type { Content, Page } from './types.ts'
 
 interface Listing {
+  /** The file that lists it. */
   file: string
-  /** Slug of the era, group or layer it's listed under, if any. */
+  /** Slug of the era, group or layer it's listed under, unless a basemap. */
   parent?: string
 }
+
+// References name files, like "burnham-plan.md", so messages do too.
+const named = (slug: string) => `"${slug}.md"`
 
 /**
  * Checks references between content files and assembles the content the
@@ -36,7 +40,7 @@ export function resolveContent(
   const eras = new Map(raw.eras.map((entry) => [entry.slug, entry]))
   const pages = new Map(raw.pages.map((entry) => [entry.slug, entry]))
 
-  // Parents are named by slug, so layers, groups and eras can't share one.
+  // The site looks items up by slug, so layers, groups and eras can't share one.
   const slugs = new Map<string, string>()
   for (const entry of [...raw.layers, ...raw.groups, ...raw.eras]) {
     const other = slugs.get(entry.slug)
@@ -60,36 +64,46 @@ export function resolveContent(
     }
   }
 
-  // Each layer or group is listed in one place: the basemaps, or under the
-  // parent it names.
+  // Each layer or group is listed in one place: in site.yml's basemaps, or
+  // in a list of the era, group or layer it's under.
   const listings = new Map<string, Listing>()
-  function list(slug: string, listing: Listing, allowGroups: boolean) {
-    if (!layers.has(slug) && !(allowGroups && groups.has(slug))) {
-      error(
-        listing.file,
-        groups.has(slug)
-          ? `"${slug}" is a group, but only layers can be listed here`
-          : `no ${allowGroups ? 'layer or group' : 'layer'} named "${slug}"`,
-      )
+  const children = new Map<string, string[]>()
+  function list(
+    slug: string,
+    listing: Listing,
+    field: string,
+    kind: 'layer' | 'group',
+  ) {
+    if (!(kind === 'group' ? groups : layers).has(slug)) {
+      error(listing.file, `${field}: no ${kind} named ${named(slug)}`)
       return
     }
     const previous = listings.get(slug)
     if (previous) {
-      error(listing.file, `"${slug}" is also listed in ${previous.file}`)
+      error(
+        listing.file,
+        `${field}: ${named(slug)} is also listed in ${previous.file}`,
+      )
       return
     }
     listings.set(slug, listing)
+    if (listing.parent) {
+      children.set(listing.parent, [
+        ...(children.get(listing.parent) ?? []),
+        slug,
+      ])
+    }
   }
 
   const site = raw.site
   if (site) {
     for (const slug of site.data.basemaps) {
-      list(slug, { file: site.file }, false)
+      list(slug, { file: site.file }, 'basemaps', 'layer')
     }
     if (!site.data.basemaps.includes(site.data.defaultBasemap)) {
       error(
         site.file,
-        `defaultBasemap "${site.data.defaultBasemap}" isn't one of the basemaps`,
+        `defaultBasemap ${named(site.data.defaultBasemap)} isn't one of the basemaps`,
       )
     }
     // Styles draw a whole map, and basemaps draw under everything else.
@@ -109,68 +123,71 @@ export function resolveContent(
       }
     }
   }
-  // Groups are listed under an era. Layers are listed under an era, a group,
-  // or a layer, like a plan's details and photos. Layers under layers nest
-  // one level, and not under basemaps.
-  const children = new Map<string, string[]>()
-  const addChild = (parent: string, slug: string) =>
-    children.set(parent, [...(children.get(parent) ?? []), slug])
-  for (const group of raw.groups) {
-    const { parent } = group.data
-    if (parent === undefined) continue
-    if (eras.has(parent)) {
-      list(group.slug, { file: group.file, parent }, true)
-      addChild(parent, group.slug)
-    } else {
-      error(group.file, `parent: no era named "${parent}"`)
+  // Eras list groups and layers, groups list layers, and layers list layers,
+  // like a plan's details and photos.
+  for (const { slug, file, data } of raw.eras) {
+    for (const group of data.groups ?? []) {
+      list(group, { file, parent: slug }, 'groups', 'group')
+    }
+    for (const layer of data.layers ?? []) {
+      list(layer, { file, parent: slug }, 'layers', 'layer')
     }
   }
+  for (const { slug, file, data } of [...raw.groups, ...raw.layers]) {
+    for (const layer of data.layers ?? []) {
+      list(layer, { file, parent: slug }, 'layers', 'layer')
+    }
+  }
+  // Layers under layers nest one level, and basemaps have none.
   for (const layer of raw.layers) {
-    const { parent } = layer.data
-    if (parent === undefined) continue
-    const target = layers.get(parent)
-    if (!target && !groups.has(parent) && !eras.has(parent)) {
-      error(layer.file, `parent: no era, group or layer named "${parent}"`)
-    } else if (target?.data.parent && layers.has(target.data.parent)) {
+    if (!layer.data.layers?.length) continue
+    const listing = listings.get(layer.slug)
+    if (listing && !listing.parent) {
+      error(layer.file, "layers: it's a basemap, so it can't list layers")
+    } else if (listing?.parent && layers.has(listing.parent)) {
       error(
         layer.file,
-        `parent: "${parent}" is under another layer, so it can't be a parent`,
+        `layers: it's listed under ${named(listing.parent)}, so it can't list layers too`,
       )
-    } else if (site?.data.basemaps.includes(parent)) {
-      error(layer.file, `parent: "${parent}" is a basemap, so it can't be one`)
-    } else {
-      list(layer.slug, { file: layer.file, parent }, false)
-      addChild(parent, layer.slug)
     }
   }
   for (const group of raw.groups) {
     if (!children.has(group.slug)) {
-      error(group.file, 'no layers name this group as their parent')
+      error(group.file, 'layers: lists no layers')
     }
   }
   for (const era of raw.eras) {
     if (!children.has(era.slug)) {
-      error(era.file, 'no layers or groups name this era as their parent')
+      error(era.file, 'lists no groups or layers')
     }
   }
 
   // Eras are always shown, and the rest when listed under something shown.
-  const isShown = (slug: string): boolean => {
+  // Layers listed in a loop, which is an error above, aren't.
+  const isShown = (slug: string, seen = new Set<string>()): boolean => {
     if (eras.has(slug)) return true
     const listing = listings.get(slug)
-    return listing !== undefined && (!listing.parent || isShown(listing.parent))
+    if (!listing || seen.has(slug)) return false
+    seen.add(slug)
+    return !listing.parent || isShown(listing.parent, seen)
   }
   const shownLayers = raw.layers.filter((layer) => isShown(layer.slug))
   const shownGroups = raw.groups.filter((group) => isShown(group.slug))
 
   for (const group of raw.groups) {
     if (!listings.has(group.slug)) {
-      warn(group.file, "has no parent, so it and its layers aren't shown")
+      warn(
+        group.file,
+        "isn't listed in an era, so it and its layers aren't shown",
+      )
     }
   }
   for (const layer of raw.layers) {
     if (!listings.has(layer.slug)) {
-      warn(layer.file, "has no parent and isn't a basemap, so it isn't shown")
+      warn(
+        layer.file,
+        "isn't listed under an era, group or layer, or as a basemap, so it isn't shown",
+      )
     }
   }
 
@@ -180,8 +197,8 @@ export function resolveContent(
       error(
         layer.file,
         layers.has(target)
-          ? `showWith "${target}" isn't shown on the site`
-          : `showWith: no layer named "${target}"`,
+          ? `showWith: ${named(target)} isn't shown on the site`
+          : `showWith: no layer named ${named(target)}`,
       )
     }
     const bbox = layer.data.bbox
@@ -284,7 +301,7 @@ export function resolveContent(
       shownLayers.map(({ slug, file, data }) => [
         slug,
         {
-          ...data,
+          ...withoutLists(data),
           source:
             data.source.type === 'style' && data.source.darkUrl
               ? {
@@ -295,6 +312,7 @@ export function resolveContent(
               : { ...data.source, url: withBase(data.source.url) },
           slug,
           description: rendered(file),
+          parent: listings.get(slug)?.parent,
           children: children.get(slug)?.toSorted(byYearAndTitle),
         },
       ]),
@@ -303,16 +321,18 @@ export function resolveContent(
       shownGroups.map(({ slug, file, data }) => [
         slug,
         {
-          ...data,
+          ...withoutLists(data),
           slug,
           description: rendered(file),
+          // Every group shown is listed in an era.
+          parent: listings.get(slug)!.parent!,
           children: (children.get(slug) ?? []).toSorted(byYearAndTitle),
         },
       ]),
     ),
     eras: raw.eras
       .map(({ slug, file, data }) => ({
-        ...data,
+        ...withoutLists(data),
         slug,
         description: rendered(file),
         children: (children.get(slug) ?? []).toSorted(byYearAndTitle),
@@ -329,6 +349,16 @@ export function resolveContent(
     ) as Record<PageName, Page>,
   }
   return { content, assets: [...usedAssets].sort(), errors, warnings }
+}
+
+// Content files list what's under them, which the site gets as children.
+function withoutLists<T extends { layers?: unknown; groups?: unknown }>(
+  data: T,
+): Omit<T, 'layers' | 'groups'> {
+  const copy = { ...data }
+  delete copy.layers
+  delete copy.groups
+  return copy
 }
 
 const ASSET_ATTRIBUTE = /(?:src|href)="(\/assets\/[^"]*)"/g

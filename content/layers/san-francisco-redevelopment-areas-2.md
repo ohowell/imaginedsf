@@ -5,7 +5,6 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:mx431dv9089/SFRA_Summary_1981_WGS_cog.tif
 bbox: [-122.5185609, 37.6951792, -122.3531657, 37.8253092]
-parent: back-to-the-future
 wordpressId: 1168
 ---
 

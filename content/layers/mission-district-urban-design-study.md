@@ -5,7 +5,8 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:wc012wg8711/Mission_cog.tif
 bbox: [-122.4281561, 37.7464561, -122.4112051, 37.7698017]
-parent: the-great-society
+layers:
+  - mission-district-renderings.md
 wordpressId: 302
 ---
 

@@ -5,7 +5,6 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:wz415kq0179/IMG_3824_WGS_cog.tif
 bbox: [-122.4023769, 37.7928788, -122.3905933, 37.8001978]
-parent: golden-gateway-redevelopment-competition
 wordpressId: 1255
 ---
 

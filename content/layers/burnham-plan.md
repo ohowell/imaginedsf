@@ -5,7 +5,9 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:tf618bz0007/Burnham_cog.tif
 bbox: [-122.5300085, 37.6855041, -122.3487013, 37.8243963]
-parent: imagining-utopia
+layers:
+  - burnham-proposed-changes.md
+  - existing-city.md
 wordpressId: 839
 ---
 

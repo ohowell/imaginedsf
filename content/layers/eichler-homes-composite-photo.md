@@ -5,7 +5,6 @@ source:
   type: cog
   url: https://stacks.stanford.edu/file/druid:rn433cp3449/17_018_034_cog.tif
 bbox: [-122.4053941, 37.7876096, -122.3863077, 37.8074789]
-parent: eichler-homes-inc
 wordpressId: 543
 ---
 

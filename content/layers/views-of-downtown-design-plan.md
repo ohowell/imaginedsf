@@ -9,6 +9,5 @@ source:
     images: URL
     direction: Bearing
 bbox: [-122.4388861, 37.760307, -122.3768322, 37.8082808]
-parent: downtown-design-plan
 wordpressId: 1223
 ---

@@ -8,6 +8,5 @@ source:
     text: Caption
     images: URL
     direction: Bearing
-parent: wpa-scale-model-of-city
 wordpressId: 1292
 ---
