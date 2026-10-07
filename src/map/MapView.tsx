@@ -96,7 +96,7 @@ export function MapView({
       minZoom: MIN_ZOOM,
       attributionControl: { compact: true },
     })
-    map.addControl(new NavigationControl(), 'top-right')
+    map.addControl(new NavigationControl(), 'top-left')
     map.setMissingStyleImageResolver((id) => addMissingPin(map, id))
     map.on('load', () => setMap(map))
     return () => map.remove()
