@@ -206,8 +206,7 @@ export default function App() {
               checked={shown}
               onChange={() => toggle(slug)}
             />{' '}
-            {layer.title} <small>{layer.year}</small>{' '}
-            <small className="tag">{layer.source.type}</small>
+            {layer.title} <small>{layer.year}</small>
           </label>
           <InfoButton slug={slug} onOpen={setAbout} />
         </div>
