@@ -48,6 +48,9 @@ components:
   body:
     label: Text
     type: code
+    # The code editor breaks without options.
+    options:
+      format: markdown
     description: >-
       Written in Markdown. Headings start at "##", since the title is the top
       heading. To add an image, upload it under Images, then write
