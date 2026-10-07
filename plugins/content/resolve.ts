@@ -1,10 +1,8 @@
+import { BAY_AREA } from './bounds.ts'
 import type { ContentIssue, RawContent } from './load.ts'
 import { renderMarkdown } from './markdown.ts'
 import { pageNames, type PageName } from './schema.ts'
 import type { Content, Page } from './types.ts'
-
-// Rough extent of the San Francisco Bay Area, for catching bad coordinates.
-const BAY_AREA = [-123.2, 37.1, -121.5, 38.5]
 
 interface Listing {
   file: string

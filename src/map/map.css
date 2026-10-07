@@ -79,6 +79,17 @@
     filter: invert(1);
   }
 
+  /* While finding the visitor, or after failing to, the location button's
+     icon is blue or red, which reads on dark as it is. */
+  .maplibregl-ctrl-geolocate-active,
+  .maplibregl-ctrl-geolocate-background,
+  .maplibregl-ctrl-geolocate-active-error,
+  .maplibregl-ctrl-geolocate-background-error {
+    .maplibregl-ctrl-icon {
+      filter: none;
+    }
+  }
+
   .maplibregl-ctrl-attrib-button {
     background-color: transparent;
   }

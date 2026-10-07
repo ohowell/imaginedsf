@@ -2,6 +2,7 @@ import { cogProtocol } from '@geomatico/maplibre-cog-protocol'
 import {
   addProtocol,
   Map as MapLibreMap,
+  GeolocateControl,
   NavigationControl,
   Popup,
   setWorkerUrl,
@@ -15,6 +16,7 @@ import './map.css'
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import content from 'virtual:content'
+import { BAY_AREA } from '../../plugins/content/bounds.ts'
 import { useTheme } from '../theme.ts'
 import { prepareCog } from './cog.ts'
 import { MapContext } from './context.ts'
@@ -100,10 +102,20 @@ export function MapView({
       container: container.current,
       style: { version: 8, sources: {}, layers: [] },
       bounds: SAN_FRANCISCO,
+      // Also keeps the location button from leaving the Bay Area.
+      maxBounds: BAY_AREA,
       minZoom: MIN_ZOOM,
       attributionControl: { compact: true },
     })
     map.addControl(new NavigationControl(), 'top-left')
+    // Finds the visitor and follows them as they move, until they turn it off.
+    map.addControl(
+      new GeolocateControl({
+        positionOptions: { enableHighAccuracy: true },
+        trackUserLocation: true,
+      }),
+      'top-left',
+    )
     map.setMissingStyleImageResolver((id) => addMissingPin(map, id))
     map.on('load', () => setMap(map))
     return () => map.remove()
