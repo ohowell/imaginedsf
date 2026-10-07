@@ -11,9 +11,10 @@ import {
 } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import content from 'virtual:content'
 import { prepareCog } from './cog.ts'
+import { MapContext } from './context.ts'
 import {
   basemapStyle,
   isLayerId,
@@ -64,9 +65,17 @@ interface MapViewProps {
   opacity: Record<string, number>
   /** A box to zoom to whenever it changes. */
   focus?: { bbox: [number, number, number, number] }
+  /** Controls to float over the map, like `MapControl`s. */
+  children?: ReactNode
 }
 
-export function MapView({ basemap, layers, opacity, focus }: MapViewProps) {
+export function MapView({
+  basemap,
+  layers,
+  opacity,
+  focus,
+  children,
+}: MapViewProps) {
   const container = useRef<HTMLDivElement>(null)
   const [map, setMap] = useState<MapLibreMap>()
   // Settles once the current basemap's style has loaded, since changing the
@@ -210,5 +219,10 @@ export function MapView({ basemap, layers, opacity, focus }: MapViewProps) {
     }
   }, [map])
 
-  return <div ref={container} className="map" />
+  return (
+    <MapContext value={map}>
+      <div ref={container} className="map" />
+      {children}
+    </MapContext>
+  )
 }

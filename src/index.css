@@ -153,6 +153,55 @@ body,
   height: auto;
 }
 
+.basemap-control {
+  /* Light like MapLibre's own controls, whatever the page's color scheme. */
+  color-scheme: light;
+  padding: 0.375rem 0.625rem;
+  font-size: 0.8125rem;
+  color: #333;
+  background: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 2px rgb(0 0 0 / 10%);
+}
+
+.basemap-toggle {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  font-weight: bold;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.basemap-toggle svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1.75;
+  stroke-linejoin: round;
+}
+
+.basemap-list {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 0.375rem;
+}
+
+.basemap-list[hidden] {
+  display: none;
+}
+
+.basemap-list label {
+  cursor: pointer;
+}
+
 .tag {
   font-family: ui-monospace, monospace;
   font-size: 0.75em;

@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import content from 'virtual:content'
 import { AboutDialog } from './AboutDialog.tsx'
+import { BasemapControl } from './BasemapControl.tsx'
+import { InfoButton } from './InfoButton.tsx'
 import { MapView } from './map/MapView.tsx'
 
 type Bbox = [number, number, number, number]
 
-// Map test: a basemap switcher and every layer, grouped by era.
+// Map test: every layer, grouped by era, and a basemap switcher on the map.
 export default function App() {
   const [basemap, setBasemap] = useState(content.defaultBasemap)
   const [overlays, setOverlays] = useState<string[]>([])
@@ -41,23 +43,6 @@ export default function App() {
     }
   }
 
-  // Opens the description of a layer or group, for those that have one.
-  const info = (slug: string) => {
-    const { title, description } = content.layers[slug] ?? content.groups[slug]
-    if (!description) return null
-    return (
-      <button
-        type="button"
-        className="info"
-        aria-label={`About ${title}`}
-        aria-haspopup="dialog"
-        onClick={() => setAbout(slug)}
-      >
-        i
-      </button>
-    )
-  }
-
   const row = (slug: string) => {
     const layer = content.layers[slug]
     const shown = overlays.includes(slug)
@@ -73,7 +58,7 @@ export default function App() {
             {layer.title} <small>{layer.year}</small>{' '}
             <small className="tag">{layer.source.type}</small>
           </label>
-          {info(slug)}
+          <InfoButton slug={slug} onOpen={setAbout} />
         </div>
         {shown && (
           <input
@@ -97,26 +82,6 @@ export default function App() {
     <div className="layout">
       <aside className="panel">
         <h1>Imagined San Francisco</h1>
-        <fieldset>
-          <legend>Basemap</legend>
-          {content.basemaps.map((slug) => (
-            <div key={slug} className="row">
-              <label>
-                <input
-                  type="radio"
-                  name="basemap"
-                  checked={basemap === slug}
-                  onChange={() => setBasemap(slug)}
-                />{' '}
-                {content.layers[slug].title}{' '}
-                <small className="tag">
-                  {content.layers[slug].source.type}
-                </small>
-              </label>
-              {info(slug)}
-            </div>
-          ))}
-        </fieldset>
         {content.eras.map((era) => (
           <section key={era.slug}>
             <h2>
@@ -144,7 +109,7 @@ export default function App() {
                           {group.endYear && `–${group.endYear}`}
                         </small>
                       </span>
-                      {info(item)}
+                      <InfoButton slug={item} onOpen={setAbout} />
                     </div>
                     <ul>{group.children.map(row)}</ul>
                   </li>
@@ -159,7 +124,13 @@ export default function App() {
         layers={overlays}
         opacity={opacity}
         focus={focus}
-      />
+      >
+        <BasemapControl
+          basemap={basemap}
+          onChange={setBasemap}
+          onAbout={setAbout}
+        />
+      </MapView>
       <AboutDialog
         slug={about}
         basemap={basemap}
