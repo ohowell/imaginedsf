@@ -1,5 +1,5 @@
-import { useEffect, useId, useRef } from 'react'
 import content from 'virtual:content'
+import { Dialog } from './Dialog.tsx'
 
 interface AboutDialogProps {
   /** Slug of the layer or group to describe, or nothing to stay closed. */
@@ -24,16 +24,6 @@ export function AboutDialog({
   onShowUnder,
   onClose,
 }: AboutDialogProps) {
-  const dialog = useRef<HTMLDialogElement>(null)
-  const titleId = useId()
-
-  useEffect(() => {
-    const element = dialog.current
-    if (!element) return
-    if (slug && !element.open) element.showModal()
-    if (!slug) element.close()
-  }, [slug])
-
   const layer = slug ? content.layers[slug] : undefined
   const group = slug ? content.groups[slug] : undefined
   const item = layer ?? group
@@ -61,59 +51,41 @@ export function AboutDialog({
   }
 
   return (
-    <dialog
-      ref={dialog}
-      className="about"
-      aria-labelledby={titleId}
+    <Dialog
+      open={item !== undefined}
+      title={
+        item && (
+          <>
+            {item.title}{' '}
+            <small>
+              {item.year}
+              {group?.endYear && `–${group.endYear}`}
+            </small>
+          </>
+        )
+      }
       onClose={onClose}
-      // Clicks outside the content land on the dialog itself, as backdrop.
-      onClick={(event) => {
-        if (event.target === event.currentTarget) event.currentTarget.close()
-      }}
     >
-      {item && (
-        <div className="about-content">
-          <header>
-            {/* Descriptions start their headings at level 2. */}
-            <h1 id={titleId}>
-              {item.title}{' '}
-              <small>
-                {item.year}
-                {group?.endYear && `–${group.endYear}`}
-              </small>
-            </h1>
+      {actions.length > 0 && (
+        <p className="actions">
+          {actions.map(([label, run]) => (
             <button
+              key={label}
               type="button"
-              className="close"
-              aria-label="Close"
-              onClick={() => dialog.current?.close()}
+              onClick={() => {
+                run()
+                onClose()
+              }}
             >
-              ×
+              {label}
             </button>
-          </header>
-          {actions.length > 0 && (
-            <p className="actions">
-              {actions.map(([label, run]) => (
-                <button
-                  key={label}
-                  type="button"
-                  onClick={() => {
-                    run()
-                    dialog.current?.close()
-                  }}
-                >
-                  {label}
-                </button>
-              ))}
-            </p>
-          )}
-          {/* Rendered at build time from the site's own Markdown. */}
-          <div
-            className="description"
-            dangerouslySetInnerHTML={{ __html: item.description }}
-          />
-        </div>
+          ))}
+        </p>
       )}
-    </dialog>
+      {item && (
+        // Rendered at build time from the site's own Markdown.
+        <div dangerouslySetInnerHTML={{ __html: item.description }} />
+      )}
+    </Dialog>
   )
 }

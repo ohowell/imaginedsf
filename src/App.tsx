@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import content from 'virtual:content'
+import type { PageName } from '../plugins/content/schema.ts'
 import { AboutDialog } from './AboutDialog.tsx'
 import { BasemapControl } from './BasemapControl.tsx'
+import { Dialog } from './Dialog.tsx'
+import { Header } from './Header.tsx'
 import { InfoButton } from './InfoButton.tsx'
 import { MapView } from './map/MapView.tsx'
 
@@ -28,6 +31,8 @@ export default function App() {
   const [focus, setFocus] = useState<{ bbox: Bbox }>()
   // Slug of the layer or group whose description is open.
   const [about, setAbout] = useState<string>()
+  // The page open from the header.
+  const [page, setPage] = useState<PageName>()
   const [onlyInView, setOnlyInView] = useState(false)
   const [view, setView] = useState<Bbox>()
 
@@ -114,8 +119,8 @@ export default function App() {
 
   return (
     <div className="layout">
+      <Header onOpenPage={setPage} />
       <aside className="panel">
-        <h1>Imagined San Francisco</h1>
         <section className="intro">
           <h2>{content.pages['maps-and-plans'].title}</h2>
           {/* Rendered at build time from the site's own Markdown. */}
@@ -208,6 +213,16 @@ export default function App() {
         onShowUnder={showUnder}
         onClose={() => setAbout(undefined)}
       />
+      <Dialog
+        open={page !== undefined}
+        title={page && content.pages[page].title}
+        onClose={() => setPage(undefined)}
+      >
+        {page && (
+          // Rendered at build time from the site's own Markdown.
+          <div dangerouslySetInnerHTML={{ __html: content.pages[page].body }} />
+        )}
+      </Dialog>
     </div>
   )
 }

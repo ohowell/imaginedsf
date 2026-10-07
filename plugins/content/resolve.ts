@@ -311,11 +311,12 @@ export function resolveContent(
       .sort((a, b) => a.start - b.start || a.title.localeCompare(b.title)),
     basemaps: site.data.basemaps,
     defaultBasemap: site.data.defaultBasemap,
+    // In the order the site lists them. Every page exists by now.
     pages: Object.fromEntries(
-      raw.pages.map(({ slug, file, data }) => [
-        slug,
-        { ...data, body: rendered(file) },
-      ]),
+      pageNames.map((name) => {
+        const { file, data } = pages.get(name)!
+        return [name, { ...data, body: rendered(file) }]
+      }),
     ) as Record<PageName, Page>,
   }
   return { content, assets: [...usedAssets].sort(), errors, warnings }

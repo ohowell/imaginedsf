@@ -42,6 +42,6 @@ export interface Content {
   /** Slugs of the layers offered as basemaps. */
   basemaps: string[]
   defaultBasemap: string
-  /** Static pages. */
+  /** Static pages, in the order the site lists them. */
   pages: Record<PageName, Page>
 }
