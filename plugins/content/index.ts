@@ -2,7 +2,9 @@ import { copyFile, mkdir } from 'node:fs/promises'
 import path from 'node:path'
 import { normalizePath, type Plugin } from 'vite'
 import { loadContent, type ContentIssue } from './load.ts'
+import { sitePages } from './pages.ts'
 import { resolveContent } from './resolve.ts'
+import type { Content } from './types.ts'
 
 const VIRTUAL_ID = 'virtual:content'
 const RESOLVED_ID = `\0${VIRTUAL_ID}`
@@ -29,12 +31,18 @@ async function buildContent(root: string, base: string) {
 const formatIssue = ({ file, message }: ContentIssue) => `${file}: ${message}`
 
 /**
- * Provides the site content as `virtual:content`, and copies the files in
- * assets/ that it uses into the build.
+ * Provides the site content as `virtual:content`, copies the files in assets/
+ * that it uses into the build, and adds a page for each item and page.
  */
-export function content(): Plugin {
+export function content({
+  siteUrl,
+}: {
+  /** Where the site is deployed, which pages' links need in full. */
+  siteUrl: string
+}): Plugin {
   let root = ''
   let base = '/'
+  let built: Content | undefined
   let usedAssets: string[] = []
   return {
     name: 'imaginedsf-content',
@@ -76,8 +84,27 @@ export function content(): Plugin {
           stack: '',
         })
       }
+      built = content
       usedAssets = assets
       return `export default JSON.parse(${JSON.stringify(JSON.stringify(content))})`
+    },
+    // After index.html is built, since the pages are copies of it.
+    generateBundle: {
+      order: 'post',
+      handler(_options, bundle) {
+        const index = bundle['index.html']
+        if (index?.type !== 'asset' || !built) {
+          return this.error('index.html or the content is missing')
+        }
+        const html =
+          typeof index.source === 'string'
+            ? index.source
+            : new TextDecoder().decode(index.source)
+        const files = sitePages(html, built, siteUrl)
+        for (const [fileName, source] of Object.entries(files)) {
+          this.emitFile({ type: 'asset', fileName, source })
+        }
+      },
     },
     // The dev server serves assets/ from the project root, so assets only need
     // copying when building.

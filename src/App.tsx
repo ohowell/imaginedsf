@@ -1,19 +1,14 @@
 import { useEffect, useState } from 'react'
 import content from 'virtual:content'
-import type { PageName } from '../plugins/content/schema.ts'
+import { windowTitle, type HeaderPage } from '../plugins/content/addresses.ts'
 import { AboutDialog } from './AboutDialog.tsx'
 import { BasemapControl } from './BasemapControl.tsx'
 import { Dialog } from './Dialog.tsx'
-import {
-  fromHash,
-  fromOldPath,
-  replaceHash,
-  type Bbox,
-  type MapState,
-} from './hash.ts'
+import { fromHash, replaceHash, type Bbox, type MapState } from './hash.ts'
 import { Header } from './Header.tsx'
 import { InfoButton } from './InfoButton.tsx'
 import { MapView } from './map/MapView.tsx'
+import { fromPath, replacePath } from './path.ts'
 import { ShareDialog } from './ShareDialog.tsx'
 
 // Remembers that someone has been here, so the introduction opens only once.
@@ -81,18 +76,23 @@ export default function App() {
   const [overlays, setOverlays] = useState(linked.layers)
   const [opacity, setOpacity] = useState(linked.opacity)
   const [focus, setFocus] = useState(() => focusFor(linked))
+  // The dialog the address opens, if any, like /layers/burnham-plan/.
+  const [opened] = useState(() => fromPath(window.location.pathname))
   // Slug of the layer or group whose description is open.
-  // Addresses from the old site, like /description/569, open what they did
-  // there. The path is dropped from the address once the map opens.
-  const [oldDialog] = useState(() => fromOldPath(window.location.pathname))
-  const [about, setAbout] = useState(oldDialog.about)
-  // The page open from the header, starting with the introduction for
-  // first-time visitors, unless they came for something else.
-  const [page, setPage] = useState<PageName | undefined>(
-    () =>
-      oldDialog.page ??
-      (!oldDialog.about && isFirstVisit() ? 'introduction' : undefined),
+  const [about, setAbout] = useState(opened.about)
+  // First-time visitors get the introduction, unless they came for something
+  // else. It opens without its own address, so theirs stays as it was.
+  const [welcome, setWelcome] = useState(
+    () => !opened.page && !opened.about && isFirstVisit(),
   )
+  // The page open from the header.
+  const [page, setPage] = useState<HeaderPage | undefined>(
+    () => opened.page ?? (welcome ? 'introduction' : undefined),
+  )
+  const openPage = (name?: HeaderPage) => {
+    setWelcome(false)
+    setPage(name)
+  }
   useEffect(() => {
     try {
       localStorage.setItem(VISITED_KEY, new Date().toISOString())
@@ -127,6 +127,17 @@ export default function App() {
   useEffect(() => {
     if (view) replaceHash({ basemap, layers: overlays, opacity, bbox: view })
   }, [basemap, overlays, opacity, view])
+
+  // Gives the open dialog's address and title to the window. Descriptions open
+  // over pages, so they come first.
+  useEffect(() => {
+    const shown = about ? { about } : page && !welcome ? { page } : {}
+    replacePath(shown)
+    const item = about && (content.layers[about] ?? content.groups[about])
+    document.title = windowTitle(
+      item ? item.title : shown.page && content.pages[shown.page].title,
+    )
+  }, [about, page, welcome])
 
   // Follows links to other views, and addresses edited by hand. The site's own
   // changes replace the hash without this event.
@@ -221,7 +232,7 @@ export default function App() {
 
   return (
     <div className="layout">
-      <Header onOpenPage={setPage} onShare={() => setSharing(true)} />
+      <Header onOpenPage={openPage} onShare={() => setSharing(true)} />
       <aside className="panel">
         <section className="intro">
           <h2>{content.pages['maps-and-plans'].title}</h2>
@@ -331,7 +342,7 @@ export default function App() {
       <Dialog
         open={page !== undefined}
         title={page && content.pages[page].title}
-        onClose={() => setPage(undefined)}
+        onClose={() => openPage(undefined)}
       >
         {page && (
           // Rendered at build time from the site's own Markdown.

@@ -1,5 +1,4 @@
 import content from 'virtual:content'
-import type { PageName } from '../plugins/content/schema.ts'
 
 export type Bbox = [number, number, number, number]
 
@@ -92,9 +91,6 @@ export function fromHash(hash: string): MapState {
 export function replaceHash(state: MapState) {
   const url = new URL(window.location.href)
   url.hash = toHash(state)
-  // The site has one page, which GitHub Pages also serves for paths it doesn't
-  // know, like the old site's /maps-and-plans, so links leave those out.
-  url.pathname = import.meta.env.BASE_URL
   if (url.href !== window.location.href) {
     history.replaceState(history.state, '', url)
   }
@@ -183,37 +179,4 @@ function fromOldHash(text: string): MapState | undefined {
       : undefined
 
   return { basemap, layers, opacity: opacityBySlug, bbox }
-}
-
-/** A dialog an address from the old site opens. */
-export interface OldDialog {
-  /** A page, like the introduction, from paths like /introduction. */
-  page?: PageName
-  /** Slug of a layer or group, from paths like /description/569. */
-  about?: string
-}
-
-/**
- * The dialog an old site's path opened, which was a page or the description
- * of a map or group by WordPress ID. Other paths, like /maps-and-plans for
- * the sidebar, open none.
- */
-export function fromOldPath(pathname: string): OldDialog {
-  const base = import.meta.env.BASE_URL
-  if (!pathname.startsWith(base)) return {}
-  const [route, id, ...rest] = pathname
-    .slice(base.length)
-    .split('/')
-    .filter(Boolean)
-  if (rest.length > 0) return {}
-  if (route === 'description' && id) {
-    const about = [
-      ...Object.values(content.layers),
-      ...Object.values(content.groups),
-    ].find((item) => String(item.wordpressId) === id)?.slug
-    return about ? { about } : {}
-  }
-  const isPage = (name: string): name is PageName =>
-    Object.hasOwn(content.pages, name) && name !== 'maps-and-plans'
-  return route && !id && isPage(route) ? { page: route } : {}
 }

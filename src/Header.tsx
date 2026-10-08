@@ -1,16 +1,12 @@
 import content from 'virtual:content'
-import type { PageName } from '../plugins/content/schema.ts'
+import { headerPages, type HeaderPage } from '../plugins/content/addresses.ts'
+import { openFromLink, toPath } from './path.ts'
 import { chooseTheme, useTheme } from './theme.ts'
 // Kept a separate file, since <use> can't point into an inlined data URL.
 import logoUrl from './logo.svg?no-inline'
 
-// Pages the header opens. Maps and plans is the sidebar itself.
-const headerPages = (Object.keys(content.pages) as PageName[]).filter(
-  (name) => name !== 'maps-and-plans',
-)
-
 interface HeaderProps {
-  onOpenPage: (name: PageName) => void
+  onOpenPage: (name: HeaderPage) => void
   onShare: () => void
 }
 
@@ -35,13 +31,14 @@ export function Header({ onOpenPage, onShare }: HeaderProps) {
         <ul>
           {headerPages.map((name) => (
             <li key={name}>
-              <button
-                type="button"
+              {/* Links to the page's own address, for opening in a new tab. */}
+              <a
+                href={toPath({ page: name })}
                 aria-haspopup="dialog"
-                onClick={() => onOpenPage(name)}
+                onClick={(event) => openFromLink(event, () => onOpenPage(name))}
               >
                 {content.pages[name].title}
-              </button>
+              </a>
             </li>
           ))}
           <li>

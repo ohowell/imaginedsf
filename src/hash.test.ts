@@ -1,6 +1,6 @@
 import content from 'virtual:content'
 import { describe, expect, it } from 'vitest'
-import { fromHash, fromOldPath, toHash } from './hash.ts'
+import { fromHash, toHash } from './hash.ts'
 
 const [first, second] = Object.keys(content.layers).filter(
   (slug) => !content.basemaps.includes(slug),
@@ -140,39 +140,5 @@ describe('old site links', () => {
       bbox: undefined,
     })
     expect(fromHash('#eyJub3QganNvbg')).toEqual(fromHash(''))
-  })
-})
-
-describe('old site paths', () => {
-  const layer = Object.values(content.layers)[0]
-  const group = Object.values(content.groups)[0]
-
-  it('open descriptions by WordPress ID', () => {
-    expect(fromOldPath(`/description/${layer.wordpressId}`)).toEqual({
-      about: layer.slug,
-    })
-    expect(fromOldPath(`/description/${group.wordpressId}/`)).toEqual({
-      about: group.slug,
-    })
-    expect(fromOldPath('/description/999999')).toEqual({})
-  })
-
-  it('open pages', () => {
-    expect(fromOldPath('/introduction')).toEqual({ page: 'introduction' })
-    expect(fromOldPath('/credits/')).toEqual({ page: 'credits' })
-  })
-
-  it('open nothing for other paths', () => {
-    for (const path of [
-      '/',
-      '/maps-and-plans',
-      '/narratives/some-narrative',
-      '/introduction/extra',
-      '/share',
-      '/toString',
-      '/constructor',
-    ]) {
-      expect(fromOldPath(path)).toEqual({})
-    }
   })
 })

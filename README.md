@@ -13,6 +13,8 @@ Site content lives in `content/` as Markdown files with YAML front matter, one f
 
 Eras, groups and layers list what's under them, naming other files by file name: `layers: [burnham-plan.md]` means `content/layers/burnham-plan.md`. Eras list `groups` and `layers`, groups list `layers`, and layers can list `layers` too (e.g. a map that has a nested layer of photos). Items in the sidebar are ordered by year, then title. Anything that isn't listed as a child of another item isn't shown. `wordpressId` keeps each item's ID from the old WordPress site, so that old links to the site still work.
 
+Each page, and each layer and group with a description, has an address of its own named after its file, like `/layers/burnham-plan/`, which opens it over the map. The build makes an HTML page at each address with its title, description and text, for search engines and link previews, and lists them in `sitemap.xml`. Addresses from the old site, like `/description/569`, lead to the same pages.
+
 The build checks all content and fails with a list of problems if anything is wrong, such as a misspelled field, a listed file that doesn't exist, an empty group or era, or a heading at the wrong level. The dev server shows the same errors in the browser, and reloads when content changes.
 
 ### Editing online
@@ -59,6 +61,8 @@ You can build the site for production with:
 ```sh
 npm run build
 ```
+
+Pages link to themselves and their preview images by full URL, so the build takes the address the site will be deployed at from `SITE_URL`, like `SITE_URL=https://imaginedsanfrancisco.org npm run build`. The deploy workflow sets it to the GitHub Pages address.
 
 After building, you can run a server over the built files with:
 

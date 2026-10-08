@@ -24,8 +24,8 @@ function spaFallback(): Plugin {
 }
 
 // Where the site is deployed, like https://ohowell.github.io/imaginedsf/. The
-// deploy workflow sets it, and links in index.html's metadata, which have to
-// be full URLs, use it as %SITE_URL%.
+// deploy workflow sets it. Links in pages' metadata have to be full URLs, so
+// index.html uses it as %SITE_URL%, and so do the pages made from it.
 const siteUrl = new URL(
   process.env.SITE_URL?.replace(/\/*$/, '/') ?? 'http://localhost:5173/',
 )
@@ -33,7 +33,7 @@ const siteUrl = new URL(
 export default defineConfig({
   base: siteUrl.pathname,
   define: { 'import.meta.env.SITE_URL': JSON.stringify(siteUrl.href) },
-  plugins: [react(), content(), spaFallback()],
+  plugins: [react(), content({ siteUrl: siteUrl.href }), spaFallback()],
   build: {
     // MapLibre alone is about a megabyte (280 kB compressed).
     chunkSizeWarningLimit: 1100,
