@@ -1,6 +1,28 @@
 # Imagined San Francisco
 
-Static rebuild of https://github.com/cestastanford/imaginedsf, deployed on GitHub Pages. To edit the content, see [Editing online](#editing-online) below.
+Static rebuild of [the original CESTA project](https://github.com/cestastanford/imaginedsf), deployed on GitHub Pages. To edit content, see [Editing online](#editing-online) below.
+
+## Content
+
+Site content lives in `content/` as Markdown files with YAML front matter, one file per item:
+
+- `eras/`: top-level groups shown in the sidebar with a description.
+- `layers/`: anything with data to draw on the map, like a scanned map, a set of photo pins, or a basemap.
+- `groups/`: have a title, description, and a list of layers, but no map data of their own.
+- `pages/`: content for the introduction, bibliography, credits and feedback pages.
+
+Eras, groups and layers list what's under them, naming other files by file name: `layers: [burnham-plan.md]` means `content/layers/burnham-plan.md`. Eras list `groups` and `layers`, groups list `layers`, and layers can list `layers` too (e.g. a map that has a nested layer of photos). Items in the sidebar are ordered by year, then title. Anything that isn't listed as a child of another item isn't shown. `wordpressId` keeps each item's ID from the old WordPress site, so that old links to the site still work.
+
+The build checks all content and fails with a list of problems if anything is wrong, such as a misspelled field, a listed file that doesn't exist, an empty group or era, or a heading at the wrong level. The dev server shows the same errors in the browser, and reloads when content changes.
+
+### Editing online
+
+> [!WARNING]
+> Saving a rich text description in Pages CMS rewrites it in its own style, which drops any HTML and deletes backslash escapes along with what they escape: `\[sic\]` becomes `sic`. Brackets should be entered literally instead of escaped.
+
+Content is edited in the browser with [Pages CMS](https://pagescms.org), configured by `.pages.yml`. To use it, sign in at [app.pagescms.org/ohowell/imaginedsf](https://app.pagescms.org/ohowell/imaginedsf) with GitHub. When you save a file, it gets committed to `main`. If this results in a build error, the deployed site won't change, because the workflow only deploys if the build succeeds.
+
+Each content item uses its title from the front matter as a top-level heading (`h1`), so headings in the body description should start at `h2` and not skip levels. There's no way to enforce this using Pages CMS, but the build checks for it and will fail if it finds a heading at the wrong level. If you made changes but they didn't show up in the deployed site, this might be why – check [the build log in GitHub Actions](https://github.com/ohowell/imaginedsf/actions) for errors.
 
 ## Development
 
@@ -51,32 +73,6 @@ The content pipeline has unit tests, which you can run with:
 ```sh
 npm test
 ```
-
-## Content
-
-Site content lives in `content/` as Markdown files with YAML front matter, one file per item:
-
-- `layers/`: anything with data to draw on the map, like a scanned map, a set of photo pins, or a basemap. The front matter sets the title, year, source and bounding box, and the body is the description.
-- `groups/`: titled, described sets of layers, with no data of their own.
-- `eras/`: proposal eras, each with a title, start and end year, and description.
-- `pages/`: the introduction, maps and plans intro, bibliography, credits and feedback pages.
-- `site.yml`: the basemaps, and which one shows first.
-
-Eras, groups and layers list what's under them, naming other files by file name: `layers: [burnham-plan.md]` means `content/layers/burnham-plan.md`. Eras list `groups` and `layers`, groups list `layers`, and layers can list `layers` too, like a plan's details and photos. Layers under layers nest only one level. Each item is listed in one place, and basemaps are listed in `site.yml` instead. Items are shown by year, then title, whatever order they're listed in. Anything that isn't listed isn't shown. `wordpressId` keeps each item's ID from the old WordPress site, for matching up old links.
-
-The address keeps up with the map, so it can be copied and shared, and file names are part of it: `#layers=burnham-plan:0.5,existing-city&basemap=aerial-imagery&bbox=-122.48,37.76,-122.39,37.81` shows those layers from bottom to top, the first at half opacity, on aerial imagery, fitted to that box (west, south, east, north). Each part is optional, and links can be written by hand: `#layers=burnham-plan` zooms to that layer's bounding box. Renaming a layer's file breaks links to it, and links naming layers that don't exist leave them out. Links from the old site, which encoded its state in base64 and named items by WordPress ID, still open and turn into new ones, so changing or removing a `wordpressId` breaks those.
-
-The title in the front matter is each item's top-level heading, so headings in the body start at `##` and don't skip levels. Use headings only for sections, like "Further Reading", not to make text bigger.
-
-The build checks all content and fails with a list of problems if anything is wrong, such as a misspelled field, a listed file that doesn't exist, an empty group or era, or a heading at the wrong level. The dev server shows the same errors in the browser, and reloads when content changes.
-
-### Editing online
-
-Content can also be edited in the browser with [Pages CMS](https://pagescms.org), set up by `.pages.yml`. To use it, sign in at [app.pagescms.org/ohowell/imaginedsf](https://app.pagescms.org/ohowell/imaginedsf) with GitHub. Each save is a commit to `main`, which deploys like any other, so an edit the build rejects leaves the site as it was until it's fixed; the failed run's log lists the problems.
-
-Pages CMS removes front matter fields it doesn't know about when it saves a file, so a new field has to be added to `.pages.yml` along with `plugins/content/schema.ts`. Saving also rewrites the front matter in its own style, like putting each number in `bbox` on its own line, which doesn't change what it says.
-
-Descriptions are edited as rich text and saved as Markdown, but editing one rewrites all of it in the editor's own Markdown, which drops any HTML and deletes backslash escapes along with what they escape: `\[sic\]` becomes `sic`. So descriptions use neither. An image's caption is the paragraph after it, and brackets are left unescaped, which Markdown shows as written unless they make a link.
 
 ## Deployment
 
